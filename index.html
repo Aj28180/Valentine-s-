@@ -41,29 +41,46 @@ body {
   to { text-shadow: 0 0 25px #ff4d6d, 0 0 35px #ff1744, 0 0 55px #ff1744, 0 0 85px #ff1744, 0 0 100px #ff1744; }
 }
 
-.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 90%; }
+/* PERFECT BUTTON ALIGNMENT */
+.center { 
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+  z-index: 10; width: 90%; max-width: 500px; padding: 40px;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+}
 .hidden { display: none; }
 
+.buttons-container {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  margin: 40px 0; width: 100%;
+}
+
 button {
-  padding: 18px 40px; font-size: clamp(18px, 3.5vw, 24px); font-weight: bold;
-  border: none; border-radius: 50px; margin: 12px; cursor: pointer;
+  width: 100%; max-width: 380px;
+  padding: 22px 40px; font-size: clamp(18px, 3.5vw, 24px); font-weight: bold;
+  border: none; border-radius: 50px; cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+  box-shadow: 0 12px 35px rgba(255, 23, 68, 0.5);
 }
-button:hover {
-  transform: translateY(-3px) scale(1.08); box-shadow: 0 15px 35px rgba(255, 23, 68, 0.7);
-}
-#startBtn, #yesBtn { 
+button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 45px rgba(255, 23, 68, 0.7); }
+button:active { transform: scale(0.97); }
+
+#yesBtn { 
   background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); color: white; 
-  box-shadow: 0 0 30px rgba(255, 23, 68, 0.6);
+  box-shadow: 0 0 40px rgba(255, 23, 68, 0.7); font-size: clamp(20px, 4vw, 26px);
 }
 #noBtn { 
-  background: linear-gradient(135deg, #666, #444); color: white; position: absolute; z-index: 15;
+  background: linear-gradient(135deg, #666, #444); color: white; max-width: 300px;
+  animation: gentleFloat 3s ease-in-out infinite;
+}
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .loveMsg {
-  max-width: 700px; margin: 25px auto; font-size: clamp(17px, 2.8vw, 22px);
-  line-height: 1.8; color: #ffd1dc; animation: fadeInUp 1.2s ease-out;
+  max-width: 90%; margin: 30px auto; font-size: clamp(17px, 2.8vw, 22px);
+  line-height: 1.8; color: #ffd1dc; animation: fadeInUp 1.5s ease-out;
 }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
@@ -71,92 +88,72 @@ button:hover {
 }
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
-#final h1 { font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px; }
-#final p { font-size: clamp(20px, 4vw, 28px); opacity: 0.9; }
-
-#musicBtn { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); z-index:25; opacity:0; transition:opacity 0.5s; }
+input[type="password"] {
+  padding: 18px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d;
+  margin: 20px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1);
+  color: white; backdrop-filter: blur(10px); font-family: inherit; text-align: center;
+}
+input[type="password"]:focus { border-color: #ff1744; box-shadow: 0 0 25px rgba(255,23,68,0.5); outline: none; }
 </style>
 </head>
 
 <body>
-<!-- 🎵 ZARA SI MUSIC WITH ANALYSER -->
-<audio id="loveSong" loop preload="auto" style="display:none;">
+<!-- 🎵 AUTO-PLAY MUSIC (NO CONTROL BUTTON) -->
+<audio id="loveSong" loop preload="auto" style="display:none;" autoplay>
   <source src="zara_si.mp3" type="audio/mpeg">
 </audio>
 
 <div id="heartsBg" class="hearts-bg"></div>
 
-<!-- 🔐 PASSWORD -->
+<!-- 🔐 PASSWORD SCREEN -->
 <div id="lock" class="center">
-  <h2 style="font-size: clamp(24px, 5vw, 32px);">Enter Our Secret Password 🔐</h2>
-  <input type="password" id="pass" style="padding: 15px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d; margin: 15px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px);" placeholder="Our special words...">
-  <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
-  <p id="error" style="color: #ff6b9d; font-size: 18px;"></p>
+  <h2 style="font-size: clamp(26px, 5vw, 34px); margin-bottom: 25px;">💕 Our Secret Promise 🔐</h2>
+  <input type="password" id="pass" placeholder="Whisper our sacred words... 💖">
+  <br><button onclick="unlock()" style="width: clamp(320px, 45vw, 380px); margin-top: 20px;">✨ Unlock My Heart ✨</button>
+  <p id="error" style="color: #ff6b9d; font-size: clamp(16px, 3vw, 18px); margin-top: 15px;"></p>
 </div>
 
-<!-- ❤️ START -->
+<!-- ❤️ WELCOME SCREEN -->
 <div id="startScreen" class="center hidden">
-  <div class="neon">Bhumika ❤️ Ankush</div>
-  <p style="font-size: clamp(18px, 3vw, 24px); margin: 20px 0; opacity: 0.9;">Forever begins here...</p>
-  <button id="startBtn">✨ Begin Our Love Story ✨</button>
+  <div class="neon">Bhumika 💕 Ankush</div>
+  <p style="font-size: clamp(18px, 3vw, 24px); margin: 25px 0; opacity: 0.95;">Where our souls intertwine forever... 🌹</p>
+  <button id="startBtn">💖 Enter Our Eternal Love 💖</button>
 </div>
 
-<!-- 💌 MAIN -->
+<!-- 💌 ROMANTIC PROPOSAL -->
 <div id="content" class="center hidden">
-  <h1 class="neon">Bhumika, You Are My Universe 💖</h1>
+  <h1 class="neon">My Soulmate Bhumika 💖</h1>
   <p class="loveMsg">
-    My Dearest Bhumika,<br><br>
-    Every moment with you feels like a dream I never want to wake from ✨.<br>
-    Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
-    From stolen glances to forever promises—you are my always.<br><br>
-    Will you be my Valentine... my wife... my eternity? 💍
+    My beloved Bhumika, you are the poetry my heart always whispered... ✨<br><br>
+    Your eyes hold galaxies that pull me into forever, your smile ignites stars in my darkness. 💫<br>
+    Every breath I take carries your name, every heartbeat sings your love. 💕<br><br>
+    From this sacred moment through eternity...<br>
+    <strong>Will you be my Valentine, my forever love, my everything? 💍</strong>
   </p>
-  <div style="position: relative;">
-    <button id="yesBtn">Yes, Forever & Always! 💋</button>
-    <button id="noBtn">Maybe Later 😘</button>
+  <div class="buttons-container">
+    <button id="yesBtn">💋 YES, My Love Forever! 💕</button>
+    <button id="noBtn">💭 Let Me Dream... 😘</button>
   </div>
 </div>
 
-<!-- 💖 FINAL -->
+<!-- 💖 CELEBRATION SCREEN -->
 <div id="final" class="center hidden">
-  <h1 class="neon">SHE SAID YES! 🎉💖</h1>
-  <div class="neon">Bhumika & Ankush - Forever Entwined ❤️</div>
-  <p style="margin-top: 30px;">Our love story just became legendary! 💫</p>
-</div>
-
-<!-- 🎵 MUSIC CONTROL -->
-<div id="musicBtn">
-  <button onclick="toggleMusic()" id="musicToggleBtn"
-    style="padding:12px 28px; background:linear-gradient(45deg,#ff1744,#e91e63); color:white; border:none; border-radius:35px; font-size:16px; font-weight:bold; cursor:pointer; box-shadow:0 6px 25px rgba(255,23,68,0.5);">
-    🎵 Play Zara Si Again 💖
-  </button>
+  <h1 class="neon">I LOVE YOU BHUMIKA! 💋💋💋💋</h1>
+  <div class="neon" style="font-size: clamp(28px, 5.5vw, 38px);">Our Hearts Beat As One Forever 💖</div>
+  <p style="margin-top: 35px; font-size: clamp(19px, 3.5vw, 24px); color: #ffd1dc;">
+    You are my dream come true, my eternal flame, my forever home. 🌟<br>
+    Together, we dance through infinity wrapped in love's embrace. 💞
+  </p>
 </div>
 
 <canvas id="fireworks"></canvas>
 
 <script>
-// 🎵 MUSIC WITH BEAT DETECTION
+// 🎵 MUSIC SETUP (Auto-plays on unlock, no controls)
 let musicPlaying = false;
 const audio = document.getElementById('loveSong');
-const musicToggleBtn = document.getElementById('musicToggleBtn');
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const analyser = audioContext.createAnalyser();
-const source = audioContext.createMediaElementSource(audio);
-let beatThreshold = 0.3;
-let beatHoldTime = 0;
-let beatDecay = 0;
-let dataArray;
 
-// Setup audio analyser
-source.connect(analyser);
-analyser.connect(audioContext.destination);
-analyser.fftSize = 256;
-const bufferLength = analyser.frequencyBinCount;
-dataArray = new Uint8Array(bufferLength);
-
-let beatTimes = [0.5, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4]; // Zara Si BPM pattern
-
-// 🌟 HEARTS
+// 🌟 HEARTS ANIMATION
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
@@ -164,104 +161,64 @@ function createHearts() {
     heart.className = 'heart';
     heart.style.left = Math.random() * 100 + '%';
     heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
-    heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
     heartsBg.appendChild(heart);
     setTimeout(() => heart.remove(), 9000);
   }, 200);
 }
 createHearts();
 
-// 🔐 PASSWORD + MUSIC + BEAT SYNC START
+// 🔐 PERFECT PASSWORD SYSTEM
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
   const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
   if (secrets.includes(p)) {
-    // 🎵 START MUSIC + BEAT SYNC
-    audioContext.resume();
+    // 🎵 START MUSIC AUTOMATICALLY
     audio.play().then(() => {
       musicPlaying = true;
-      musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
-      beatHoldTime = audio.currentTime;
     }).catch(e => console.log('Music ready'));
     
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("startScreen").classList.remove("hidden");
-    document.getElementById("musicBtn").style.opacity = "1";
     error.textContent = "";
   } else {
-    error.textContent = "❤️ Whisper our special words... 💕";
-    document.getElementById("pass").style.borderColor = "#ff6b9d";
-    setTimeout(() => document.getElementById("pass").style.borderColor = "#ff4d6d", 500);
-    document.getElementById("pass").value = "";
+    error.textContent = "💕 Try: iloveyou, bhumikaankush, forever, mylove 💕";
+    document.getElementById("pass").style.borderColor = "#ff4757";
+    setTimeout(() => {
+      document.getElementById("pass").style.borderColor = "#ff4d6d";
+      document.getElementById("pass").value = "";
+    }, 600);
   }
 }
 
-// 🎵 MUSIC TOGGLE
-function toggleMusic() {
-  if (musicPlaying) {
-    audio.pause();
-    musicToggleBtn.innerHTML = '🎵 Play Zara Si Again 💖';
-    musicToggleBtn.style.background = 'linear-gradient(45deg,#ff1744,#e91e63)';
-    musicPlaying = false;
-  } else {
-    audioContext.resume();
-    audio.play();
-    musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
-    musicToggleBtn.style.background = 'linear-gradient(45deg,#e91e63,#ff4081)';
-    musicPlaying = true;
-  }
-}
+// 🚀 EVENT HANDLERS
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById("startBtn").onclick = () => {
+    document.getElementById("startScreen").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
+  };
 
-// 🔥 BEAT SYNCHRONIZED FIREWORKS
-function createBeatFirework() {
-  if (musicPlaying) {
-    const beatStrength = analyser.getByteFrequencyData(dataArray);
-    const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
-    
-    if (avg > beatThreshold * 80) {
-      const x = Math.random() * canvas.width;
-      const y = canvas.height * 0.3;
-      createFirework(x, y, 150);
-      createHeartParticle(x, canvas.height * 0.7);
-      beatHoldTime = audio.currentTime;
-    }
-  }
-}
+  // 🎯 FUN NO BUTTON (Now perfectly visible!)
+  document.getElementById("noBtn").onmouseover = () => {
+    const btn = document.getElementById("noBtn");
+    btn.style.position = 'fixed';
+    btn.style.top = (Math.random() * 50 + 15) + "vh";
+    btn.style.left = (Math.random() * 50 + 15) + "vw";
+    btn.style.width = '240px';
+    btn.style.zIndex = '100';
+    btn.style.transform = `rotate(${Math.random() * 360}deg) scale(1.1)`;
+  };
 
-// Pattern-based Zara Si beats (every 0.6s ~100BPM)
-function musicPatternFireworks() {
-  if (musicPlaying && audio.currentTime > 1) {
-    const beatPosition = (audio.currentTime % 60) * 10; // Pattern repeat
-    const patternIndex = Math.floor(beatPosition) % beatTimes.length;
-    
-    if (Math.abs(beatPosition - beatTimes[patternIndex] * 10) < 0.3) {
-      createFirework(canvas.width * 0.5, canvas.height * 0.2, 200);
-    }
-  }
-}
+  // 💖 YES BUTTON PERFECTION
+  document.getElementById("yesBtn").onclick = () => {
+    document.getElementById("content").classList.add("hidden");
+    document.getElementById("final").classList.remove("hidden");
+    infiniteCelebration();
+  };
+});
 
-// 🚀 OTHER EVENTS
-document.getElementById("startBtn").onclick = () => {
-  document.getElementById("startScreen").classList.add("hidden");
-  document.getElementById("content").classList.remove("hidden");
-};
-
-document.getElementById("noBtn").onmouseover = () => {
-  const btn = document.getElementById("noBtn");
-  btn.style.top = (Math.random() * 60 + 10) + "vh";
-  btn.style.left = (Math.random() * 60 + 10) + "vw";
-  btn.style.transform = `rotate(${Math.random() * 360}deg)`;
-};
-
-document.getElementById("yesBtn").onclick = () => {
-  document.getElementById("content").classList.add("hidden");
-  document.getElementById("final").classList.remove("hidden");
-  infiniteCelebration();
-};
-
-// 🔥 FIREWORKS ENGINE (enhanced with beat sync)
+// 🔥 EPIC FIREWORKS ENGINE
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 let particles = [], time = 0, celebrationMode = false;
@@ -273,71 +230,39 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-function getRomanticColor() {
-  const hue = 300 + (Math.sin(time * 0.02) * 20) + Math.random() * 40;
-  return `hsl(${hue}, ${95 + Math.random()*5}%, ${50 + Math.random()*20}%)`;
+function getLoveColor() {
+  const hue = 300 + Math.sin(time * 0.02) * 30 + Math.random() * 60;
+  return `hsl(${hue}, 95%, ${55 + Math.random()*20}%)`;
 }
 
 function createHeartParticle(x, y) {
   const angle = Math.random() * Math.PI * 2;
-  const speed = Math.random() * 8 + 2;
   particles.push({
-    x, y,
-    vx: Math.cos(angle) * speed * 0.7,
-    vy: Math.sin(angle) * speed * 0.7,
-    life: 120,
-    decay: 0.012 + Math.random() * 0.008,
-    size: 1.5 + Math.random() * 2.5,
-    color: getRomanticColor(),
-    isHeart: true
+    x, y, vx: Math.cos(angle) * (3 + Math.random() * 5),
+    vy: Math.sin(angle) * (3 + Math.random() * 5), life: 140,
+    decay: 0.01, size: 1.8 + Math.random() * 3, color: getLoveColor(), isHeart: true
   });
 }
 
-function createFirework(x, y, count = 120) {
+function createFirework(x, y, count = 150) {
   for (let i = 0; i < count; i++) {
     particles.push({
-      x, y,
-      vx: (Math.random() - 0.5) * 12,
-      vy: (Math.random() - 0.5) * 12 - 2,
-      life: 110,
-      decay: 0.015 + Math.random() * 0.01,
-      size: 1.8 + Math.random() * 3,
-      color: getRomanticColor()
+      x, y, vx: (Math.random() - 0.5) * 15, vy: (Math.random() - 0.5) * 15 - 3,
+      life: 120, decay: 0.013, size: 2 + Math.random() * 4, color: getLoveColor()
     });
-  }
-}
-
-function textFireworks() {
-  const text = "Bhumika ❤️ Ankush Forever";
-  const temp = document.createElement("canvas");
-  const tctx = temp.getContext("2d");
-  temp.width = 1000; temp.height = 250;
-  tctx.fillStyle = "#fff";
-  tctx.font = "bold 70px Georgia";
-  tctx.textAlign = "center"; tctx.textBaseline = "middle";
-  tctx.fillText(text, 500, 125);
-  
-  const data = tctx.getImageData(0, 0, 1000, 250).data;
-  for (let y = 0; y < 250; y += 5) {
-    for (let x = 0; x < 1000; x += 5) {
-      if (data[(y * 1000 + x) * 4 + 3] > 128) {
-        createFirework(x + canvas.width/2 - 500, y + canvas.height/2 - 125, 3);
-      }
-    }
-  }
-}
-
-function createConfettiBurst() {
-  for (let i = 0; i < 8; i++) {
-    createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.3, 80);
-    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.7);
   }
 }
 
 function infiniteCelebration() {
   celebrationMode = true;
-  textFireworks();
-  setInterval(createConfettiBurst, 800);
+  // MASSIVE EXPLOSION
+  createFirework(canvas.width * 0.5, canvas.height * 0.25, 400);
+  setInterval(() => {
+    if (particles.length < 1000) {
+      createFirework(Math.random() * canvas.width * 0.8 + canvas.width * 0.1, canvas.height * 0.2, 200);
+      createHeartParticle(Math.random() * canvas.width, canvas.height * 0.7);
+    }
+  }, 700);
 }
 
 function drawHeart(ctx, x, y, size) {
@@ -345,38 +270,31 @@ function drawHeart(ctx, x, y, size) {
   ctx.moveTo(x, y);
   ctx.bezierCurveTo(x, y - size/4, x - size/2, y - size/2, x, y - size);
   ctx.bezierCurveTo(x + size/2, y - size/2, x, y - size/4, x, y);
-  ctx.lineTo(x, y);
+  ctx.closePath();
 }
 
 function animate() {
   time++;
   requestAnimationFrame(animate);
   
-  // 🎵 BEAT SYNC FIREWORKS
-  if (musicPlaying) {
-    createBeatFirework();
-    musicPatternFireworks();
-  }
-  
-  ctx.fillStyle = "rgba(7, 0, 15, 0.18)";
+  ctx.fillStyle = "rgba(7, 0, 15, 0.2)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
-    p.x += (p.vx *= 0.985);
-    p.y += (p.vy += 0.013);
+    p.x += p.vx *= 0.98;
+    p.y += p.vy += 0.018;
     p.life -= p.decay;
-    p.size *= 0.992;
+    p.size *= 0.99;
     
     if (p.life > 0) {
       ctx.save();
-      ctx.globalAlpha = p.life / 120;
-      
-      ctx.shadowBlur = 15 + p.life * 0.1;
+      ctx.globalAlpha = p.life / 140;
+      ctx.shadowBlur = 20 + p.life * 0.2;
       ctx.shadowColor = p.color;
       
       if (p.isHeart) {
-        drawHeart(ctx, p.x, p.y, p.size * 1.5);
+        drawHeart(ctx, p.x, p.y, p.size * 1.8);
       } else {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -389,7 +307,7 @@ function animate() {
     }
   }
   
-  if (celebrationMode && particles.length < 800 && Math.random() < 0.3) {
+  if (celebrationMode && particles.length < 1200 && Math.random() < 0.4) {
     createHeartParticle(Math.random() * canvas.width, canvas.height * 0.8);
   }
 }
