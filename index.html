@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhumika ❤️ Ankush - Valentine's Love</title>
+<title>Bhumika ❤️ Ankush - Eternal Love</title>
 <style>
 body {
   margin: 0;
@@ -31,28 +31,6 @@ body {
   100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
 }
 
-/* 🌹 FALLING RED ROSES */
-.roses-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
-.rose-petal {
-  position: absolute; width: 28px; height: 40px;
-  background: radial-gradient(ellipse at center, #dc143c 0%, #b71c1c 70%, #8b0000 100%);
-  border-radius: 50% 50% 0 0;
-  opacity: 0.9; box-shadow: 0 4px 15px rgba(220,20,60,0.6);
-  animation: fallRose linear infinite;
-}
-@keyframes fallRose {
-  0% { 
-    transform: translateY(-100px) rotate(0deg) scale(0.6); 
-    opacity: 0.3; 
-  }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { 
-    transform: translateY(110vh) rotate(720deg) scale(1.1); 
-    opacity: 0; 
-  }
-}
-
 .neon {
   font-size: clamp(32px, 6vw, 55px); line-height: 1.2;
   text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1744, 0 0 40px #ff1744, 0 0 60px #ff1744;
@@ -63,116 +41,121 @@ body {
   to { text-shadow: 0 0 25px #ff4d6d, 0 0 35px #ff1744, 0 0 55px #ff1744, 0 0 85px #ff1744, 0 0 100px #ff1744; }
 }
 
-.center { 
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-  z-index: 10; width: 90%; max-width: 450px; padding: 40px 30px;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.9); min-height: 60vh;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-}
+.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 90%; }
 .hidden { display: none; }
 
-.buttons-container {
-  position: relative; width: 100%; margin: 35px 0; height: 160px;
-  display: flex; flex-direction: column; align-items: center; gap: 18px;
-}
-
 button {
-  width: 100%; max-width: 360px;
-  padding: 22px 40px; font-size: clamp(18px, 4vw, 24px); font-weight: 700;
-  border: none; border-radius: 50px; cursor: pointer;
+  padding: 18px 40px; font-size: clamp(18px, 3.5vw, 24px); font-weight: bold;
+  border: none; border-radius: 50px; margin: 12px; cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 12px 35px rgba(255, 23, 68, 0.5);
-  touch-action: manipulation; line-height: 1.2; letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
 }
-button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 45px rgba(255, 23, 68, 0.7); }
-button:active { transform: scale(0.97); }
-
-#yesBtn { 
-  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); 
-  color: white; box-shadow: 0 0 40px rgba(255, 23, 68, 0.7);
-  font-size: clamp(20px, 4.5vw, 26px);
+button:hover {
+  transform: translateY(-3px) scale(1.08); box-shadow: 0 15px 35px rgba(255, 23, 68, 0.7);
+}
+#startBtn, #yesBtn { 
+  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); color: white; 
+  box-shadow: 0 0 30px rgba(255, 23, 68, 0.6);
 }
 #noBtn { 
-  background: linear-gradient(135deg, #666, #444); color: white;
-  max-width: 280px; font-size: clamp(17px, 3.8vw, 22px);
-  animation: noBtnFloat 3s ease-in-out infinite;
-}
-@keyframes noBtnFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  background: linear-gradient(135deg, #666, #444); color: white; position: absolute; z-index: 15;
 }
 
 .loveMsg {
-  max-width: 90%; margin: 30px auto; font-size: clamp(16px, 3vw, 20px);
-  line-height: 1.75; color: #ffd1dc; animation: fadeInUp 1.5s ease-out; text-align: center;
+  max-width: 700px; margin: 25px auto; font-size: clamp(17px, 2.8vw, 22px);
+  line-height: 1.8; color: #ffd1dc; animation: fadeInUp 1.2s ease-out;
 }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 8; }
+canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 #final h1 { font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px; }
 #final p { font-size: clamp(20px, 4vw, 28px); opacity: 0.9; }
 
-input[type="password"] {
-  width: clamp(280px, 45vw, 380px); padding: 20px 25px; margin: 25px auto;
-  font-size: clamp(18px, 3.5vw, 22px); font-weight: 500; font-family: inherit;
-  border: 3px solid #ff4d6d; border-radius: 40px; background: rgba(255,255,255,0.12);
-  color: white; backdrop-filter: blur(15px); outline: none; text-align: center;
-}
-input[type="password"]:focus { border-color: #ff1744; box-shadow: 0 0 25px rgba(255,23,68,0.5); }
+#musicBtn { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); z-index:25; opacity:0; transition:opacity 0.5s; }
 </style>
 </head>
 
 <body>
+<!-- 🎵 ZARA SI MUSIC WITH ANALYSER -->
+<audio id="loveSong" loop preload="auto" style="display:none;">
+  <source src="zara_si.mp3" type="audio/mpeg">
+</audio>
+
 <div id="heartsBg" class="hearts-bg"></div>
-<div id="rosesBg" class="roses-bg"></div>
 
-<!-- 🔐 PASSWORD SCREEN -->
+<!-- 🔐 PASSWORD -->
 <div id="lock" class="center">
-  <h2 style="font-size: clamp(26px, 5.5vw, 36px); margin-bottom: 30px;">Enter Our Secret Code 🔐</h2>
-  <input type="password" id="pass" placeholder="💕 Our special words... 💕">
-  <br><button onclick="unlock()" style="width: clamp(320px, 50vw, 400px);">💖 Unlock Our Love 💖</button>
-  <p id="error" style="color: #ff6b9d; font-size: clamp(15px, 3vw, 18px); margin-top: 20px;"></p>
+  <h2 style="font-size: clamp(24px, 5vw, 32px);">Enter Our Secret Password 🔐</h2>
+  <input type="password" id="pass" style="padding: 15px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d; margin: 15px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px);" placeholder="Our special words...">
+  <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
+  <p id="error" style="color: #ff6b9d; font-size: 18px;"></p>
 </div>
 
-<!-- ❤️ VALENTINE WELCOME -->
+<!-- ❤️ START -->
 <div id="startScreen" class="center hidden">
-  <div class="neon">Bhumika 💕 Ankush</div>
-  <p style="font-size: clamp(18px, 3.2vw, 24px); margin: 30px 0; opacity: 0.95;">This Valentine's Day, our hearts beat as one...</p>
-  <button id="startBtn">💝 Open My Heart 💝</button>
+  <div class="neon">Bhumika ❤️ Ankush</div>
+  <p style="font-size: clamp(18px, 3vw, 24px); margin: 20px 0; opacity: 0.9;">Forever begins here...</p>
+  <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- 💌 VALENTINE'S PROPOSAL -->
+<!-- 💌 MAIN -->
 <div id="content" class="center hidden">
-  <h1 class="neon">My Beautiful Bhumika 💖</h1>
+  <h1 class="neon">Bhumika, You Are My Universe 💖</h1>
   <p class="loveMsg">
-    On this magical Valentine's Day, I want the world to know...<br><br>
-    You are my heartbeat, my sunshine, the love of my life. 🌹<br>
-    Every moment with you feels like a fairytale come true. 💕<br><br>
-    <strong>Will you be my Valentine... my one true love... forever? 💝</strong>
+    My Dearest Bhumika,<br><br>
+    Every moment with you feels like a dream I never want to wake from ✨.<br>
+    Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
+    From stolen glances to forever promises—you are my always.<br><br>
+    Will you be my Valentine... my wife... my eternity? 💍
   </p>
-  <div class="buttons-container">
-    <button id="yesBtn">💝 YES, I'm Your Valentine Forever! 💋</button>
-    <button id="noBtn">🤔 Let Me Think... 😘</button>
+  <div style="position: relative;">
+    <button id="yesBtn">Yes, Forever & Always! 💋</button>
+    <button id="noBtn">Maybe Later 😘</button>
   </div>
 </div>
 
-<!-- 💖 VALENTINE'S CELEBRATION -->
+<!-- 💖 FINAL -->
 <div id="final" class="center hidden">
   <h1 class="neon">SHE SAID YES! 🎉💖</h1>
-  <div class="neon" style="font-size: clamp(24px, 5vw, 34px);">Bhumika 💝 My Valentine Forever</div>
-  <p style="margin-top: 35px; font-size: clamp(19px, 3.8vw, 25px); color: #ffd1dc;">
-    This Valentine's Day, you made me the happiest man alive! 🌟<br>
-    My beautiful Valentine, my heart belongs to you forever 💕
-  </p>
+  <div class="neon">Bhumika & Ankush - Forever Entwined ❤️</div>
+  <p style="margin-top: 30px;">Our love story just became legendary! 💫</p>
+</div>
+
+<!-- 🎵 MUSIC CONTROL -->
+<div id="musicBtn">
+  <button onclick="toggleMusic()" id="musicToggleBtn"
+    style="padding:12px 28px; background:linear-gradient(45deg,#ff1744,#e91e63); color:white; border:none; border-radius:35px; font-size:16px; font-weight:bold; cursor:pointer; box-shadow:0 6px 25px rgba(255,23,68,0.5);">
+    🎵 Play Zara Si Again 💖
+  </button>
 </div>
 
 <canvas id="fireworks"></canvas>
 
 <script>
+// 🎵 MUSIC WITH BEAT DETECTION
+let musicPlaying = false;
+const audio = document.getElementById('loveSong');
+const musicToggleBtn = document.getElementById('musicToggleBtn');
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioContext.createAnalyser();
+const source = audioContext.createMediaElementSource(audio);
+let beatThreshold = 0.3;
+let beatHoldTime = 0;
+let beatDecay = 0;
+let dataArray;
+
+// Setup audio analyser
+source.connect(analyser);
+analyser.connect(audioContext.destination);
+analyser.fftSize = 256;
+const bufferLength = analyser.frequencyBinCount;
+dataArray = new Uint8Array(bufferLength);
+
+let beatTimes = [0.5, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4]; // Zara Si BPM pattern
+
 // 🌟 HEARTS
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
@@ -181,75 +164,107 @@ function createHearts() {
     heart.className = 'heart';
     heart.style.left = Math.random() * 100 + '%';
     heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+    heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
     heartsBg.appendChild(heart);
     setTimeout(() => heart.remove(), 9000);
-  }, 250);
+  }, 200);
 }
 createHearts();
 
-// 🌹 RAINING RED ROSES
-function createRosePetal() {
-  const rosesBg = document.getElementById('rosesBg');
-  const petal = document.createElement('div');
-  petal.className = 'rose-petal';
-  petal.style.left = Math.random() * 100 + '%';
-  petal.style.width = (22 + Math.random() * 16) + 'px';
-  petal.style.height = (32 + Math.random() * 18) + 'px';
-  petal.style.animationDuration = (4 + Math.random() * 4) + 's';
-  petal.style.animationDelay = Math.random() * 2 + 's';
-  rosesBg.appendChild(petal);
-  setTimeout(() => petal.remove(), 10000);
-}
-setInterval(createRosePetal, 150);
-
-// 🔐 PASSWORD
+// 🔐 PASSWORD + MUSIC + BEAT SYNC START
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
-  const secrets = ["iloveyou", "bhumika", "ankush", "forever", "mylove", "bhumikaankush", "valentine"];
+  const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
   if (secrets.includes(p)) {
+    // 🎵 START MUSIC + BEAT SYNC
+    audioContext.resume();
+    audio.play().then(() => {
+      musicPlaying = true;
+      musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
+      beatHoldTime = audio.currentTime;
+    }).catch(e => console.log('Music ready'));
+    
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("startScreen").classList.remove("hidden");
+    document.getElementById("musicBtn").style.opacity = "1";
     error.textContent = "";
   } else {
-    error.textContent = "💕 Try: iloveyou, bhumika, valentine, forever 💕";
-    document.getElementById("pass").style.borderColor = "#ff4757";
-    setTimeout(() => {
-      document.getElementById("pass").style.borderColor = "#ff4d6d";
-      document.getElementById("pass").value = "";
-    }, 800);
+    error.textContent = "❤️ Whisper our special words... 💕";
+    document.getElementById("pass").style.borderColor = "#ff6b9d";
+    setTimeout(() => document.getElementById("pass").style.borderColor = "#ff4d6d", 500);
+    document.getElementById("pass").value = "";
   }
 }
 
-// 🚀 SCREEN FLOW
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById("startBtn").onclick = () => {
-    document.getElementById("startScreen").classList.add("hidden");
-    document.getElementById("content").classList.remove("hidden");
-  };
+// 🎵 MUSIC TOGGLE
+function toggleMusic() {
+  if (musicPlaying) {
+    audio.pause();
+    musicToggleBtn.innerHTML = '🎵 Play Zara Si Again 💖';
+    musicToggleBtn.style.background = 'linear-gradient(45deg,#ff1744,#e91e63)';
+    musicPlaying = false;
+  } else {
+    audioContext.resume();
+    audio.play();
+    musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
+    musicToggleBtn.style.background = 'linear-gradient(45deg,#e91e63,#ff4081)';
+    musicPlaying = true;
+  }
+}
 
-  document.getElementById("noBtn").onmouseover = () => {
-    const btn = document.getElementById("noBtn");
-    btn.style.position = 'fixed';
-    btn.style.top = (Math.random() * 50 + 15) + "vh";
-    btn.style.left = (Math.random() * 50 + 15) + "vw";
-    btn.style.width = '220px';
-    btn.style.zIndex = '100';
-    btn.style.transform = `rotate(${Math.random() * 360}deg)`;
-  };
+// 🔥 BEAT SYNCHRONIZED FIREWORKS
+function createBeatFirework() {
+  if (musicPlaying) {
+    const beatStrength = analyser.getByteFrequencyData(dataArray);
+    const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
+    
+    if (avg > beatThreshold * 80) {
+      const x = Math.random() * canvas.width;
+      const y = canvas.height * 0.3;
+      createFirework(x, y, 150);
+      createHeartParticle(x, canvas.height * 0.7);
+      beatHoldTime = audio.currentTime;
+    }
+  }
+}
 
-  document.getElementById("yesBtn").onclick = () => {
-    document.getElementById("content").classList.add("hidden");
-    document.getElementById("final").classList.remove("hidden");
-    valentineCelebration(); 
-  };
-});
+// Pattern-based Zara Si beats (every 0.6s ~100BPM)
+function musicPatternFireworks() {
+  if (musicPlaying && audio.currentTime > 1) {
+    const beatPosition = (audio.currentTime % 60) * 10; // Pattern repeat
+    const patternIndex = Math.floor(beatPosition) % beatTimes.length;
+    
+    if (Math.abs(beatPosition - beatTimes[patternIndex] * 10) < 0.3) {
+      createFirework(canvas.width * 0.5, canvas.height * 0.2, 200);
+    }
+  }
+}
 
-// 🔥 RED FIREWORKS + ROSE RAIN
+// 🚀 OTHER EVENTS
+document.getElementById("startBtn").onclick = () => {
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("content").classList.remove("hidden");
+};
+
+document.getElementById("noBtn").onmouseover = () => {
+  const btn = document.getElementById("noBtn");
+  btn.style.top = (Math.random() * 60 + 10) + "vh";
+  btn.style.left = (Math.random() * 60 + 10) + "vw";
+  btn.style.transform = `rotate(${Math.random() * 360}deg)`;
+};
+
+document.getElementById("yesBtn").onclick = () => {
+  document.getElementById("content").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+  infiniteCelebration();
+};
+
+// 🔥 FIREWORKS ENGINE (enhanced with beat sync)
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
-let particles = [];
+let particles = [], time = 0, celebrationMode = false;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -258,56 +273,114 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-function getRedFireworkColor() {
-  const shades = [330, 350, 0, 10, 340]; // Pure red/pink spectrum
-  return `hsl(${shades[Math.floor(Math.random()*shades.length)]}, 95%, ${55 + Math.random()*15}%)`;
+function getRomanticColor() {
+  const hue = 300 + (Math.sin(time * 0.02) * 20) + Math.random() * 40;
+  return `hsl(${hue}, ${95 + Math.random()*5}%, ${50 + Math.random()*20}%)`;
 }
 
-function createRedFirework(x, y, count = 120) {
+function createHeartParticle(x, y) {
+  const angle = Math.random() * Math.PI * 2;
+  const speed = Math.random() * 8 + 2;
+  particles.push({
+    x, y,
+    vx: Math.cos(angle) * speed * 0.7,
+    vy: Math.sin(angle) * speed * 0.7,
+    life: 120,
+    decay: 0.012 + Math.random() * 0.008,
+    size: 1.5 + Math.random() * 2.5,
+    color: getRomanticColor(),
+    isHeart: true
+  });
+}
+
+function createFirework(x, y, count = 120) {
   for (let i = 0; i < count; i++) {
     particles.push({
-      x: x || Math.random() * canvas.width,
-      y: y || Math.random() * canvas.height * 0.4,
-      vx: (Math.random() - 0.5) * 16,
-      vy: (Math.random() - 0.5) * 16 - 4,
-      life: 130,
-      decay: 0.012,
-      size: 2.5 + Math.random() * 4,
-      color: getRedFireworkColor()
+      x, y,
+      vx: (Math.random() - 0.5) * 12,
+      vy: (Math.random() - 0.5) * 12 - 2,
+      life: 110,
+      decay: 0.015 + Math.random() * 0.01,
+      size: 1.8 + Math.random() * 3,
+      color: getRomanticColor()
     });
   }
 }
 
-function valentineCelebration() {
-  // MASSIVE RED EXPLOSION
-  createRedFirework(canvas.width * 0.5, canvas.height * 0.25, 400);
+function textFireworks() {
+  const text = "Bhumika ❤️ Ankush Forever";
+  const temp = document.createElement("canvas");
+  const tctx = temp.getContext("2d");
+  temp.width = 1000; temp.height = 250;
+  tctx.fillStyle = "#fff";
+  tctx.font = "bold 70px Georgia";
+  tctx.textAlign = "center"; tctx.textBaseline = "middle";
+  tctx.fillText(text, 500, 125);
   
-  // Continuous red fireworks
-  setInterval(() => {
-    if (particles.length < 600) {
-      createRedFirework(canvas.width * 0.3 + Math.random() * canvas.width * 0.4, canvas.height * 0.2, 150);
+  const data = tctx.getImageData(0, 0, 1000, 250).data;
+  for (let y = 0; y < 250; y += 5) {
+    for (let x = 0; x < 1000; x += 5) {
+      if (data[(y * 1000 + x) * 4 + 3] > 128) {
+        createFirework(x + canvas.width/2 - 500, y + canvas.height/2 - 125, 3);
+      }
     }
-  }, 500);
+  }
+}
+
+function createConfettiBurst() {
+  for (let i = 0; i < 8; i++) {
+    createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.3, 80);
+    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.7);
+  }
+}
+
+function infiniteCelebration() {
+  celebrationMode = true;
+  textFireworks();
+  setInterval(createConfettiBurst, 800);
+}
+
+function drawHeart(ctx, x, y, size) {
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.bezierCurveTo(x, y - size/4, x - size/2, y - size/2, x, y - size);
+  ctx.bezierCurveTo(x + size/2, y - size/2, x, y - size/4, x, y);
+  ctx.lineTo(x, y);
 }
 
 function animate() {
-  ctx.fillStyle = "rgba(43, 0, 0, 0.25)"; // Dark red trail
+  time++;
+  requestAnimationFrame(animate);
+  
+  // 🎵 BEAT SYNC FIREWORKS
+  if (musicPlaying) {
+    createBeatFirework();
+    musicPatternFireworks();
+  }
+  
+  ctx.fillStyle = "rgba(7, 0, 15, 0.18)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
-    p.x += p.vx *= 0.97;
-    p.y += p.vy += 0.025;
+    p.x += (p.vx *= 0.985);
+    p.y += (p.vy += 0.013);
     p.life -= p.decay;
-    p.size *= 0.985;
+    p.size *= 0.992;
     
     if (p.life > 0) {
       ctx.save();
-      ctx.globalAlpha = p.life / 130;
-      ctx.shadowBlur = 25;
+      ctx.globalAlpha = p.life / 120;
+      
+      ctx.shadowBlur = 15 + p.life * 0.1;
       ctx.shadowColor = p.color;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      
+      if (p.isHeart) {
+        drawHeart(ctx, p.x, p.y, p.size * 1.5);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      }
       ctx.fillStyle = p.color;
       ctx.fill();
       ctx.restore();
@@ -315,7 +388,10 @@ function animate() {
       particles.splice(i, 1);
     }
   }
-  requestAnimationFrame(animate);
+  
+  if (celebrationMode && particles.length < 800 && Math.random() < 0.3) {
+    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.8);
+  }
 }
 animate();
 </script>
