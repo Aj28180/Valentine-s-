@@ -8,7 +8,7 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  /* FIXED: Dark purple starry sky - Fireworks now PERFECTLY VISIBLE */
+  /* Romantic purple starry sky - Fireworks PERFECTLY VISIBLE */
   background: 
     radial-gradient(ellipse at 20% 20%, #4a0e37 0%, #2d0b2a 30%, #1a0000 70%, #000 100%),
     radial-gradient(circle at 80% 10%, #6b1a4e 0%, #3d0f2a 40%, transparent 60%),
@@ -45,40 +45,54 @@ body {
   to { text-shadow: 0 0 25px #ff69b4, 0 0 35px #ff1493, 0 0 55px #ff1493, 0 0 85px #ff1493, 0 0 100px #ff1493; }
 }
 
+/* NO BACKGROUND - FULL FIREWORKS VISIBILITY */
 .center { 
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
   z-index: 10; width: 90%; max-width: 500px; padding: 40px;
-  background: rgba(0,0,0,0.75); backdrop-filter: blur(20px); border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  backdrop-filter: blur(15px); border-radius: 30px;
+  box-shadow: 0 0 40px rgba(255, 20, 147, 0.3);
 }
 .hidden { display: none; }
 
 .buttons-container {
-  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 15px;
   margin: 40px 0; width: 100%;
 }
 
 button {
-  width: 100%; max-width: 380px;
-  padding: 22px 40px; font-size: clamp(18px, 3.5vw, 24px); font-weight: bold;
-  border: none; border-radius: 50px; cursor: pointer;
+  /* Smaller compact size */
+  width: 100%; max-width: 280px;
+  padding: 14px 28px;
+  font-size: clamp(16px, 3vw, 20px); font-weight: bold;
+  border: none; border-radius: 40px; cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 12px 35px rgba(255, 20, 147, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
 }
-button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 45px rgba(255, 20, 147, 0.7); }
-button:active { transform: scale(0.97); }
+button:hover { 
+  transform: translateY(-4px) scale(1.02); 
+  box-shadow: 0 15px 35px rgba(0, 255, 0, 0.7); 
+}
+button:active { transform: scale(0.96); }
 
+/* ✅ YES BUTTON = GREEN */
 #yesBtn { 
-  background: linear-gradient(135deg, #ff1493, #ff69b4, #ff1493); color: white; 
-  box-shadow: 0 0 40px rgba(255, 20, 147, 0.8); font-size: clamp(20px, 4vw, 26px);
+  background: linear-gradient(135deg, #00ff88, #00cc6a, #00ff88); 
+  color: #000; /* Dark text for green contrast */
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.9);
+  font-weight: 900;
 }
+
+/* ✅ NO BUTTON = RED */
 #noBtn { 
-  background: linear-gradient(135deg, #555, #333); color: white; max-width: 300px;
+  background: linear-gradient(135deg, #ff4757, #ff3838, #ff6b7a); 
+  color: white;
+  max-width: 220px;
   animation: gentleFloat 3s ease-in-out infinite;
+  box-shadow: 0 8px 25px rgba(255, 71, 87, 0.6);
 }
 @keyframes gentleFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-6px); }
 }
 
 .loveMsg {
@@ -91,12 +105,33 @@ button:active { transform: scale(0.97); }
 }
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
+
+/* INVISIBLE PASSWORD INPUT */
 input[type="password"] {
-  padding: 18px; font-size: 20px; border-radius: 30px; border: 2px solid #ff69b4;
-  margin: 20px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1);
-  color: white; backdrop-filter: blur(10px); font-family: inherit; text-align: center;
+  padding: 18px; font-size: 20px; 
+  margin: 20px; width: clamp(280px, 40vw, 350px);
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  color: white; font-family: inherit; text-align: center;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
 }
-input[type="password"]:focus { border-color: #ff1493; box-shadow: 0 0 25px rgba(255,20,147,0.5); outline: none; }
+input[type="password"]:focus { 
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-shadow: 0 0 15px rgba(255, 20, 147, 1);
+}
+
+/* UNLOCK BUTTON */
+button[onclick="unlock()"] {
+  max-width: 260px;
+  padding: 14px 28px;
+  font-size: clamp(16px, 3vw, 20px);
+  background: linear-gradient(135deg, #ff1493, #ff69b4, #ff1493);
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
+}
 </style>
 </head>
 
@@ -112,7 +147,7 @@ input[type="password"]:focus { border-color: #ff1493; box-shadow: 0 0 25px rgba(
 <div id="lock" class="center">
   <h2 style="font-size: clamp(26px, 5vw, 34px); margin-bottom: 25px;">💕 Our Secret Promise 🔐</h2>
   <input type="password" id="pass" placeholder="Whisper our sacred words... 💖">
-  <br><button onclick="unlock()" style="width: clamp(320px, 45vw, 380px); margin-top: 20px;">✨ Unlock My Heart ✨</button>
+  <br><button onclick="unlock()">✨ Unlock My Heart ✨</button>
   <p id="error" style="color: #ff69b4; font-size: clamp(16px, 3vw, 18px); margin-top: 15px;"></p>
 </div>
 
@@ -135,7 +170,7 @@ input[type="password"]:focus { border-color: #ff1493; box-shadow: 0 0 25px rgba(
   </p>
   <div class="buttons-container">
     <button id="yesBtn">💋 YES, My Love Forever! 💕</button>
-    <button id="noBtn">💭 Let Me Dream... 😘</button>
+    <button id="noBtn">❌ NO, Not Yet... 😘</button>
   </div>
 </div>
 
@@ -183,9 +218,9 @@ function unlock() {
     error.textContent = "";
   } else {
     error.textContent = "💕 Try: iloveyou, bhumikaankush, forever, mylove 💕";
-    document.getElementById("pass").style.borderColor = "#ff4757";
+    document.getElementById("pass").style.textShadow = "0 0 15px #ff4757";
     setTimeout(() => {
-      document.getElementById("pass").style.borderColor = "#ff69b4";
+      document.getElementById("pass").style.textShadow = "0 0 10px rgba(255, 105, 180, 0.8)";
       document.getElementById("pass").value = "";
     }, 600);
   }
@@ -203,9 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.style.position = 'fixed';
     btn.style.top = (Math.random() * 50 + 15) + "vh";
     btn.style.left = (Math.random() * 50 + 15) + "vw";
-    btn.style.width = '240px';
+    btn.style.width = '200px';
     btn.style.zIndex = '100';
-    btn.style.transform = `rotate(${Math.random() * 360}deg) scale(1.1)`;
+    btn.style.transform = `rotate(${Math.random() * 360}deg) scale(1.05)`;
   };
 
   document.getElementById("yesBtn").onclick = () => {
@@ -215,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 });
 
-// 🔥 FIREWORKS (PERFECTLY VISIBLE ON NEW BACKGROUND)
+// 🔥 FIREWORKS ENGINE
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 let particles = [], time = 0, celebrationMode = false;
@@ -273,7 +308,6 @@ function animate() {
   time++;
   requestAnimationFrame(animate);
   
-  // LIGHTER TRAIL for BETTER VISIBILITY
   ctx.fillStyle = "rgba(74, 14, 55, 0.15)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
