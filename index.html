@@ -1,49 +1,125 @@
 # Valentine-s-
 Add file ▼
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>I Love You Bhumika ❤️</title>
+<title>I Love You Bhumika Gupta ❤️</title>
+
 <style>
+
+/* ===== BODY ===== /
 body{
   margin:0;
   font-family:Arial, sans-serif;
-  background:black;
-  color:white;
   text-align:center;
+  color:white;
   overflow:hidden;
+  background:linear-gradient(270deg,#ff4d6d,#000,#ff1744);
+  background-size:600% 600%;
+  animation:bgMove 12s ease infinite;
 }
 
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/ Stars background /
+body::after{
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url("https://i.imgur.com/YKY28eT.png");
+  opacity:0.4;
+}
+
+/ Start button /
 #startBtn{
   margin-top:40vh;
-  padding:15px 30px;
-  font-size:22px;
-  background:red;
+  padding:18px 35px;
+  font-size:24px;
+  background:#ff1744;
   color:white;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
+  box-shadow:0 0 25px red;
 }
 
 .hidden{display:none;}
 
-img{
-  width:250px;
-  border-radius:20px;
-  margin-top:20px;
+.btn{
+  padding:14px 28px;
+  font-size:20px;
+  margin:15px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
 }
 
-.heart{
+#yesBtn{background:#ff4d6d;color:white;}
+#noBtn{background:gray;color:white;position:absolute;}
+#waBtn{background:#25D366;color:white;}
+
+/ Falling hearts & roses /
+.fall{
   position:fixed;
-  color:red;
-  animation:fall 5s linear infinite;
+  animation:fall 6s linear infinite;
 }
 
 @keyframes fall{
   0%{transform:translateY(-10vh);}
   100%{transform:translateY(110vh);}
 }
+
+/ Final screen /
+#final{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-size:32px;
+}
+
+/ Couple silhouette /
+#couple{
+  font-size:80px;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+/ Kiss effect /
+.kiss{
+  position:fixed;
+  font-size:40px;
+  animation:kiss 2s ease forwards;
+}
+
+@keyframes kiss{
+  0%{opacity:1;transform:scale(0.5);}
+  100%{opacity:0;transform:scale(2);}
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+}
+
 </style>
 </head>
 
@@ -52,34 +128,136 @@ img{
 <button id="startBtn">Tap to Start ❤️</button>
 
 <div id="content" class="hidden">
-  <h1>I Love You Bhumika ❤️</h1>
-  <p>Will you be my Valentine? 💍</p>
-  <img src="IMG_1058.jpeg">
+
+<h1>I Love You Bhumika Gupta ❤️</h1>
+
+<h3 id="countdown"></h3>
+
+<p id="letter"></p>
+
+<p>Bhumika Gupta, will you be my Valentine? 💖</p>
+
+<button id="yesBtn" class="btn">Yes 💋</button>
+<button id="noBtn" class="btn">No 😜</button>
+
+<br>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/?text=I%20Love%20You%20Bhumika%20Gupta%20❤️" target="_blank">
+<button id="waBtn" class="btn">Chat on WhatsApp 💬</button>
+</a>
+
 </div>
 
-<audio id="music" autoplay loop>
-  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/Perfect.mp3" type="audio/mp3">
+<div id="final" class="hidden">
+
+<div id="couple">👩‍❤️‍👨</div>
+
+<h1>She Said YES 💖</h1>
+<h2>Bhumika Gupta ❤️</h2>
+<p>Forever Together 🥰</p>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f6b7c5d3e.mp3?filename=romantic-love-ambient-110997.mp3">
 </audio>
 
+<canvas id="fireworks"></canvas>
+
 <script>
-document.getElementById("startBtn").onclick=function(){
-  document.getElementById("content").classList.remove("hidden");
-  this.style.display="none";
-  createHearts();
+
+/ START /
+startBtn.onclick=()=>{
+ content.classList.remove("hidden");
+ startBtn.style.display="none";
+ music.play();
+ hearts();
+ countdownTimer();
+ typeLetter();
 }
 
-function createHearts(){
-  setInterval(()=>{
-    let heart=document.createElement("div");
-    heart.innerHTML="❤️";
-    heart.className="heart";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(20+Math.random()*30)+"px";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),5000);
-  },300);
+/ HEARTS + ROSES */
+function hearts(){
+ setInterval(()=>{
+  let e=document.createElement("div");
+  e.innerHTML=Math.random()>0.5?"❤️":"🌹";
+  e.className="fall";
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=(20+Math.random()30)+"px";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),6000);
+ },300);
 }
+
+/ NO BUTTON MOVE */
+noBtn.onmouseover=()=>{
+ noBtn.style.top=Math.random()80+"vh";
+ noBtn.style.left=Math.random()80+"vw";
+}
+
+/ YES CLICK /
+yesBtn.onclick=()=>{
+ content.classList.add("hidden");
+ final.classList.remove("hidden");
+ kissEffect();
+ fireworks();
+}
+
+/ Kiss /
+function kissEffect(){
+ for(let i=0;i<15;i++){
+  let k=document.createElement("div");
+  k.innerHTML="💋";
+  k.className="kiss";
+  k.style.left=Math.random()100+"vw";
+  k.style.top=Math.random()100+"vh";
+  document.body.appendChild(k);
+  setTimeout(()=>k.remove(),2000);
+ }
+}
+
+/ Countdown /
+function countdownTimer(){
+ let target=new Date("Feb 14, 2026 00:00:00").getTime();
+ setInterval(()=>{
+  let now=new Date().getTime();
+  let d=target-now;
+  let days=Math.floor(d/(1000606024));
+  countdown.innerHTML="Countdown to Valentine: "+days+" days ❤️";
+ },1000);
+}
+
+/ Love letter /
+let text="Bhumika Gupta, from the moment you came into my life, everything became magical. Your smile is my peace, your love is my strength, and I promise to love you forever ❤️";
+let i=0;
+function typeLetter(){
+ setInterval(()=>{
+  if(i<text.length){
+   letter.innerHTML+=text.charAt(i);
+   i++;
+  }
+ },50);
+}
+
+/ Fireworks */
+function fireworks(){
+ let c=document.getElementById("fireworks");
+ let ctx=c.getContext("2d");
+ c.width=innerWidth;
+ c.height=innerHeight;
+
+ setInterval(()=>{
+  let x=Math.random()*c.width;
+  let y=Math.random()*c.height/2;
+  for(let i=0;i<80;i++){
+   ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
+   ctx.fillRect(x+Math.random()*100,y+Math.random()*100,3,3);
+  }
+ },400);
+}
+
 </script>
 
-</body>
-</h
+</
