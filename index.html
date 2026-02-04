@@ -3,241 +3,397 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhumika ❤️ Ankush</title>
-
+<title>Bhumika ❤️ Ankush - Eternal Love</title>
 <style>
-
-/* 🌌 Background */
-body{
-  margin:0;
-  font-family:Georgia,serif;
-  background:radial-gradient(circle at top,#2b0000,#000);
-  color:white;
-  overflow:hidden;
-  height:100vh;
-  text-align:center;
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: radial-gradient(circle at 20% 20%, #2b0000, #1a0000 40%, #000);
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  text-align: center;
+  position: relative;
 }
 
-/* Neon Text */
-.neon{
-  font-size:40px;
-  text-shadow:
-  0 0 10px #ff4d6d,
-  0 0 20px #ff1744,
-  0 0 40px #ff1744;
+.hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.heart {
+  position: absolute; width: 24px; height: 22px; animation: float 8s infinite linear;
+}
+.heart:before, .heart:after {
+  content: ''; position: absolute; width: 12px; height: 12px; background: #ff1744;
+  border-radius: 50px 50px 0 0; transform: rotate(-45deg); left: 6px;
+}
+.heart:after { transform: rotate(45deg); top: 6px; }
+@keyframes float {
+  0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
 }
 
-/* Center */
-.center{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+.neon {
+  font-size: clamp(32px, 6vw, 55px); line-height: 1.2;
+  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1744, 0 0 40px #ff1744, 0 0 60px #ff1744;
+  animation: glow 2.5s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff1744, 0 0 45px #ff1744, 0 0 65px #ff1744; }
+  to { text-shadow: 0 0 25px #ff4d6d, 0 0 35px #ff1744, 0 0 55px #ff1744, 0 0 85px #ff1744, 0 0 100px #ff1744; }
 }
 
-.hidden{display:none}
+.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 90%; }
+.hidden { display: none; }
 
-/* Buttons */
-button{
-  padding:14px 30px;
-  font-size:20px;
-  border:none;
-  border-radius:30px;
-  margin:10px;
-  cursor:pointer;
+button {
+  padding: 18px 40px; font-size: clamp(18px, 3.5vw, 24px); font-weight: bold;
+  border: none; border-radius: 50px; margin: 12px; cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+}
+button:hover {
+  transform: translateY(-3px) scale(1.08); box-shadow: 0 15px 35px rgba(255, 23, 68, 0.7);
+}
+#startBtn, #yesBtn { 
+  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); color: white; 
+  box-shadow: 0 0 30px rgba(255, 23, 68, 0.6);
+}
+#noBtn { 
+  background: linear-gradient(135deg, #666, #444); color: white; position: absolute; z-index: 15;
 }
 
-#startBtn{background:#ff1744;color:white;}
-#yesBtn{background:#e91e63;color:white;}
-#noBtn{background:#555;color:white;position:absolute;}
-
-/* Love Message */
-.loveMsg{
-  max-width:650px;
-  margin:auto;
-  font-size:19px;
-  line-height:1.6;
-  color:#ffd1dc;
+.loveMsg {
+  max-width: 700px; margin: 25px auto; font-size: clamp(17px, 2.8vw, 22px);
+  line-height: 1.8; color: #ffd1dc; animation: fadeInUp 1.2s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Canvas Fireworks */
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  pointer-events:none;
-}
+canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
+#final h1 { font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px; }
+#final p { font-size: clamp(20px, 4vw, 28px); opacity: 0.9; }
 
+#musicBtn { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); z-index:25; opacity:0; transition:opacity 0.5s; }
 </style>
 </head>
 
 <body>
+<!-- 🎵 ZARA SI MUSIC WITH ANALYSER -->
+<audio id="loveSong" loop preload="auto" style="display:none;">
+  <source src="zara_si.mp3" type="audio/mpeg">
+</audio>
+
+<div id="heartsBg" class="hearts-bg"></div>
 
 <!-- 🔐 PASSWORD -->
 <div id="lock" class="center">
-  <h2>Enter Secret Password 🔐</h2>
-  <input type="password" id="pass">
-  <br><br>
-  <button onclick="unlock()">Unlock ❤️</button>
-  <p id="error"></p>
+  <h2 style="font-size: clamp(24px, 5vw, 32px);">Enter Our Secret Password 🔐</h2>
+  <input type="password" id="pass" style="padding: 15px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d; margin: 15px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px);" placeholder="Our special words...">
+  <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
+  <p id="error" style="color: #ff6b9d; font-size: 18px;"></p>
 </div>
 
 <!-- ❤️ START -->
 <div id="startScreen" class="center hidden">
   <div class="neon">Bhumika ❤️ Ankush</div>
-  <br>
-  <button id="startBtn">Tap to Start ❤️</button>
+  <p style="font-size: clamp(18px, 3vw, 24px); margin: 20px 0; opacity: 0.9;">Forever begins here...</p>
+  <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
 <!-- 💌 MAIN -->
 <div id="content" class="center hidden">
-
-<h1 class="neon">I Love You Bhumika ❤️</h1>
-
-<p class="loveMsg">
-My Dearest Bhumika ❤️<br><br>
-From the moment you came into my life, everything felt magical ✨  
-Your smile is my peace, your love my forever 💖<br><br>
-Will you be my Valentine… forever? 💍
-</p>
-
-<br>
-
-<button id="yesBtn">Yes 💋</button>
-<button id="noBtn">No 😜</button>
-
+  <h1 class="neon">Bhumika, You Are My Universe 💖</h1>
+  <p class="loveMsg">
+    My Dearest Bhumika,<br><br>
+    Every moment with you feels like a dream I never want to wake from ✨.<br>
+    Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
+    From stolen glances to forever promises—you are my always.<br><br>
+    Will you be my Valentine... my wife... my eternity? 💍
+  </p>
+  <div style="position: relative;">
+    <button id="yesBtn">Yes, Forever & Always! 💋</button>
+    <button id="noBtn">Maybe Later 😘</button>
+  </div>
 </div>
 
 <!-- 💖 FINAL -->
-<div id="final" class="hidden center">
-  <h1>She Said YES 💖</h1>
-  <div class="neon">Bhumika ❤️ Ankush Forever</div>
+<div id="final" class="center hidden">
+  <h1 class="neon">SHE SAID YES! 🎉💖</h1>
+  <div class="neon">Bhumika & Ankush - Forever Entwined ❤️</div>
+  <p style="margin-top: 30px;">Our love story just became legendary! 💫</p>
 </div>
 
-<!-- 🎆 FIREWORK CANVAS -->
+<!-- 🎵 MUSIC CONTROL -->
+<div id="musicBtn">
+  <button onclick="toggleMusic()" id="musicToggleBtn"
+    style="padding:12px 28px; background:linear-gradient(45deg,#ff1744,#e91e63); color:white; border:none; border-radius:35px; font-size:16px; font-weight:bold; cursor:pointer; box-shadow:0 6px 25px rgba(255,23,68,0.5);">
+    🎵 Play Zara Si Again 💖
+  </button>
+</div>
+
 <canvas id="fireworks"></canvas>
 
-<!-- 🎶 SONG (Zara Sa – YouTube Embed) -->
-<div id="ytSong" class="hidden">
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/9x5K2G1c9F0?autoplay=1&loop=1&playlist=9x5K2G1c9F0"
-allow="autoplay">
-</iframe>
-</div>
-
 <script>
+// 🎵 MUSIC WITH BEAT DETECTION
+let musicPlaying = false;
+const audio = document.getElementById('loveSong');
+const musicToggleBtn = document.getElementById('musicToggleBtn');
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioContext.createAnalyser();
+const source = audioContext.createMediaElementSource(audio);
+let beatThreshold = 0.3;
+let beatHoldTime = 0;
+let beatDecay = 0;
+let dataArray;
 
-/* PASSWORD */
-function unlock(){
-  const p=document.getElementById("pass").value.toLowerCase();
-  if(p==="iloveyou"){
-    lock.classList.add("hidden");
-    startScreen.classList.remove("hidden");
-  }else{
-    error.innerText="Wrong Password 💔";
+// Setup audio analyser
+source.connect(analyser);
+analyser.connect(audioContext.destination);
+analyser.fftSize = 256;
+const bufferLength = analyser.frequencyBinCount;
+dataArray = new Uint8Array(bufferLength);
+
+let beatTimes = [0.5, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4]; // Zara Si BPM pattern
+
+// 🌟 HEARTS
+function createHearts() {
+  const heartsBg = document.getElementById('heartsBg');
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+    heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+    heartsBg.appendChild(heart);
+    setTimeout(() => heart.remove(), 9000);
+  }, 200);
+}
+createHearts();
+
+// 🔐 PASSWORD + MUSIC + BEAT SYNC START
+function unlock() {
+  const p = document.getElementById("pass").value.toLowerCase().trim();
+  const error = document.getElementById("error");
+  const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
+  
+  if (secrets.includes(p)) {
+    // 🎵 START MUSIC + BEAT SYNC
+    audioContext.resume();
+    audio.play().then(() => {
+      musicPlaying = true;
+      musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
+      beatHoldTime = audio.currentTime;
+    }).catch(e => console.log('Music ready'));
+    
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("startScreen").classList.remove("hidden");
+    document.getElementById("musicBtn").style.opacity = "1";
+    error.textContent = "";
+  } else {
+    error.textContent = "❤️ Whisper our special words... 💕";
+    document.getElementById("pass").style.borderColor = "#ff6b9d";
+    setTimeout(() => document.getElementById("pass").style.borderColor = "#ff4d6d", 500);
+    document.getElementById("pass").value = "";
   }
 }
 
-/* START */
-startBtn.onclick=()=>{
-  startScreen.classList.add("hidden");
-  content.classList.remove("hidden");
-  ytSong.classList.remove("hidden"); // start music
+// 🎵 MUSIC TOGGLE
+function toggleMusic() {
+  if (musicPlaying) {
+    audio.pause();
+    musicToggleBtn.innerHTML = '🎵 Play Zara Si Again 💖';
+    musicToggleBtn.style.background = 'linear-gradient(45deg,#ff1744,#e91e63)';
+    musicPlaying = false;
+  } else {
+    audioContext.resume();
+    audio.play();
+    musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
+    musicToggleBtn.style.background = 'linear-gradient(45deg,#e91e63,#ff4081)';
+    musicPlaying = true;
+  }
 }
 
-/* RUNNING NO */
-noBtn.onmouseover=()=>{
-  noBtn.style.top=Math.random()*80+"vh";
-  noBtn.style.left=Math.random()*80+"vw";
+// 🔥 BEAT SYNCHRONIZED FIREWORKS
+function createBeatFirework() {
+  if (musicPlaying) {
+    const beatStrength = analyser.getByteFrequencyData(dataArray);
+    const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
+    
+    if (avg > beatThreshold * 80) {
+      const x = Math.random() * canvas.width;
+      const y = canvas.height * 0.3;
+      createFirework(x, y, 150);
+      createHeartParticle(x, canvas.height * 0.7);
+      beatHoldTime = audio.currentTime;
+    }
+  }
 }
 
-/* YES CLICK */
-yesBtn.onclick=()=>{
-  content.classList.add("hidden");
-  final.classList.remove("hidden");
-  textFireworks();
+// Pattern-based Zara Si beats (every 0.6s ~100BPM)
+function musicPatternFireworks() {
+  if (musicPlaying && audio.currentTime > 1) {
+    const beatPosition = (audio.currentTime % 60) * 10; // Pattern repeat
+    const patternIndex = Math.floor(beatPosition) % beatTimes.length;
+    
+    if (Math.abs(beatPosition - beatTimes[patternIndex] * 10) < 0.3) {
+      createFirework(canvas.width * 0.5, canvas.height * 0.2, 200);
+    }
+  }
 }
 
-/* 🎆 FIREWORK ENGINE */
+// 🚀 OTHER EVENTS
+document.getElementById("startBtn").onclick = () => {
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("content").classList.remove("hidden");
+};
 
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
+document.getElementById("noBtn").onmouseover = () => {
+  const btn = document.getElementById("noBtn");
+  btn.style.top = (Math.random() * 60 + 10) + "vh";
+  btn.style.left = (Math.random() * 60 + 10) + "vw";
+  btn.style.transform = `rotate(${Math.random() * 360}deg)`;
+};
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+document.getElementById("yesBtn").onclick = () => {
+  document.getElementById("content").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+  infiniteCelebration();
+};
 
-let particles=[];
+// 🔥 FIREWORKS ENGINE (enhanced with beat sync)
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+let particles = [], time = 0, celebrationMode = false;
 
-function createFirework(x,y){
-  for(let i=0;i<90;i++){
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function getRomanticColor() {
+  const hue = 300 + (Math.sin(time * 0.02) * 20) + Math.random() * 40;
+  return `hsl(${hue}, ${95 + Math.random()*5}%, ${50 + Math.random()*20}%)`;
+}
+
+function createHeartParticle(x, y) {
+  const angle = Math.random() * Math.PI * 2;
+  const speed = Math.random() * 8 + 2;
+  particles.push({
+    x, y,
+    vx: Math.cos(angle) * speed * 0.7,
+    vy: Math.sin(angle) * speed * 0.7,
+    life: 120,
+    decay: 0.012 + Math.random() * 0.008,
+    size: 1.5 + Math.random() * 2.5,
+    color: getRomanticColor(),
+    isHeart: true
+  });
+}
+
+function createFirework(x, y, count = 120) {
+  for (let i = 0; i < count; i++) {
     particles.push({
-      x:x,
-      y:y,
-      angle:Math.random()*2*Math.PI,
-      speed:Math.random()*6+2,
-      life:100
+      x, y,
+      vx: (Math.random() - 0.5) * 12,
+      vy: (Math.random() - 0.5) * 12 - 2,
+      life: 110,
+      decay: 0.015 + Math.random() * 0.01,
+      size: 1.8 + Math.random() * 3,
+      color: getRomanticColor()
     });
   }
 }
 
-/* TEXT FIREWORKS */
-function textFireworks(){
-
-  const text="Bhumika ❤️ Ankush";
-
-  const temp=document.createElement("canvas");
-  const tctx=temp.getContext("2d");
-
-  temp.width=900;
-  temp.height=200;
-
-  tctx.fillStyle="white";
-  tctx.font="60px Georgia";
-  tctx.fillText(text,50,120);
-
-  const data=tctx.getImageData(0,0,900,200).data;
-
-  for(let y=0;y<200;y+=6){
-    for(let x=0;x<900;x+=6){
-
-      const i=(y*900+x)*4;
-      if(data[i+3]>150){
-        createFirework(
-          x+canvas.width/2-450,
-          y+150
-        );
+function textFireworks() {
+  const text = "Bhumika ❤️ Ankush Forever";
+  const temp = document.createElement("canvas");
+  const tctx = temp.getContext("2d");
+  temp.width = 1000; temp.height = 250;
+  tctx.fillStyle = "#fff";
+  tctx.font = "bold 70px Georgia";
+  tctx.textAlign = "center"; tctx.textBaseline = "middle";
+  tctx.fillText(text, 500, 125);
+  
+  const data = tctx.getImageData(0, 0, 1000, 250).data;
+  for (let y = 0; y < 250; y += 5) {
+    for (let x = 0; x < 1000; x += 5) {
+      if (data[(y * 1000 + x) * 4 + 3] > 128) {
+        createFirework(x + canvas.width/2 - 500, y + canvas.height/2 - 125, 3);
       }
     }
   }
-
-  animate();
 }
 
-/* ANIMATION */
-function animate(){
+function createConfettiBurst() {
+  for (let i = 0; i < 8; i++) {
+    createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.3, 80);
+    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.7);
+  }
+}
 
+function infiniteCelebration() {
+  celebrationMode = true;
+  textFireworks();
+  setInterval(createConfettiBurst, 800);
+}
+
+function drawHeart(ctx, x, y, size) {
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.bezierCurveTo(x, y - size/4, x - size/2, y - size/2, x, y - size);
+  ctx.bezierCurveTo(x + size/2, y - size/2, x, y - size/4, x, y);
+  ctx.lineTo(x, y);
+}
+
+function animate() {
+  time++;
   requestAnimationFrame(animate);
-
-  ctx.fillStyle="rgba(0,0,0,0.2)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach((p,i)=>{
-
-    p.x+=Math.cos(p.angle)*p.speed;
-    p.y+=Math.sin(p.angle)*p.speed;
-    p.life--;
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,2,0,2*Math.PI);
-    ctx.fillStyle="hsl("+Math.random()*360+",100%,60%)";
-    ctx.fill();
-
-    if(p.life<=0) particles.splice(i,1);
-
-  });
+  
+  // 🎵 BEAT SYNC FIREWORKS
+  if (musicPlaying) {
+    createBeatFirework();
+    musicPatternFireworks();
+  }
+  
+  ctx.fillStyle = "rgba(7, 0, 15, 0.18)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += (p.vx *= 0.985);
+    p.y += (p.vy += 0.013);
+    p.life -= p.decay;
+    p.size *= 0.992;
+    
+    if (p.life > 0) {
+      ctx.save();
+      ctx.globalAlpha = p.life / 120;
+      
+      ctx.shadowBlur = 15 + p.life * 0.1;
+      ctx.shadowColor = p.color;
+      
+      if (p.isHeart) {
+        drawHeart(ctx, p.x, p.y, p.size * 1.5);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      }
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      ctx.restore();
+    } else {
+      particles.splice(i, 1);
+    }
+  }
+  
+  if (celebrationMode && particles.length < 800 && Math.random() < 0.3) {
+    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.8);
+  }
 }
-
+animate();
 </script>
-
 </body>
 </html>
