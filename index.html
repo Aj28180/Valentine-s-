@@ -5,10 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bhumika ❤️ Ankush - Eternal Love</title>
 <style>
+/* 🌌 ULTRA-ROMANTIC STARRY NIGHT */
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  background: radial-gradient(circle at 20% 20%, #2b0000, #1a0000 40%, #000);
+  background: 
+    radial-gradient(circle at 20% 20%, #3a0a1a 0%, #1a0000 30%, #000 70%),
+    radial-gradient(circle at 80% 10%, #ff1744 0%, transparent 50%),
+    radial-gradient(circle at 10% 80%, #ff6b9d 0%, transparent 40%);
   color: white;
   overflow: hidden;
   height: 100vh;
@@ -16,70 +20,83 @@ body {
   position: relative;
 }
 
-.hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+/* ✨ PERFORMANCE-OPTIMIZED HEARTS */
+.hearts-bg { 
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  pointer-events: none; z-index: 1; 
+}
 .heart {
-  position: absolute; width: 24px; height: 22px; animation: float 8s infinite linear;
+  position: absolute; width: 20px; height: 18px; animation: float 7s infinite linear;
 }
 .heart:before, .heart:after {
-  content: ''; position: absolute; width: 12px; height: 12px; background: #ff1744;
-  border-radius: 50px 50px 0 0; transform: rotate(-45deg); left: 6px;
+  content: ''; position: absolute; width: 10px; height: 10px; background: #ff1744;
+  border-radius: 50px 50px 0 0; transform: rotate(-45deg); left: 5px;
 }
-.heart:after { transform: rotate(45deg); top: 6px; }
+.heart:after { transform: rotate(45deg); top: 5px; }
 @keyframes float {
-  0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0.8; }
+  0% { transform: translateY(100vh) rotate(0deg) scale(0.6); opacity: 0.7; }
   50% { opacity: 1; }
-  100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
+  100% { transform: translateY(-100px) rotate(720deg) scale(1.1); opacity: 0; }
 }
 
 .neon {
-  font-size: clamp(32px, 6vw, 55px); line-height: 1.2;
-  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1744, 0 0 40px #ff1744, 0 0 60px #ff1744;
-  animation: glow 2.5s ease-in-out infinite alternate;
+  font-size: clamp(28px, 5vw, 48px); line-height: 1.2;
+  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1744, 0 0 35px #ff1744;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 @keyframes glow {
-  from { text-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff1744, 0 0 45px #ff1744, 0 0 65px #ff1744; }
-  to { text-shadow: 0 0 25px #ff4d6d, 0 0 35px #ff1744, 0 0 55px #ff1744, 0 0 85px #ff1744, 0 0 100px #ff1744; }
+  from { text-shadow: 0 0 12px #ff4d6d, 0 0 22px #ff1744, 0 0 40px #ff1744; }
+  to { text-shadow: 0 0 20px #ff4d6d, 0 0 30px #ff1744, 0 0 50px #ff1744; }
 }
 
-.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 90%; }
+.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 95%; max-width: 800px; }
 .hidden { display: none; }
 
+/* 📱 IPHONE-PERFECT BUTTONS */
 button {
-  padding: 18px 40px; font-size: clamp(18px, 3.5vw, 24px); font-weight: bold;
-  border: none; border-radius: 50px; margin: 12px; cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+  padding: 16px 32px; font-size: clamp(16px, 4vw, 20px); font-weight: bold;
+  border: none; border-radius: 40px; margin: 10px; cursor: pointer;
+  transition: all 0.3s ease; touch-action: manipulation;
+  box-shadow: 0 6px 20px rgba(255, 23, 68, 0.4);
+  will-change: transform;
 }
-button:hover {
-  transform: translateY(-3px) scale(1.08); box-shadow: 0 15px 35px rgba(255, 23, 68, 0.7);
+button:active {
+  transform: scale(0.95);
 }
 #startBtn, #yesBtn { 
-  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); color: white; 
-  box-shadow: 0 0 30px rgba(255, 23, 68, 0.6);
+  background: linear-gradient(135deg, #ff1744, #e91e63); color: white; 
 }
 #noBtn { 
-  background: linear-gradient(135deg, #666, #444); color: white; position: absolute; z-index: 15;
+  background: linear-gradient(135deg, #555, #333); color: white; 
+  position: absolute; z-index: 15;
 }
 
 .loveMsg {
-  max-width: 700px; margin: 25px auto; font-size: clamp(17px, 2.8vw, 22px);
-  line-height: 1.8; color: #ffd1dc; animation: fadeInUp 1.2s ease-out;
+  max-width: 650px; margin: 20px auto; font-size: clamp(15px, 2.5vw, 19px);
+  line-height: 1.7; color: #ffd1dc; animation: fadeInUp 1s ease-out;
 }
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
-#final h1 { font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px; }
-#final p { font-size: clamp(20px, 4vw, 28px); opacity: 0.9; }
+/* ⚡ ULTRA-FAST CANVAS */
+canvas { 
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; 
+  will-change: contents;
+}
+#final h1 { font-size: clamp(40px, 8vw, 65px) !important; margin-bottom: 20px; }
+#final p { font-size: clamp(18px, 3.5vw, 25px); opacity: 0.9; }
 
-#musicBtn { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); z-index:25; opacity:0; transition:opacity 0.5s; }
+#musicBtn { 
+  position:fixed; bottom:20px; left:50%; transform:translateX(-50%); z-index:25; opacity:0; 
+  transition:opacity 0.5s ease;
+}
 </style>
 </head>
 
 <body>
-<!-- 🎵 ZARA SI MUSIC WITH ANALYSER -->
+<!-- 🎵 ZARA SI MUSIC -->
 <audio id="loveSong" loop preload="auto" style="display:none;">
   <source src="zara_si.mp3" type="audio/mpeg">
 </audio>
@@ -88,16 +105,18 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 
 <!-- 🔐 PASSWORD -->
 <div id="lock" class="center">
-  <h2 style="font-size: clamp(24px, 5vw, 32px);">Enter Our Secret Password 🔐</h2>
-  <input type="password" id="pass" style="padding: 15px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d; margin: 15px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px);" placeholder="Our special words...">
-  <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
-  <p id="error" style="color: #ff6b9d; font-size: 18px;"></p>
+  <h2 style="font-size: clamp(22px, 4.5vw, 28px);">Enter Our Secret Password 🔐</h2>
+  <input type="password" id="pass" 
+    style="padding: 14px; font-size: clamp(16px, 3.5vw, 18px); border-radius: 25px; border: 2px solid #ff4d6d; margin: 12px; width: clamp(260px, 45vw, 320px); background: rgba(255,255,255,0.08); color: white; backdrop-filter: blur(8px); outline: none;"
+    placeholder="Our special words...">
+  <br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
+  <p id="error" style="color: #ff6b9d; font-size: clamp(15px, 3vw, 17px);"></p>
 </div>
 
 <!-- ❤️ START -->
 <div id="startScreen" class="center hidden">
   <div class="neon">Bhumika ❤️ Ankush</div>
-  <p style="font-size: clamp(18px, 3vw, 24px); margin: 20px 0; opacity: 0.9;">Forever begins here...</p>
+  <p style="font-size: clamp(16px, 3vw, 22px); margin: 18px 0; opacity: 0.9;">Forever begins here...</p>
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
@@ -121,70 +140,52 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <div id="final" class="center hidden">
   <h1 class="neon">SHE SAID YES! 🎉💖</h1>
   <div class="neon">Bhumika & Ankush - Forever Entwined ❤️</div>
-  <p style="margin-top: 30px;">Our love story just became legendary! 💫</p>
+  <p style="margin-top: 25px;">Our love story just became legendary! 💫</p>
 </div>
 
 <!-- 🎵 MUSIC CONTROL -->
 <div id="musicBtn">
   <button onclick="toggleMusic()" id="musicToggleBtn"
-    style="padding:12px 28px; background:linear-gradient(45deg,#ff1744,#e91e63); color:white; border:none; border-radius:35px; font-size:16px; font-weight:bold; cursor:pointer; box-shadow:0 6px 25px rgba(255,23,68,0.5);">
+    style="padding:11px 24px; background:linear-gradient(45deg,#ff1744,#e91e63); color:white; border:none; border-radius:30px; font-size:15px; font-weight:bold; cursor:pointer; box-shadow:0 5px 20px rgba(255,23,68,0.5);">
     🎵 Play Zara Si Again 💖
   </button>
 </div>
 
+<!-- ⚡ ULTRA-FAST FIREWORKS CANVAS -->
 <canvas id="fireworks"></canvas>
 
 <script>
-// 🎵 MUSIC WITH BEAT DETECTION
+// 🎵 OPTIMIZED MUSIC
 let musicPlaying = false;
 const audio = document.getElementById('loveSong');
 const musicToggleBtn = document.getElementById('musicToggleBtn');
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const analyser = audioContext.createAnalyser();
-const source = audioContext.createMediaElementSource(audio);
-let beatThreshold = 0.3;
-let beatHoldTime = 0;
-let beatDecay = 0;
-let dataArray;
 
-// Setup audio analyser
-source.connect(analyser);
-analyser.connect(audioContext.destination);
-analyser.fftSize = 256;
-const bufferLength = analyser.frequencyBinCount;
-dataArray = new Uint8Array(bufferLength);
-
-let beatTimes = [0.5, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4]; // Zara Si BPM pattern
-
-// 🌟 HEARTS
+// 🌟 LIGHTWEIGHT HEARTS (iPhone optimized)
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
     const heart = document.createElement('div');
     heart.className = 'heart';
     heart.style.left = Math.random() * 100 + '%';
-    heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
-    heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+    heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
     heartsBg.appendChild(heart);
-    setTimeout(() => heart.remove(), 9000);
-  }, 200);
+    setTimeout(() => heart.remove(), 8000);
+  }, 400); // Reduced frequency
 }
 createHearts();
 
-// 🔐 PASSWORD + MUSIC + BEAT SYNC START
+// 🔐 PASSWORD + MUSIC
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
   const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
   if (secrets.includes(p)) {
-    // 🎵 START MUSIC + BEAT SYNC
-    audioContext.resume();
     audio.play().then(() => {
       musicPlaying = true;
       musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
-      beatHoldTime = audio.currentTime;
-    }).catch(e => console.log('Music ready'));
+    }).catch(e => {});
     
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("startScreen").classList.remove("hidden");
@@ -193,56 +194,24 @@ function unlock() {
   } else {
     error.textContent = "❤️ Whisper our special words... 💕";
     document.getElementById("pass").style.borderColor = "#ff6b9d";
-    setTimeout(() => document.getElementById("pass").style.borderColor = "#ff4d6d", 500);
+    setTimeout(() => document.getElementById("pass").style.borderColor = "#ff4d6d", 400);
     document.getElementById("pass").value = "";
   }
 }
 
-// 🎵 MUSIC TOGGLE
 function toggleMusic() {
   if (musicPlaying) {
     audio.pause();
     musicToggleBtn.innerHTML = '🎵 Play Zara Si Again 💖';
-    musicToggleBtn.style.background = 'linear-gradient(45deg,#ff1744,#e91e63)';
     musicPlaying = false;
   } else {
-    audioContext.resume();
     audio.play();
     musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
-    musicToggleBtn.style.background = 'linear-gradient(45deg,#e91e63,#ff4081)';
     musicPlaying = true;
   }
 }
 
-// 🔥 BEAT SYNCHRONIZED FIREWORKS
-function createBeatFirework() {
-  if (musicPlaying) {
-    const beatStrength = analyser.getByteFrequencyData(dataArray);
-    const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
-    
-    if (avg > beatThreshold * 80) {
-      const x = Math.random() * canvas.width;
-      const y = canvas.height * 0.3;
-      createFirework(x, y, 150);
-      createHeartParticle(x, canvas.height * 0.7);
-      beatHoldTime = audio.currentTime;
-    }
-  }
-}
-
-// Pattern-based Zara Si beats (every 0.6s ~100BPM)
-function musicPatternFireworks() {
-  if (musicPlaying && audio.currentTime > 1) {
-    const beatPosition = (audio.currentTime % 60) * 10; // Pattern repeat
-    const patternIndex = Math.floor(beatPosition) % beatTimes.length;
-    
-    if (Math.abs(beatPosition - beatTimes[patternIndex] * 10) < 0.3) {
-      createFirework(canvas.width * 0.5, canvas.height * 0.2, 200);
-    }
-  }
-}
-
-// 🚀 OTHER EVENTS
+// 🚀 EVENTS
 document.getElementById("startBtn").onclick = () => {
   document.getElementById("startScreen").classList.add("hidden");
   document.getElementById("content").classList.remove("hidden");
@@ -250,133 +219,126 @@ document.getElementById("startBtn").onclick = () => {
 
 document.getElementById("noBtn").onmouseover = () => {
   const btn = document.getElementById("noBtn");
-  btn.style.top = (Math.random() * 60 + 10) + "vh";
-  btn.style.left = (Math.random() * 60 + 10) + "vw";
-  btn.style.transform = `rotate(${Math.random() * 360}deg)`;
+  btn.style.top = (Math.random() * 50 + 10) + "vh";
+  btn.style.left = (Math.random() * 50 + 10) + "vw";
 };
 
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
-  infiniteCelebration();
+  celebrationMode = true;
 };
 
-// 🔥 FIREWORKS ENGINE (enhanced with beat sync)
+// ⚡ ULTRA-FAST FIREWORKS (60FPS iPhone)
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 let particles = [], time = 0, celebrationMode = false;
+let maxParticles = 300; // iPhone limit
 
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth * window.devicePixelRatio;
+  canvas.height = window.innerHeight * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 function getRomanticColor() {
-  const hue = 300 + (Math.sin(time * 0.02) * 20) + Math.random() * 40;
-  return `hsl(${hue}, ${95 + Math.random()*5}%, ${50 + Math.random()*20}%)`;
+  const hue = 300 + Math.random() * 40;
+  return `hsl(${hue}, 95%, ${55 + Math.random()*20}%)`;
 }
 
-function createHeartParticle(x, y) {
-  const angle = Math.random() * Math.PI * 2;
-  const speed = Math.random() * 8 + 2;
-  particles.push({
-    x, y,
-    vx: Math.cos(angle) * speed * 0.7,
-    vy: Math.sin(angle) * speed * 0.7,
-    life: 120,
-    decay: 0.012 + Math.random() * 0.008,
-    size: 1.5 + Math.random() * 2.5,
-    color: getRomanticColor(),
-    isHeart: true
-  });
-}
-
-function createFirework(x, y, count = 120) {
+function createFirework(x, y, count = 60) { // Reduced particles
+  count = Math.min(count, maxParticles - particles.length);
   for (let i = 0; i < count; i++) {
     particles.push({
-      x, y,
-      vx: (Math.random() - 0.5) * 12,
-      vy: (Math.random() - 0.5) * 12 - 2,
-      life: 110,
-      decay: 0.015 + Math.random() * 0.01,
-      size: 1.8 + Math.random() * 3,
+      x: x / window.devicePixelRatio, y: y / window.devicePixelRatio,
+      vx: (Math.random() - 0.5) * 8,
+      vy: (Math.random() - 0.5) * 8 - 1,
+      life: 90,
+      decay: 0.02,
+      size: 1.5 + Math.random() * 2,
       color: getRomanticColor()
     });
   }
 }
 
+function createHeartParticle(x, y) {
+  particles.push({
+    x, y,
+    vx: (Math.random() - 0.5) * 4,
+    vy: (Math.random() - 0.5) * 4 - 2,
+    life: 80,
+    decay: 0.015,
+    size: 1.2,
+    color: getRomanticColor(),
+    isHeart: true
+  });
+}
+
 function textFireworks() {
-  const text = "Bhumika ❤️ Ankush Forever";
+  const text = "❤️ Forever ❤️";
   const temp = document.createElement("canvas");
   const tctx = temp.getContext("2d");
-  temp.width = 1000; temp.height = 250;
+  temp.width = 600; temp.height = 150;
   tctx.fillStyle = "#fff";
-  tctx.font = "bold 70px Georgia";
+  tctx.font = "bold 50px Georgia";
   tctx.textAlign = "center"; tctx.textBaseline = "middle";
-  tctx.fillText(text, 500, 125);
+  tctx.fillText(text, 300, 75);
   
-  const data = tctx.getImageData(0, 0, 1000, 250).data;
-  for (let y = 0; y < 250; y += 5) {
-    for (let x = 0; x < 1000; x += 5) {
-      if (data[(y * 1000 + x) * 4 + 3] > 128) {
-        createFirework(x + canvas.width/2 - 500, y + canvas.height/2 - 125, 3);
+  const data = tctx.getImageData(0, 0, 600, 150).data;
+  for (let y = 0; y < 150; y += 6) {
+    for (let x = 0; x < 600; x += 6) {
+      if (data[(y * 600 + x) * 4 + 3] > 128 && particles.length < maxParticles) {
+        createFirework(x + canvas.width/2 - 300, canvas.height/2 - 75);
       }
     }
   }
 }
 
+// 🎉 CELEBRATION
 function createConfettiBurst() {
-  for (let i = 0; i < 8; i++) {
-    createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.3, 80);
-    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.7);
+  if (particles.length < maxParticles - 50) {
+    createFirework(Math.random() * canvas.width, canvas.height * 0.2, 40);
   }
 }
 
-function infiniteCelebration() {
-  celebrationMode = true;
-  textFireworks();
-  setInterval(createConfettiBurst, 800);
-}
+setInterval(createConfettiBurst, 1200);
 
 function drawHeart(ctx, x, y, size) {
   ctx.beginPath();
   ctx.moveTo(x, y);
-  ctx.bezierCurveTo(x, y - size/4, x - size/2, y - size/2, x, y - size);
-  ctx.bezierCurveTo(x + size/2, y - size/2, x, y - size/4, x, y);
-  ctx.lineTo(x, y);
+  ctx.bezierCurveTo(x, y - size/3, x - size/2, y - size/2, x, y - size);
+  ctx.bezierCurveTo(x + size/2, y - size/2, x, y - size/3, x, y);
 }
 
+// ⚡ ULTRA-OPTIMIZED ANIMATION LOOP
 function animate() {
   time++;
-  requestAnimationFrame(animate);
   
-  // 🎵 BEAT SYNC FIREWORKS
-  if (musicPlaying) {
-    createBeatFirework();
-    musicPatternFireworks();
+  // FAST CLEAR (no shadows for iPhone)
+  ctx.fillStyle = "rgba(5, 0, 10, 0.2)";
+  ctx.fillRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+  
+  // BEAT SYNC (lightweight)
+  if (musicPlaying && particles.length < maxParticles - 20 && Math.random() < 0.15) {
+    createFirework(canvas.width * 0.3 + Math.random() * canvas.width * 0.4, canvas.height * 0.25, 30);
   }
   
-  ctx.fillStyle = "rgba(7, 0, 15, 0.18)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
+  // OPTIMIZED PARTICLE LOOP
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
-    p.x += (p.vx *= 0.985);
-    p.y += (p.vy += 0.013);
+    p.x += p.vx *= 0.98;
+    p.y += p.vy += 0.01;
     p.life -= p.decay;
-    p.size *= 0.992;
+    p.size *= 0.995;
     
-    if (p.life > 0) {
+    if (p.life > 0 && p.y < canvas.height * 1.2) {
       ctx.save();
-      ctx.globalAlpha = p.life / 120;
-      
-      ctx.shadowBlur = 15 + p.life * 0.1;
-      ctx.shadowColor = p.color;
+      ctx.globalAlpha = p.life / 90;
       
       if (p.isHeart) {
-        drawHeart(ctx, p.x, p.y, p.size * 1.5);
+        drawHeart(ctx, p.x, p.y, p.size * 1.2);
       } else {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -389,9 +351,7 @@ function animate() {
     }
   }
   
-  if (celebrationMode && particles.length < 800 && Math.random() < 0.3) {
-    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.8);
-  }
+  requestAnimationFrame(animate);
 }
 animate();
 </script>
