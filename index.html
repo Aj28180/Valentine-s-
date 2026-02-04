@@ -2,70 +2,94 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>I Love You Bhumika ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhumika ❤️ Ankush</title>
 
 <style>
 
-/* 🌌 Background */
+/* ---------- BODY ---------- */
 body{
-  margin:0;
-  font-family:Georgia,serif;
-  background:radial-gradient(circle at top,#2b0000,#000);
-  color:white;
-  overflow:hidden;
-  height:100vh;
-  text-align:center;
+    margin:0;
+    overflow:hidden;
+    font-family:Segoe UI;
+    background:radial-gradient(circle,#1a001f,#000);
+    color:white;
+    text-align:center;
 }
 
-/* Neon Text */
-.neon{
-  font-size:40px;
-  text-shadow:
-  0 0 10px #ff4d6d,
-  0 0 20px #ff1744,
-  0 0 40px #ff1744;
+/* ---------- MAIN SCREEN ---------- */
+#screen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url("https://i.imgur.com/8Km9tLL.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
-/* Center */
-.center{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+#screen::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
 }
 
-.hidden{display:none}
+.content{
+    position:relative;
+    z-index:2;
+}
 
-/* Buttons */
+h1{
+    font-size:3em;
+    color:#ff4da6;
+    text-shadow:0 0 20px #ff1a75;
+}
+
 button{
-  padding:14px 30px;
-  font-size:20px;
-  border:none;
-  border-radius:30px;
-  margin:10px;
-  cursor:pointer;
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff0066,#ff4da6);
+    color:white;
+    cursor:pointer;
+    box-shadow:0 0 20px #ff1a75;
 }
 
-#startBtn{background:#ff1744;color:white;}
-#yesBtn{background:#e91e63;color:white;}
-#noBtn{background:#555;color:white;position:absolute;}
-
-/* Love Message */
-.loveMsg{
-  max-width:650px;
-  margin:auto;
-  font-size:19px;
-  line-height:1.6;
-  color:#ffd1dc;
+/* ---------- MESSAGE ---------- */
+#msg{
+    position:absolute;
+    top:25%;
+    width:100%;
+    display:none;
+    font-size:26px;
+    color:#ffd6e7;
+    text-shadow:0 0 10px #ff4da6;
 }
 
-/* Canvas Fireworks */
+/* ---------- PETALS ---------- */
+.petal{
+    position:fixed;
+    top:-20px;
+    width:25px;
+    height:25px;
+    background:url("https://i.imgur.com/O7b6G7P.png") center/contain no-repeat;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+
 canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  pointer-events:none;
+    position:fixed;
+    top:0;
+    left:0;
 }
 
 </style>
@@ -73,171 +97,123 @@ canvas{
 
 <body>
 
-<!-- 🔐 PASSWORD -->
-<div id="lock" class="center">
-  <h2>Enter Secret Password 🔐</h2>
-  <input type="password" id="pass">
-  <br><br>
-  <button onclick="unlock()">Unlock ❤️</button>
-  <p id="error"></p>
+<!-- ---------- SCREEN ---------- -->
+<div id="screen">
+  <div class="content">
+      <h1>Bhumika ❤️ Ankush</h1>
+      <button onclick="start()">Tap My Love 💖</button>
+  </div>
 </div>
 
-<!-- ❤️ START -->
-<div id="startScreen" class="center hidden">
-  <div class="neon">Bhumika ❤️ Ankush</div>
-  <br>
-  <button id="startBtn">Tap to Start ❤️</button>
+<!-- ---------- MESSAGE ---------- -->
+<div id="msg">
+  I Love You ❤️💋💋❤️ Bhumika
 </div>
 
-<!-- 💌 MAIN -->
-<div id="content" class="center hidden">
+<!-- ---------- MUSIC ---------- -->
+<audio id="music" loop>
+  <source src="zara_si.mp3" type="audio/mpeg">
+</audio>
 
-<h1 class="neon">I Love You Bhumika ❤️</h1>
-
-<p class="loveMsg">
-My Dearest Bhumika ❤️<br><br>
-From the moment you came into my life, everything felt magical ✨  
-Your smile is my peace, your love my forever 💖<br><br>
-Will you be my Valentine… forever? 💍
-</p>
-
-<br>
-
-<button id="yesBtn">Yes 💋</button>
-<button id="noBtn">No 😜</button>
-
-</div>
-
-<!-- 💖 FINAL -->
-<div id="final" class="hidden center">
-  <h1>She Said YES 💖</h1>
-  <div class="neon">Bhumika ❤️ Ankush Forever</div>
-</div>
-
-<!-- 🎆 FIREWORK CANVAS -->
-<canvas id="fireworks"></canvas>
-
-<!-- 🎶 SONG (Zara Sa – YouTube Embed) -->
-<div id="ytSong" class="hidden">
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/9x5K2G1c9F0?autoplay=1&loop=1&playlist=9x5K2G1c9F0"
-allow="autoplay">
-</iframe>
-</div>
+<canvas id="canvas"></canvas>
 
 <script>
 
-/* PASSWORD */
-function unlock(){
-  const p=document.getElementById("pass").value.toLowerCase();
-  if(p==="iloveyou"){
-    lock.classList.add("hidden");
-    startScreen.classList.remove("hidden");
-  }else{
-    error.innerText="Wrong Password 💔";
-  }
+/* ---------- START ---------- */
+function start(){
+
+ document.getElementById("music").play();
+ document.getElementById("msg").style.display="block";
+
+ petals();
+ fireworksText();
 }
 
-/* START */
-startBtn.onclick=()=>{
-  startScreen.classList.add("hidden");
-  content.classList.remove("hidden");
-  ytSong.classList.remove("hidden"); // start music
+/* ---------- PETALS ---------- */
+function petals(){
+ for(let i=0;i<35;i++){
+   let p=document.createElement("div");
+   p.className="petal";
+   p.style.left=Math.random()*100+"vw";
+   p.style.animationDuration=(5+Math.random()*5)+"s";
+   document.body.appendChild(p);
+ }
 }
 
-/* RUNNING NO */
-noBtn.onmouseover=()=>{
-  noBtn.style.top=Math.random()*80+"vh";
-  noBtn.style.left=Math.random()*80+"vw";
-}
+/* ---------- FIREWORKS TEXT ---------- */
+function fireworksText(){
 
-/* YES CLICK */
-yesBtn.onclick=()=>{
-  content.classList.add("hidden");
-  final.classList.remove("hidden");
-  textFireworks();
-}
+ const canvas=document.getElementById("canvas");
+ const ctx=canvas.getContext("2d");
 
-/* 🎆 FIREWORK ENGINE */
+ canvas.width=innerWidth;
+ canvas.height=innerHeight;
 
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
+ const textCanvas=document.createElement("canvas");
+ const tctx=textCanvas.getContext("2d");
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+ textCanvas.width=canvas.width;
+ textCanvas.height=canvas.height;
 
-let particles=[];
+ tctx.fillStyle="white";
+ tctx.font="bold 80px Segoe UI";
+ tctx.textAlign="center";
 
-function createFirework(x,y){
-  for(let i=0;i<90;i++){
-    particles.push({
-      x:x,
-      y:y,
-      angle:Math.random()*2*Math.PI,
-      speed:Math.random()*6+2,
-      life:100
-    });
-  }
-}
+ tctx.fillText(
+   "I Love You ❤️💋💋❤️ Bhumika",
+   canvas.width/2,
+   canvas.height/2
+ );
 
-/* TEXT FIREWORKS */
-function textFireworks(){
+ const data=tctx.getImageData(
+   0,0,canvas.width,canvas.height
+ ).data;
 
-  const text="Bhumika ❤️ Ankush";
+ let points=[];
 
-  const temp=document.createElement("canvas");
-  const tctx=temp.getContext("2d");
-
-  temp.width=900;
-  temp.height=200;
-
-  tctx.fillStyle="white";
-  tctx.font="60px Georgia";
-  tctx.fillText(text,50,120);
-
-  const data=tctx.getImageData(0,0,900,200).data;
-
-  for(let y=0;y<200;y+=6){
-    for(let x=0;x<900;x+=6){
-
-      const i=(y*900+x)*4;
-      if(data[i+3]>150){
-        createFirework(
-          x+canvas.width/2-450,
-          y+150
-        );
-      }
+ for(let y=0;y<canvas.height;y+=6){
+  for(let x=0;x<canvas.width;x+=6){
+    if(data[(y*canvas.width+x)*4+3]>128){
+      points.push({x,y});
     }
   }
+ }
 
-  animate();
-}
+ let particles=[];
 
-/* ANIMATION */
-function animate(){
+ points.forEach(p=>{
+   for(let i=0;i<3;i++){
+     particles.push({
+       x:Math.random()*canvas.width,
+       y:canvas.height,
+       tx:p.x,
+       ty:p.y
+     });
+   }
+ });
 
-  requestAnimationFrame(animate);
+ function animate(){
+   requestAnimationFrame(animate);
 
-  ctx.fillStyle="rgba(0,0,0,0.2)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+   ctx.fillStyle="rgba(0,0,0,0.2)";
+   ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  particles.forEach((p,i)=>{
+   particles.forEach(pt=>{
 
-    p.x+=Math.cos(p.angle)*p.speed;
-    p.y+=Math.sin(p.angle)*p.speed;
-    p.life--;
+     pt.x+=(pt.tx-pt.x)*0.05;
+     pt.y+=(pt.ty-pt.y)*0.05;
 
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,2,0,2*Math.PI);
-    ctx.fillStyle="hsl("+Math.random()*360+",100%,60%)";
-    ctx.fill();
+     ctx.beginPath();
+     ctx.arc(pt.x,pt.y,2,0,Math.PI*2);
+     ctx.fillStyle=
+       "hsl("+Math.random()*360+",100%,60%)";
+     ctx.fill();
+   });
+ }
 
-    if(p.life<=0) particles.splice(i,1);
-
-  });
+ animate();
 }
 
 </script>
-
 </body>
 </html>
