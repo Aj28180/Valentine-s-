@@ -1,2 +1,85 @@
 # Valentine-s-
 Add file ▼
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I Love You Bhumika ❤️</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:black;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+#startBtn{
+  margin-top:40vh;
+  padding:15px 30px;
+  font-size:22px;
+  background:red;
+  color:white;
+  border:none;
+  border-radius:10px;
+}
+
+.hidden{display:none;}
+
+img{
+  width:250px;
+  border-radius:20px;
+  margin-top:20px;
+}
+
+.heart{
+  position:fixed;
+  color:red;
+  animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10vh);}
+  100%{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<button id="startBtn">Tap to Start ❤️</button>
+
+<div id="content" class="hidden">
+  <h1>I Love You Bhumika ❤️</h1>
+  <p>Will you be my Valentine? 💍</p>
+  <img src="photo.jpg">
+</div>
+
+<audio id="music" autoplay loop>
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/Perfect.mp3" type="audio/mp3">
+</audio>
+
+<script>
+document.getElementById("startBtn").onclick=function(){
+  document.getElementById("content").classList.remove("hidden");
+  this.style.display="none";
+  createHearts();
+}
+
+function createHearts(){
+  setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.innerHTML="❤️";
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*30)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+  },300);
+}
+</script>
+
+</body>
+</h
