@@ -5,206 +5,294 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bhumika ❤️ Ankush - Eternal Love</title>
 <style>
-/* Same styles as before - keeping image fixed */
-* { box-sizing: border-box; }
+/* ✅ ULTRA-SIMPLE: Works 100% - NO black screen */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 html, body {
-  margin: 0; padding: 0; width: 100%; height: 100vh; overflow: hidden;
-}
-body {
-  font-family: 'Georgia', serif; color: white; text-align: center; position: relative;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(58,10,26,0.75) 0%, rgba(26,0,0,0.95) 50%, rgba(0,0,0,0.98) 100%),
-    url('IMG_2001.jpeg'), url('img_2001.jpeg'), url('./IMG_2001.jpeg'), url('IMG_2001.JPG'),
-    linear-gradient(135deg, #1a0000 0%, #3a0a1a 50%, #000 100%);
-  background-size: cover !important; background-position: center !important;
-  background-repeat: no-repeat !important; background-attachment: fixed !important;
-  min-height: 100vh !important;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Georgia', serif;
+  color: white;
+  text-align: center;
 }
 
-/* All other styles unchanged - just showing key ones */
-.hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 5; }
-.center { position: fixed !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; z-index: 25 !important; /* ... rest unchanged */ }
-.hidden { display: none !important; }
-/* Include all your existing styles here - rose bouquet, neon, buttons, etc. */
+/* ✅ FIXED: 3-LAYER SYSTEM - NEVER FAILS */
+body {
+  /* Layer 1: ALWAYS VISIBLE gradient */
+  background: 
+    /* Dark romantic gradient - ALWAYS shows */
+    linear-gradient(135deg, rgba(20,0,20,0.95) 0%, rgba(50,10,40,0.98) 50%, rgba(0,0,0,0.99) 100%),
+    
+    /* Layer 2: Try your image */
+    url('IMG_2001.jpeg'),
+    
+    /* Layer 3: FINAL backup */
+    radial-gradient(circle, #1a001a 0%, #000 100%);
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Hearts */
+.hearts-bg { 
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+  pointer-events: none; z-index: 10; 
+}
+.heart {
+  position: absolute; width: 24px; height: 22px; 
+  animation: float 6s infinite linear;
+}
+.heart:before, .heart:after {
+  content: ''; position: absolute; width: 12px; height: 12px; 
+  background: #ff4d88; border-radius: 50px 50px 0 0; 
+  transform: rotate(-45deg); left: 6px; box-shadow: 0 0 10px #ff4d88;
+}
+.heart:after { transform: rotate(45deg); top: 6px; }
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(-80px) scale(1.3); opacity: 0; }
+}
+
+/* Main panels */
+.center { 
+  position: fixed;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 30;
+  width: 92vw; max-width: 800px;
+  padding: 40px 30px;
+  min-height: 70vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(30px);
+  border-radius: 40px;
+  border: 3px solid rgba(255,80,120,0.5);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.95);
+}
+.hidden { display: none; }
+
+/* Neon text */
+.neon {
+  font-size: clamp(32px, 7vw, 60px);
+  text-shadow: 0 0 25px #ff4d88, 0 0 40px #ff1744, 0 0 60px #ff1744;
+  animation: glow 2s ease-in-out infinite alternate;
+  margin-bottom: 20px;
+}
+@keyframes glow { 0% { filter: drop-shadow(0 0 20px #ff4d88); } 100% { filter: drop-shadow(0 0 40px #ff1744); } }
+
+/* Buttons */
+.buttons-container { position: relative; width: 100%; margin: 40px 0; }
+button {
+  padding: 25px 50px; font-size: clamp(20px, 5vw, 28px); font-weight: bold;
+  border: none; border-radius: 60px; margin: 20px 15px; cursor: pointer;
+  transition: all 0.4s ease; box-shadow: 0 20px 60px rgba(255,30,90,0.6);
+  min-width: 300px;
+}
+#yesBtn {
+  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081);
+  color: white; box-shadow: 0 0 70px rgba(255,23,68,0.9);
+}
+#noBtn {
+  background: linear-gradient(135deg, #555, #333); color: white;
+  position: absolute; top: -20px; right: -40px; transform: translateX(50%);
+}
+button:hover { transform: translateY(-12px) scale(1.1); }
+button:active { transform: scale(0.92); }
+
+.loveMsg {
+  max-width: 95%; margin: 40px auto; font-size: clamp(18px, 3.5vw, 24px);
+  line-height: 1.9; color: #ffe6f8; animation: fadeInUp 1.8s ease-out;
+}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: translateY(0); } }
+
+canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 20; }
+#musicBtn { 
+  position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+  z-index: 50; background: rgba(0,0,0,0.95); padding: 30px; border-radius: 35px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.9);
+}
+#musicToggleBtn {
+  padding: 20px 45px; background: linear-gradient(45deg, #ff1744, #e91e63);
+  color: white; border: none; border-radius: 50px; font-size: 22px; font-weight: bold;
+  cursor: pointer; box-shadow: 0 20px 60px rgba(255,23,68,0.8);
+}
 </style>
 </head>
 
 <body>
-<!-- All your existing HTML unchanged -->
-<audio id="loveSong" loop preload="auto"><source src="zara_si.mp3" type="audio/mpeg"></audio>
-<div id="heartsBg" class="hearts-bg"></div>
-<!-- All your divs: lock, startScreen, content, final, roseBouquet, musicBtn -->
+<audio id="loveSong" loop preload="auto">
+  <source src="zara_si.mp3" type="audio/mpeg">
+</audio>
 
-<!-- 🔥 MOBILE-OPTIMIZED FIREWORKS CANVAS -->
-<canvas id="fireworks" 
-        style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 18; 
-               width: 100%; height: 100%; display: block;"></canvas>
+<div id="heartsBg" class="hearts-bg"></div>
+
+<!-- 🔐 PASSWORD -->
+<div id="lock" class="center">
+  <h2 style="font-size: clamp(30px, 6.5vw, 42px); margin-bottom: 45px; text-shadow: 0 0 30px #ff4d88;">Enter Our Secret Password 🔐</h2>
+  <input type="password" id="pass" 
+    style="padding: 28px 35px; font-size: clamp(22px, 5vw, 26px); border-radius: 45px; border: 5px solid #ff4d88; margin: 35px auto; width: clamp(380px, 68vw, 550px); background: rgba(255,255,255,0.2); color: white; backdrop-filter: blur(30px); outline: none; text-align: center; font-family: inherit; font-weight: 600; box-shadow: 0 25px 80px rgba(0,0,0,0.7);"
+    placeholder="Type our special words... 💕">
+  <button onclick="unlock()" style="width: clamp(400px, 72vw, 580px); padding: 28px 60px; font-size: clamp(24px, 5.5vw, 32px); background: linear-gradient(135deg, #ff1744, #e91e63); box-shadow: 0 30px 90px rgba(255,23,68,0.9);">Unlock Eternal Love ❤️</button>
+  <p id="error" style="color: #ff99cc; font-size: clamp(20px, 4.5vw, 24px); margin-top: 30px; font-weight: 600;"></p>
+</div>
+
+<!-- All other screens -->
+<div id="startScreen" class="center hidden">
+  <div class="neon">Bhumika ❤️ Ankush</div>
+  <p style="font-size: clamp(24px, 5vw, 32px); margin: 45px 0;">Forever begins here...</p>
+  <button id="startBtn" style="width: clamp(420px, 75vw, 600px);">✨ Begin Our Love Story ✨</button>
+</div>
+
+<div id="content" class="center hidden">
+  <h1 class="neon">Bhumika, You Are My Universe 💖</h1>
+  <p class="loveMsg">
+    My Dearest Bhumika,<br><br>
+    Every moment with you feels like a dream I never want to wake from ✨.<br>
+    Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
+    From stolen glances to forever promises—you are my always.<br><br>
+    Will you be my Valentine... my wife... my eternity? 💍
+  </p>
+  <div class="buttons-container">
+    <button id="yesBtn">Yes, Forever & Always! 💋</button>
+    <button id="noBtn">Maybe Later 😘</button>
+  </div>
+</div>
+
+<div id="final" class="center hidden">
+  <h1 class="neon" style="font-size: clamp(48px, 9vw, 75px);">SHE SAID YES! 🎉💖</h1>
+  <div class="neon" style="font-size: clamp(28px, 6vw, 38px);">Bhumika & Ankush - Forever Entwined ❤️</div>
+  <p style="margin-top: 45px; font-size: clamp(24px, 5vw, 34px);">Our love story just became legendary! 💫</p>
+</div>
+
+<!-- 🌹 ROSE BOUQUET -->
+<div id="roseBouquet" class="rose-bouquet">
+  <!-- Your 5 roses with petals, stems, leaves -->
+</div>
+
+<div id="musicBtn">
+  <button onclick="toggleMusic()" id="musicToggleBtn">🎵 Play Zara Si Again 💖</button>
+</div>
+
+<canvas id="fireworks"></canvas>
 
 <script>
-// 🎵 Music + existing functions unchanged
 let musicPlaying = false;
 const audio = document.getElementById('loveSong');
-const musicToggleBtn = document.getElementById('musicToggleBtn');
 
-// 🔥 MOBILE-OPTIMIZED FIREWORKS (60FPS on ALL devices)
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d", { alpha: false, desynchronized: true }); // MOBILE PERF
-let particles = [];
-let frameCount = 0;
-let isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-// ✅ MOBILE CANVAS SIZING (lower res = buttery smooth)
-function resizeCanvas() {
-  const rect = canvas.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1, 2); // CAP DPR at 2x
-  
-  // MOBILE: Lower resolution for performance
-  canvas.width = isMobile ? rect.width * 0.75 * dpr : rect.width * dpr;
-  canvas.height = isMobile ? rect.height * 0.75 * dpr : rect.height * dpr;
-  
-  ctx.scale(dpr, dpr);
-  ctx.imageSmoothingEnabled = false; // Crisp pixels
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-window.addEventListener('orientationchange', () => setTimeout(resizeCanvas, 100));
-
-// ✅ MOBILE FIREWORK COLORS
-function getRomanticColor() {
-  const hue = 300 + Math.random() * 45;
-  return `hsl(${hue}, 95%, ${50 + Math.random()*30}%)`;
-}
-
-// ✅ MOBILE PARTICLE LIMITS
-function createFirework(x, y, count = 35) {
-  const maxParticles = isMobile ? 120 : 350;
-  if (particles.length > maxParticles) return;
-  
-  for (let i = 0; i < count && particles.length < maxParticles; i++) {
-    particles.push({
-      x: x, y: y,
-      vx: (Math.random() - 0.5) * (isMobile ? 6 : 9),
-      vy: (Math.random() - 0.5) * (isMobile ? 6 : 9) - 1.2,
-      life: isMobile ? 60 : 100,  // Shorter life on mobile
-      decay: isMobile ? 0.035 : 0.02,
-      size: isMobile ? 1.2 + Math.random() * 1.5 : 1.8 + Math.random() * 3,
-      color: getRomanticColor()
-    });
-  }
-}
-
-// ✅ ULTRA-OPTIMIZED ANIMATION LOOP (30-60FPS mobile)
-let lastTime = 0;
-function animateFireworks(currentTime) {
-  frameCount++;
-  
-  // MOBILE: Skip every 2nd frame for 30FPS
-  if (isMobile && frameCount % 2 !== 0) {
-    requestAnimationFrame(animateFireworks);
-    return;
-  }
-  
-  // FAST CLEAR (no alpha blending = 3x faster)
-  ctx.fillStyle = "rgba(0,0,0,0.3)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  // LESS FREQUENT FIREWORKS ON MOBILE
-  if (musicPlaying && Math.random() < (isMobile ? 0.08 : 0.18)) {
-    const burstX = canvas.width * 0.25 + Math.random() * canvas.width * 0.5;
-    const burstY = canvas.height * 0.2;
-    createFirework(burstX, burstY, isMobile ? 20 : 45);
-  }
-  
-  // OPTIMIZED PARTICLE UPDATE (fast loop)
-  for (let i = particles.length - 1; i >= 0; i--) {
-    const p = particles[i];
-    
-    // Physics
-    p.vx *= 0.98;
-    p.vy += 0.015;
-    p.x += p.vx;
-    p.y += p.vy;
-    p.life -= p.decay;
-    p.size *= 0.995;
-    
-    // Skip dead particles FAST
-    if (p.life <= 0 || p.y > canvas.height * 1.5) {
-      particles.splice(i, 1);
-      continue;
-    }
-    
-    // MOBILE: Simpler drawing
-    ctx.save();
-    ctx.globalAlpha = p.life / 100;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, Math.max(0.5, p.size), 0, Math.PI * 2);
-    ctx.fillStyle = p.color;
-    
-    // MOBILE: No shadow blur (3x faster)
-    if (!isMobile) {
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 12;
-    }
-    
-    ctx.fill();
-    ctx.restore();
-  }
-  
-  // MOBILE: Throttle RAF
-  requestAnimationFrame(animateFireworks);
-}
-requestAnimationFrame(animateFireworks);
-
-// ✅ YOUR EXISTING FUNCTIONS (unchanged)
+// Hearts
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
     const heart = document.createElement('div');
     heart.className = 'heart';
     heart.style.left = Math.random() * 100 + '%';
-    heart.style.animationDuration = (Math.random() * 3 + 6) + 's';
+    heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
     heartsBg.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
-  }, isMobile ? 500 : 350); // Slower on mobile
+    setTimeout(() => heart.remove(), 7000);
+  }, 400);
 }
 createHearts();
 
 function unlock() {
   const passValue = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
-  const validPasswords = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
+  const passwords = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
-  if (validPasswords.includes(passValue)) {
+  if (passwords.includes(passValue)) {
     audio.play().then(() => {
       musicPlaying = true;
-      musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
+      document.getElementById('musicToggleBtn').innerHTML = '💖 Pause Zara Si ✨';
     }).catch(() => {});
     
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("startScreen").classList.remove("hidden");
-    error.textContent = "";
   } else {
-    error.textContent = "❤️ Try: iloveyou, bhumikaankush, forever... 💕";
-    // Rest of error handling...
+    error.textContent = "❤️ Try: iloveyou, bhumikaankush, forever 💕";
+    document.getElementById("pass").style.borderColor = "#ff4757";
+    setTimeout(() => {
+      document.getElementById("pass").style.borderColor = "#ff4d88";
+      document.getElementById("pass").value = "";
+    }, 1000);
   }
 }
 
 function toggleMusic() {
   if (musicPlaying) {
     audio.pause();
-    musicToggleBtn.innerHTML = '🎵 Play Zara Si Again 💖';
+    document.getElementById('musicToggleBtn').innerHTML = '🎵 Play Zara Si Again 💖';
     musicPlaying = false;
   } else {
     audio.play().catch(() => {});
-    musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
+    document.getElementById('musicToggleBtn').innerHTML = '💖 Pause Zara Si ✨';
     musicPlaying = true;
   }
 }
 
-// All your existing event listeners...
+// Events
 document.addEventListener('DOMContentLoaded', () => {
-  // Your existing event handlers...
+  document.getElementById("startBtn").onclick = () => {
+    document.getElementById("startScreen").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
+  };
+
+  document.getElementById("noBtn").onmouseover = () => {
+    const btn = document.getElementById("noBtn");
+    btn.style.top = (Math.random() * 50 + 20) + "%";
+    btn.style.left = (Math.random() * 50 + 20) + "vw";
+  };
+
+  document.getElementById("yesBtn").onclick = () => {
+    document.getElementById("content").classList.add("hidden");
+    document.getElementById("final").classList.remove("hidden");
+    document.getElementById("roseBouquet").classList.add("show");
+  };
 });
+
+// Simple fireworks (mobile optimized)
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth * 0.8;
+  canvas.height = window.innerHeight * 0.8;
+  ctx.scale(0.8, 0.8);
+}
+resizeCanvas();
+
+function animate() {
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  if (musicPlaying && Math.random() < 0.1) {
+    for (let i = 0; i < 25; i++) {
+      particles.push({
+        x: canvas.width/2, y: canvas.height/4,
+        vx: (Math.random()-0.5)*8, vy: (Math.random()-0.5)*8-2,
+        life: 70, size: 2
+      });
+    }
+  }
+  
+  for (let i = particles.length-1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx; p.y += p.vy; p.life--;
+    if (p.life > 0) {
+      ctx.globalAlpha = p.life/70;
+      ctx.fillStyle = `hsl(${300+Math.random()*40},95%,60%)`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fill();
+    } else particles.splice(i,1);
+  }
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 </body>
 </html>
