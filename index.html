@@ -1,69 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>I Love You Bhumika Gupta ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bhumika ❤️ Ankush</title>
 
 <style>
 
-/* ===== BODY ===== /
+/* 🌌 DARK DIAMOND THEME /
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  text-align:center;
+  font-family:Georgia,serif;
+  background:radial-gradient(circle at top,#2b0000,#000);
   color:white;
   overflow:hidden;
-  background:linear-gradient(270deg,#ff4d6d,#000,#ff1744);
-  background-size:600% 600%;
-  animation:bgMove 12s ease infinite;
+  height:100vh;
+  text-align:center;
 }
 
-@keyframes bgMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+/ ✨ Neon Text /
+.neon{
+  font-size:42px;
+  text-shadow:
+  0 0 10px #ff4d6d,
+  0 0 20px #ff1744,
+  0 0 40px #ff1744;
 }
 
-/ Stars background /
-body::after{
-  content:"";
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:url("https://i.imgur.com/YKY28eT.png");
-  opacity:0.4;
+/ Center /
+.center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
-/ Start button /
-#startBtn{
-  margin-top:40vh;
-  padding:18px 35px;
-  font-size:24px;
-  background:#ff1744;
-  color:white;
-  border:none;
-  border-radius:12px;
-  box-shadow:0 0 25px red;
-}
+.hidden{display:none}
 
-.hidden{display:none;}
-
-.btn{
-  padding:14px 28px;
+/ Buttons /
+button{
+  padding:14px 30px;
   font-size:20px;
-  margin:15px;
   border:none;
-  border-radius:12px;
+  border-radius:30px;
+  margin:10px;
   cursor:pointer;
 }
 
-#yesBtn{background:#ff4d6d;color:white;}
-#noBtn{background:gray;color:white;position:absolute;}
+#startBtn{background:#ff1744;color:white;}
+#yesBtn{background:#e91e63;color:white;}
+#noBtn{background:#555;color:white;position:absolute;}
 #waBtn{background:#25D366;color:white;}
 
-/ Falling hearts & roses /
-.fall{
+/ Hearts /
+.heart{
   position:fixed;
   animation:fall 6s linear infinite;
 }
@@ -73,50 +64,46 @@ body::after{
   100%{transform:translateY(110vh);}
 }
 
+/ Firework particles /
+.fire{
+  position:fixed;
+  font-size:26px;
+  animation:explode 1.4s ease-out forwards;
+}
+
+@keyframes explode{
+  0%{transform:scale(0);opacity:1;}
+  100%{transform:scale(3) translate(var(--x),var(--y));opacity:0;}
+}
+
+/ Name Sky Text /
+#skyName{
+  position:fixed;
+  top:20%;
+  width:100%;
+  text-align:center;
+  font-size:48px;
+  opacity:0;
+  text-shadow:
+    0 0 20px #ff4d6d,
+    0 0 40px #ff1744,
+    0 0 60px #ff1744;
+  animation:fadeIn 3s forwards;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
 / Final screen /
 #final{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:black;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  font-size:32px;
-}
-
-/ Couple silhouette /
-#couple{
-  font-size:80px;
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.2);}
-  100%{transform:scale(1);}
-}
-
-/ Kiss effect /
-.kiss{
-  position:fixed;
-  font-size:40px;
-  animation:kiss 2s ease forwards;
-}
-
-@keyframes kiss{
-  0%{opacity:1;transform:scale(0.5);}
-  100%{opacity:0;transform:scale(2);}
-}
-
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  pointer-events:none;
 }
 
 </style>
@@ -124,75 +111,89 @@ canvas{
 
 <body>
 
-<button id="startBtn">Tap to Start ❤️</button>
+<!-- PASSWORD -->
+<div id="lock" class="center">
+  <h2>Enter Secret Password 🔐</h2>
+  <input type="password" id="pass">
+  <br><br>
+  <button onclick="unlock()">Unlock ❤️</button>
+  <p id="error"></p>
+</div>
 
-<div id="content" class="hidden">
+<!-- START -->
+<div id="startScreen" class="center hidden">
+  <div class="neon">Bhumika ❤️ Ankush</div>
+  <br>
+  <button id="startBtn">Tap to Start ❤️</button>
+</div>
 
-<h1>I Love You Bhumika Gupta ❤️</h1>
+<!-- MAIN -->
+<div id="content" class="center hidden">
 
-<h3 id="countdown"></h3>
+<h1 class="neon">I Love You Bhumika ❤️</h1>
+<p>Bhumika, will you be my Valentine? 💍</p>
 
-<p id="letter"></p>
-
-<p>Bhumika Gupta, will you be my Valentine? 💖</p>
-
-<button id="yesBtn" class="btn">Yes 💋</button>
-<button id="noBtn" class="btn">No 😜</button>
+<button id="yesBtn">Yes 💋</button>
+<button id="noBtn">No 😜</button>
 
 <br>
 
-<!-- WhatsApp Button -->
-<a href="https://wa.me/?text=I%20Love%20You%20Bhumika%20Gupta%20❤️" target="_blank">
-<button id="waBtn" class="btn">Chat on WhatsApp 💬</button>
+<a href="https://wa.me/?text=Bhumika%20❤️%20Ankush%20Forever">
+<button id="waBtn">Chat on WhatsApp 💬</button>
 </a>
 
 </div>
 
+<!-- SKY NAME -->
+<div id="skyName">Bhumika ❤️ Ankush</div>
+
+<!-- FINAL -->
 <div id="final" class="hidden">
-
-<div id="couple">👩‍❤️‍👨</div>
-
-<h1>She Said YES 💖</h1>
-<h2>Bhumika Gupta ❤️</h2>
-<p>Forever Together 🥰</p>
-
+  <h1>She Said YES 💖</h1>
+  <div class="neon">Bhumika ❤️ Ankush</div>
 </div>
 
-<!-- MUSIC -->
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f6b7c5d3e.mp3?filename=romantic-love-ambient-110997.mp3">
-</audio>
-
-<canvas id="fireworks"></canvas>
+<!-- SONG -->
+<div id="ytSong" class="hidden">
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/2J7kq5J5y0M?autoplay=1&loop=1&playlist=2J7kq5J5y0M"
+allow="autoplay">
+</iframe>
+</div>
 
 <script>
 
-/ START /
-startBtn.onclick=()=>{
- content.classList.remove("hidden");
- startBtn.style.display="none";
- music.play();
- hearts();
- countdownTimer();
- typeLetter();
+/ PASSWORD /
+function unlock(){
+ if(pass.value.toLowerCase()=="iloveyou"){
+   lock.classList.add("hidden");
+   startScreen.classList.remove("hidden");
+ }
 }
 
-/ HEARTS + ROSES */
+/ START /
+startBtn.onclick=()=>{
+ startScreen.classList.add("hidden");
+ content.classList.remove("hidden");
+ ytSong.classList.remove("hidden");
+ hearts();
+}
+
+/ HEARTS */
 function hearts(){
  setInterval(()=>{
-  let e=document.createElement("div");
-  e.innerHTML=Math.random()>0.5?"❤️":"🌹";
-  e.className="fall";
-  e.style.left=Math.random()*100+"vw";
-  e.style.fontSize=(20+Math.random()30)+"px";
-  document.body.appendChild(e);
-  setTimeout(()=>e.remove(),6000);
+  let h=document.createElement("div");
+  h.innerHTML="❤️";
+  h.className="heart";
+  h.style.left=Math.random()100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
  },300);
 }
 
-/ NO BUTTON MOVE */
+/ RUN NO */
 noBtn.onmouseover=()=>{
- noBtn.style.top=Math.random()80+"vh";
+ noBtn.style.top=Math.random()*80+"vh";
  noBtn.style.left=Math.random()80+"vw";
 }
 
@@ -200,63 +201,37 @@ noBtn.onmouseover=()=>{
 yesBtn.onclick=()=>{
  content.classList.add("hidden");
  final.classList.remove("hidden");
- kissEffect();
- fireworks();
+ skyFireworks();
 }
 
-/ Kiss /
-function kissEffect(){
- for(let i=0;i<15;i++){
-  let k=document.createElement("div");
-  k.innerHTML="💋";
-  k.className="kiss";
-  k.style.left=Math.random()100+"vw";
-  k.style.top=Math.random()100+"vh";
-  document.body.appendChild(k);
-  setTimeout(()=>k.remove(),2000);
- }
-}
+/ SKY NAME FIREWORKS */
+function skyFireworks(){
 
-/ Countdown /
-function countdownTimer(){
- let target=new Date("Feb 14, 2026 00:00:00").getTime();
+ skyName.style.opacity=1;
+
+ const emojis=["✨","🎆","💖","🎇","❤️"];
+
  setInterval(()=>{
-  let now=new Date().getTime();
-  let d=target-now;
-  let days=Math.floor(d/(1000606024));
-  countdown.innerHTML="Countdown to Valentine: "+days+" days ❤️";
- },1000);
-}
 
-/ Love letter /
-let text="Bhumika Gupta, from the moment you came into my life, everything became magical. Your smile is my peace, your love is my strength, and I promise to love you forever ❤️";
-let i=0;
-function typeLetter(){
- setInterval(()=>{
-  if(i<text.length){
-   letter.innerHTML+=text.charAt(i);
-   i++;
+  for(let i=0;i<40;i++){
+
+   let f=document.createElement("div");
+   f.className="fire";
+   f.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+   f.style.left="50vw";
+   f.style.top="25vh";
+
+   f.style.setProperty("--x",(Math.random()*600-300)+"px");
+   f.style.setProperty("--y",(Math.random()*300-150)+"px");
+
+   document.body.appendChild(f);
+   setTimeout(()=>f.remove(),1400);
   }
- },50);
-}
 
-/ Fireworks */
-function fireworks(){
- let c=document.getElementById("fireworks");
- let ctx=c.getContext("2d");
- c.width=innerWidth;
- c.height=innerHeight;
-
- setInterval(()=>{
-  let x=Math.random()*c.width;
-  let y=Math.random()*c.height/2;
-  for(let i=0;i<80;i++){
-   ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
-   ctx.fillRect(x+Math.random()*100,y+Math.random()*100,3,3);
-  }
- },400);
+ },500);
 }
 
 </script>
 
-</
+</bod
