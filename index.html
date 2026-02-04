@@ -19,7 +19,10 @@ body {
   position: relative;
 }
 
-.hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.hearts-bg { 
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  pointer-events: none; z-index: 2; 
+}
 .heart {
   position: absolute; width: 18px; height: 16px; animation: float 8s infinite linear;
 }
@@ -39,7 +42,10 @@ body {
   text-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff1744, 0 0 40px #ff1744;
   animation: glow 2s ease-in-out infinite alternate;
 }
-@keyframes glow { from { filter: drop-shadow(0 0 12px #ff4d6d); } to { filter: drop-shadow(0 0 25px #ff1744); } }
+@keyframes glow {
+  from { filter: drop-shadow(0 0 12px #ff4d6d); }
+  to { filter: drop-shadow(0 0 25px #ff1744); }
+}
 
 .center { 
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
@@ -50,75 +56,96 @@ body {
 }
 .hidden { display: none; }
 
-.buttons-container { position: relative; width: 100%; margin-top: 25px; }
+.buttons-container {
+  position: relative; width: 100%; margin-top: 25px;
+}
 button {
   padding: 18px 35px; font-size: clamp(16px, 3.8vw, 22px); font-weight: bold;
   border: none; border-radius: 45px; margin: 12px 8px; cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 10px 30px rgba(255, 23, 68, 0.5); touch-action: manipulation;
+  box-shadow: 0 10px 30px rgba(255, 23, 68, 0.5);
+  touch-action: manipulation; position: relative; z-index: 5;
   min-width: 220px; display: inline-block;
 }
-#yesBtn { background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); color: white; font-size: clamp(18px, 4vw, 24px); box-shadow: 0 0 40px rgba(255, 23, 68, 0.7); }
-#noBtn { background: linear-gradient(135deg, #666, #444); color: white; position: absolute; top: 0; right: -20px; transform: translateX(50%); }
+#yesBtn {
+  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081);
+  color: white; font-size: clamp(18px, 4vw, 24px);
+  box-shadow: 0 0 40px rgba(255, 23, 68, 0.7);
+}
+#noBtn {
+  background: linear-gradient(135deg, #666, #444); color: white;
+  position: absolute; top: 0; right: -20px; transform: translateX(50%);
+}
 button:hover { transform: translateY(-5px) scale(1.05); }
 button:active { transform: scale(0.96); }
 
-.loveMsg { max-width: 100%; margin: 25px auto; font-size: clamp(15px, 2.4vw, 19px); line-height: 1.75; color: #ffe6f0; animation: fadeInUp 1.2s ease-out; }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(35px); } to { opacity: 1; transform: translateY(0); } }
+.loveMsg {
+  max-width: 100%; margin: 25px auto; font-size: clamp(15px, 2.4vw, 19px);
+  line-height: 1.75; color: #ffe6f0; animation: fadeInUp 1.2s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(35px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 15; }
+#final h1 { font-size: clamp(38px, 7.5vw, 62px) !important; margin-bottom: 20px; }
+#final p { font-size: clamp(17px, 3.2vw, 24px); opacity: 0.95; }
 
-/* 🌹 BEAT-SYNCED BOUQUET */
-.bouquet-container {
+#musicBtn { 
+  position:fixed; bottom:25px; left:50%; transform:translateX(-50%); z-index:30; 
+  opacity:1; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 20px;
+}
+
+/* 🌹 ROSE BOUQUET */
+.rose-bouquet {
   position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  z-index: 25; opacity: 0; scale: 0;
+  z-index: 25; opacity: 0; scale: 0; transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.bouquet-container.beat-sync {
-  animation: none !important;
+.rose-bouquet.show {
+  opacity: 1; scale: 1;
 }
-
-.bouquet-wrapper { position: relative; width: 300px; height: 400px; margin: 0 auto; }
-
-.stem-main {
-  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-  width: 8px; height: 0px; background: linear-gradient(to top, #2e7d32, #4caf50);
-  border-radius: 4px 4px 20px 20px; opacity: 0;
-  filter: drop-shadow(0 5px 15px rgba(76,175,80,0.4));
+.rose {
+  position: absolute; width: 80px; height: 120px; filter: drop-shadow(0 10px 30px rgba(220,20,60,0.6));
+  animation: bouquetFloat 4s ease-in-out infinite;
 }
-
-.rose-bud {
-  position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);
-  width: 0px; height: 0px; background: #dc143c; border-radius: 50%;
-  opacity: 0;
+@keyframes bouquetFloat {
+  0%, 100% { transform: translateY(0px) rotate(2deg); }
+  50% { transform: translateY(-8px) rotate(-2deg); }
 }
+.rose:nth-child(1) { top: 20%; left: 40%; animation-delay: 0s; }
+.rose:nth-child(2) { top: 30%; left: 30%; animation-delay: 0.3s; transform: rotate(15deg); }
+.rose:nth-child(3) { top: 25%; left: 50%; animation-delay: 0.6s; transform: rotate(-20deg); }
+.rose:nth-child(4) { top: 40%; left: 35%; animation-delay: 0.9s; transform: rotate(8deg); }
+.rose:nth-child(5) { top: 35%; left: 55%; animation-delay: 1.2s; transform: rotate(-12deg); }
 
-.rose-petal {
-  position: absolute; width: 0; height: 0; background: #dc143c;
-  border-radius: 50px 50px 0 0; opacity: 0; transform: scale(0);
-  filter: drop-shadow(0 8px 20px rgba(220,20,60,0.6));
+.petal {
+  position: absolute; width: 40px; height: 55px; background: #dc143c;
+  border-radius: 40px 40px 0 0; top: 15px; left: 20px;
+  transform-origin: bottom center; opacity: 0.95;
 }
-
-.petal-center {
-  position: absolute; top: 195px; left: 140px; width: 0px; height: 0px;
-  background: radial-gradient(circle, #ff4040, #cc0000); border-radius: 50%;
-  opacity: 0; filter: drop-shadow(0 5px 15px rgba(255,64,64,0.7));
+.petal:nth-child(2) { transform: rotate(-36deg); }
+.petal:nth-child(3) { transform: rotate(36deg); }
+.petal:nth-child(4) { transform: rotate(72deg); }
+.petal:nth-child(5) { transform: rotate(-72deg); }
+.center {
+  position: absolute; left: 30px; top: 38px; width: 20px; height: 25px;
+  background: #b71c1c; border-radius: 50% 50% 45% 45%; z-index: 2;
 }
-
-.leaf-pair {
-  position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
-  width: 0px; height: 0px; background: #4caf50; border-radius: 15px 30px;
-  opacity: 0;
+.stem {
+  position: absolute; left: 38px; top: 65px; width: 4px; height: 55px;
+  background: linear-gradient(to bottom, #2e7d32, #1b5e20); border-radius: 2px;
 }
-.leaf-left { left: 35%; transform: translateX(-50%) rotate(-30deg); }
-.leaf-right { left: 65%; transform: translateX(-50%) rotate(30deg); }
-
-#musicBtn { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); z-index:30; opacity:1; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 20px; }
-#musicToggleBtn { padding:12px 28px; background:linear-gradient(45deg,#ff1744,#e91e63); color:white; border:none; border-radius:35px; font-size:16px; font-weight:bold; cursor:pointer; box-shadow:0 8px 25px rgba(255,23,68,0.6); }
+.leaf {
+  position: absolute; left: 35px; top: 85px; width: 15px; height: 10px;
+  background: #4caf50; border-radius: 8px 25px 8px 25px; transform: rotate(-25deg);
+}
+.leaf.right { left: 42px; top: 88px; transform: rotate(25deg); }
 </style>
 </head>
 
 <body>
-<!-- 🎵 MUSIC WITH BEAT DETECTION -->
+<!-- 🎵 MUSIC -->
 <audio id="loveSong" loop preload="auto" style="display:none;">
   <source src="zara_si.mp3" type="audio/mpeg">
 </audio>
@@ -128,18 +155,21 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 15; }
 <!-- 🔐 PASSWORD -->
 <div id="lock" class="center">
   <h2 style="font-size: clamp(24px, 4.8vw, 30px);">Enter Our Secret Password 🔐</h2>
-  <input type="password" id="pass" style="padding: 16px 20px; font-size: clamp(17px, 3.8vw, 20px); border-radius: 30px; border: 3px solid rgba(255,77,109,0.9); margin: 15px auto; width: clamp(280px, 48vw, 360px); background: rgba(255,255,255,0.12); color: white; backdrop-filter: blur(12px); outline: none; display: block; text-align: center;" placeholder="Our special words...">
+  <input type="password" id="pass" 
+    style="padding: 16px 20px; font-size: clamp(17px, 3.8vw, 20px); border-radius: 30px; border: 3px solid rgba(255,77,109,0.9); margin: 15px auto; width: clamp(280px, 48vw, 360px); background: rgba(255,255,255,0.12); color: white; backdrop-filter: blur(12px); outline: none; display: block; text-align: center;"
+    placeholder="Our special words...">
   <button onclick="unlock()" style="width: clamp(280px, 48vw, 360px);">Unlock Eternal Love ❤️</button>
   <p id="error" style="color: #ff99cc; font-size: clamp(15px, 3.2vw, 18px); margin-top: 15px;"></p>
 </div>
 
-<!-- ❤️ START / PROPOSAL / FINAL (same as before) -->
+<!-- ❤️ START -->
 <div id="startScreen" class="center hidden">
   <div class="neon">Bhumika ❤️ Ankush</div>
   <p style="font-size: clamp(17px, 3.5vw, 23px); margin: 25px 0;">Forever begins here...</p>
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
+<!-- 💌 PROPOSAL -->
 <div id="content" class="center hidden">
   <h1 class="neon">Bhumika, You Are My Universe 💖</h1>
   <p class="loveMsg">
@@ -155,31 +185,38 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 15; }
   </div>
 </div>
 
+<!-- 💖 YES! ROSE BOUQUET + CELEBRATION -->
 <div id="final" class="center hidden">
   <h1 class="neon">SHE SAID YES! 🎉💖</h1>
   <div class="neon">Bhumika & Ankush - Forever Entwined ❤️</div>
   <p style="margin-top: 30px; font-size: clamp(18px, 3.5vw, 26px);">Our love story just became legendary! 💫</p>
 </div>
 
-<!-- 🌹 BEAT-SYNCED BOUQUET -->
-<div id="roseBouquet" class="bouquet-container">
-  <div class="bouquet-wrapper">
-    <div class="rose-petal petal-1"></div>
-    <div class="rose-petal petal-2"></div>
-    <div class="rose-petal petal-3"></div>
-    <div class="rose-petal petal-4"></div>
-    <div class="rose-petal petal-5"></div>
-    <div class="rose-petal petal-6"></div>
-    <div class="rose-petal petal-7"></div>
-    <div class="rose-petal petal-8"></div>
-    <div class="petal-center"></div>
-    <div class="rose-bud"></div>
-    <div class="stem-main"></div>
-    <div class="leaf-pair leaf-left"></div>
-    <div class="leaf-pair leaf-right"></div>
+<!-- 🌹 ROSE BOUQUET -->
+<div id="roseBouquet" class="rose-bouquet">
+  <div class="rose">
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="center"></div><div class="stem"></div><div class="leaf"></div><div class="leaf right"></div>
+  </div>
+  <div class="rose">
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="center"></div><div class="stem"></div><div class="leaf"></div><div class="leaf right"></div>
+  </div>
+  <div class="rose">
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="center"></div><div class="stem"></div><div class="leaf"></div><div class="leaf right"></div>
+  </div>
+  <div class="rose">
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="center"></div><div class="stem"></div><div class="leaf"></div><div class="leaf right"></div>
+  </div>
+  <div class="rose">
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="center"></div><div class="stem"></div><div class="leaf"></div><div class="leaf right"></div>
   </div>
 </div>
 
+<!-- 🎵 MUSIC -->
 <div id="musicBtn">
   <button onclick="toggleMusic()" id="musicToggleBtn">🎵 Play Zara Si Again 💖</button>
 </div>
@@ -187,24 +224,12 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 15; }
 <canvas id="fireworks"></canvas>
 
 <script>
-// 🎵 BEAT-SYNCED MUSIC ANALYZER
+// 🎵 MUSIC
 let musicPlaying = false;
 const audio = document.getElementById('loveSong');
 const musicToggleBtn = document.getElementById('musicToggleBtn');
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const analyser = audioContext.createAnalyser();
-const source = audioContext.createMediaElementSource(audio);
-let dataArray;
-let beatThreshold = 0.4;
-let lastBeatTime = 0;
-let beatInterval = 0.6; // Zara Si ~100BPM = 0.6s per beat
 
-// Setup audio analyzer
-source.connect(analyser);
-analyser.connect(audioContext.destination);
-analyser.fftSize = 256;
-dataArray = new Uint8Array(analyser.frequencyBinCount);
-
+// 🌟 HEARTS
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
@@ -218,16 +243,18 @@ function createHearts() {
 }
 createHearts();
 
+// 🔐 PASSWORD
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
   const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
+  
   if (secrets.includes(p)) {
-    audioContext.resume();
     audio.play().then(() => {
       musicPlaying = true;
       musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
     }).catch(e => {});
+    
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("startScreen").classList.remove("hidden");
   } else {
@@ -244,88 +271,13 @@ function toggleMusic() {
     musicToggleBtn.innerHTML = '🎵 Play Zara Si Again 💖';
     musicPlaying = false;
   } else {
-    audioContext.resume();
     audio.play();
     musicToggleBtn.innerHTML = '💖 Pause Zara Si ✨';
     musicPlaying = true;
   }
 }
 
-// 🌹 BEAT-SYNCED BOUQUET ANIMATION
-function triggerBeatBouquet() {
-  const bouquet = document.getElementById('roseBouquet');
-  const stem = document.querySelector('.stem-main');
-  const bud = document.querySelector('.rose-bud');
-  const petals = document.querySelectorAll('.rose-petal');
-  const center = document.querySelector('.petal-center');
-  const leaves = document.querySelectorAll('.leaf-pair');
-  
-  bouquet.classList.add('beat-sync');
-  bouquet.style.opacity = '1';
-  bouquet.style.scale = '1';
-  
-  // BEAT 1: Stem grows
-  stem.style.height = '200px';
-  stem.style.opacity = '1';
-  
-  // BEAT 2: Leaves appear (0.6s later)
-  setTimeout(() => {
-    leaves.forEach(leaf => {
-      leaf.style.width = '30px';
-      leaf.style.height = '18px';
-      leaf.style.opacity = '0.9';
-    });
-  }, beatInterval * 1000);
-  
-  // BEAT 3: Bud opens (1.2s)
-  setTimeout(() => {
-    bud.style.width = '60px';
-    bud.style.height = '70px';
-    bud.style.bottom = '180px';
-    bud.style.opacity = '1';
-  }, beatInterval * 2 * 1000);
-  
-  // BEAT 4-6: Petals burst (1.8s-2.4s)
-  petals.forEach((petal, index) => {
-    setTimeout(() => {
-      petal.style.width = '35px';
-      petal.style.height = '45px';
-      petal.style.opacity = '0.9';
-      petal.style.transform = `scale(1) rotate(${getComputedStyle(petal).getPropertyValue('--rotate') || '0deg'})`;
-    }, (beatInterval * 3 + index * 0.1) * 1000);
-  });
-  
-  // BEAT 7: Center blooms (3.0s)
-  setTimeout(() => {
-    center.style.width = '25px';
-    center.style.height = '25px';
-    center.style.opacity = '1';
-  }, beatInterval * 5 * 1000);
-}
-
-// Detect beats from Zara Si
-function detectBeats() {
-  if (!musicPlaying) return;
-  
-  analyser.getByteFrequencyData(dataArray);
-  const avg = dataArray.reduce((a, b) => a + b) / dataArray.length;
-  const currentTime = audio.currentTime;
-  
-  // Beat detection algorithm
-  if (avg > beatThreshold * 128 && (currentTime - lastBeatTime) > beatInterval * 0.8) {
-    lastBeatTime = currentTime;
-    
-    // Trigger bouquet on first strong beat after YES
-    if (!document.getElementById('roseBouquet').classList.contains('beat-complete')) {
-      triggerBeatBouquet();
-      document.getElementById('roseBouquet').classList.add('beat-complete');
-    }
-  }
-  
-  requestAnimationFrame(detectBeats);
-}
-
-// EVENTS
+// 🚀 EVENTS
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById("startBtn").onclick = () => {
     document.getElementById("startScreen").classList.add("hidden");
@@ -338,14 +290,15 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.style.left = (Math.random() * 40 + 10) + "vw";
   };
 
+  // 🌹 ROSES ON YES!
   document.getElementById("yesBtn").onclick = () => {
     document.getElementById("content").classList.add("hidden");
     document.getElementById("final").classList.remove("hidden");
-    // Bouquet will trigger on NEXT BEAT automatically
+    document.getElementById("roseBouquet").classList.add("show"); // MAGIC ROSES!
   };
 });
 
-// 🔥 FIREWORKS + BEAT SYNC
+// 🔥 FIREWORKS
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 let particles = [], time = 0;
@@ -382,8 +335,6 @@ function animate() {
   ctx.fillStyle = "rgba(0,0,0,0.25)";
   ctx.fillRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
   
-  // BEAT-SYNCED FIREWORKS
-  if (musicPlaying) detectBeats();
   if (musicPlaying && Math.random() < 0.12) {
     createFirework(canvas.width * 0.3 + Math.random() * canvas.width * 0.4, canvas.height * 0.25, 25);
   }
@@ -393,6 +344,7 @@ function animate() {
     p.x += p.vx *= 0.98;
     p.y += p.vy += 0.012;
     p.life -= p.decay;
+    
     if (p.life > 0) {
       ctx.save();
       ctx.globalAlpha = p.life / 80;
