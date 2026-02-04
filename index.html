@@ -8,7 +8,11 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  background: radial-gradient(circle at 20% 20%, #2b0000, #1a0000 40%, #000);
+  /* FIXED: Dark purple starry sky - Fireworks now PERFECTLY VISIBLE */
+  background: 
+    radial-gradient(ellipse at 20% 20%, #4a0e37 0%, #2d0b2a 30%, #1a0000 70%, #000 100%),
+    radial-gradient(circle at 80% 10%, #6b1a4e 0%, #3d0f2a 40%, transparent 60%),
+    radial-gradient(circle at 40% 80%, #2a0f3d 0%, transparent 50%);
   color: white;
   overflow: hidden;
   height: 100vh;
@@ -21,32 +25,31 @@ body {
   position: absolute; width: 24px; height: 22px; animation: float 8s infinite linear;
 }
 .heart:before, .heart:after {
-  content: ''; position: absolute; width: 12px; height: 12px; background: #ff1744;
+  content: ''; position: absolute; width: 12px; height: 12px; background: #ff69b4;
   border-radius: 50px 50px 0 0; transform: rotate(-45deg); left: 6px;
 }
 .heart:after { transform: rotate(45deg); top: 6px; }
 @keyframes float {
-  0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0.8; }
+  0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0.7; }
   50% { opacity: 1; }
   100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
 }
 
 .neon {
   font-size: clamp(32px, 6vw, 55px); line-height: 1.2;
-  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1744, 0 0 40px #ff1744, 0 0 60px #ff1744;
+  text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493, 0 0 40px #ff1493, 0 0 60px #ff1493;
   animation: glow 2.5s ease-in-out infinite alternate;
 }
 @keyframes glow {
-  from { text-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff1744, 0 0 45px #ff1744, 0 0 65px #ff1744; }
-  to { text-shadow: 0 0 25px #ff4d6d, 0 0 35px #ff1744, 0 0 55px #ff1744, 0 0 85px #ff1744, 0 0 100px #ff1744; }
+  from { text-shadow: 0 0 15px #ff69b4, 0 0 25px #ff1493, 0 0 45px #ff1493, 0 0 65px #ff1493; }
+  to { text-shadow: 0 0 25px #ff69b4, 0 0 35px #ff1493, 0 0 55px #ff1493, 0 0 85px #ff1493, 0 0 100px #ff1493; }
 }
 
-/* PERFECT BUTTON ALIGNMENT */
 .center { 
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
   z-index: 10; width: 90%; max-width: 500px; padding: 40px;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(20px); border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 .hidden { display: none; }
 
@@ -60,17 +63,17 @@ button {
   padding: 22px 40px; font-size: clamp(18px, 3.5vw, 24px); font-weight: bold;
   border: none; border-radius: 50px; cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 12px 35px rgba(255, 23, 68, 0.5);
+  box-shadow: 0 12px 35px rgba(255, 20, 147, 0.5);
 }
-button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 45px rgba(255, 23, 68, 0.7); }
+button:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 45px rgba(255, 20, 147, 0.7); }
 button:active { transform: scale(0.97); }
 
 #yesBtn { 
-  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); color: white; 
-  box-shadow: 0 0 40px rgba(255, 23, 68, 0.7); font-size: clamp(20px, 4vw, 26px);
+  background: linear-gradient(135deg, #ff1493, #ff69b4, #ff1493); color: white; 
+  box-shadow: 0 0 40px rgba(255, 20, 147, 0.8); font-size: clamp(20px, 4vw, 26px);
 }
 #noBtn { 
-  background: linear-gradient(135deg, #666, #444); color: white; max-width: 300px;
+  background: linear-gradient(135deg, #555, #333); color: white; max-width: 300px;
   animation: gentleFloat 3s ease-in-out infinite;
 }
 @keyframes gentleFloat {
@@ -89,17 +92,17 @@ button:active { transform: scale(0.97); }
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 input[type="password"] {
-  padding: 18px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d;
+  padding: 18px; font-size: 20px; border-radius: 30px; border: 2px solid #ff69b4;
   margin: 20px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1);
   color: white; backdrop-filter: blur(10px); font-family: inherit; text-align: center;
 }
-input[type="password"]:focus { border-color: #ff1744; box-shadow: 0 0 25px rgba(255,23,68,0.5); outline: none; }
+input[type="password"]:focus { border-color: #ff1493; box-shadow: 0 0 25px rgba(255,20,147,0.5); outline: none; }
 </style>
 </head>
 
 <body>
-<!-- 🎵 AUTO-PLAY MUSIC (NO CONTROL BUTTON) -->
-<audio id="loveSong" loop preload="auto" style="display:none;" autoplay>
+<!-- 🎵 AUTO-PLAY MUSIC -->
+<audio id="loveSong" loop preload="auto" style="display:none;">
   <source src="zara_si.mp3" type="audio/mpeg">
 </audio>
 
@@ -110,7 +113,7 @@ input[type="password"]:focus { border-color: #ff1744; box-shadow: 0 0 25px rgba(
   <h2 style="font-size: clamp(26px, 5vw, 34px); margin-bottom: 25px;">💕 Our Secret Promise 🔐</h2>
   <input type="password" id="pass" placeholder="Whisper our sacred words... 💖">
   <br><button onclick="unlock()" style="width: clamp(320px, 45vw, 380px); margin-top: 20px;">✨ Unlock My Heart ✨</button>
-  <p id="error" style="color: #ff6b9d; font-size: clamp(16px, 3vw, 18px); margin-top: 15px;"></p>
+  <p id="error" style="color: #ff69b4; font-size: clamp(16px, 3vw, 18px); margin-top: 15px;"></p>
 </div>
 
 <!-- ❤️ WELCOME SCREEN -->
@@ -149,11 +152,10 @@ input[type="password"]:focus { border-color: #ff1744; box-shadow: 0 0 25px rgba(
 <canvas id="fireworks"></canvas>
 
 <script>
-// 🎵 MUSIC SETUP (Auto-plays on unlock, no controls)
 let musicPlaying = false;
 const audio = document.getElementById('loveSong');
 
-// 🌟 HEARTS ANIMATION
+// 🌟 HEARTS
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
@@ -167,17 +169,14 @@ function createHearts() {
 }
 createHearts();
 
-// 🔐 PERFECT PASSWORD SYSTEM
+// 🔐 PASSWORD + AUTO MUSIC
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
   const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
   if (secrets.includes(p)) {
-    // 🎵 START MUSIC AUTOMATICALLY
-    audio.play().then(() => {
-      musicPlaying = true;
-    }).catch(e => console.log('Music ready'));
+    audio.play().then(() => { musicPlaying = true; }).catch(e => {});
     
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("startScreen").classList.remove("hidden");
@@ -186,20 +185,19 @@ function unlock() {
     error.textContent = "💕 Try: iloveyou, bhumikaankush, forever, mylove 💕";
     document.getElementById("pass").style.borderColor = "#ff4757";
     setTimeout(() => {
-      document.getElementById("pass").style.borderColor = "#ff4d6d";
+      document.getElementById("pass").style.borderColor = "#ff69b4";
       document.getElementById("pass").value = "";
     }, 600);
   }
 }
 
-// 🚀 EVENT HANDLERS
+// 🚀 EVENTS
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById("startBtn").onclick = () => {
     document.getElementById("startScreen").classList.add("hidden");
     document.getElementById("content").classList.remove("hidden");
   };
 
-  // 🎯 FUN NO BUTTON (Now perfectly visible!)
   document.getElementById("noBtn").onmouseover = () => {
     const btn = document.getElementById("noBtn");
     btn.style.position = 'fixed';
@@ -210,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.style.transform = `rotate(${Math.random() * 360}deg) scale(1.1)`;
   };
 
-  // 💖 YES BUTTON PERFECTION
   document.getElementById("yesBtn").onclick = () => {
     document.getElementById("content").classList.add("hidden");
     document.getElementById("final").classList.remove("hidden");
@@ -218,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 });
 
-// 🔥 EPIC FIREWORKS ENGINE
+// 🔥 FIREWORKS (PERFECTLY VISIBLE ON NEW BACKGROUND)
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 let particles = [], time = 0, celebrationMode = false;
@@ -232,7 +229,7 @@ window.addEventListener('resize', resizeCanvas);
 
 function getLoveColor() {
   const hue = 300 + Math.sin(time * 0.02) * 30 + Math.random() * 60;
-  return `hsl(${hue}, 95%, ${55 + Math.random()*20}%)`;
+  return `hsl(${hue}, 95%, ${60 + Math.random()*25}%)`;
 }
 
 function createHeartParticle(x, y) {
@@ -255,7 +252,6 @@ function createFirework(x, y, count = 150) {
 
 function infiniteCelebration() {
   celebrationMode = true;
-  // MASSIVE EXPLOSION
   createFirework(canvas.width * 0.5, canvas.height * 0.25, 400);
   setInterval(() => {
     if (particles.length < 1000) {
@@ -277,7 +273,8 @@ function animate() {
   time++;
   requestAnimationFrame(animate);
   
-  ctx.fillStyle = "rgba(7, 0, 15, 0.2)";
+  // LIGHTER TRAIL for BETTER VISIBILITY
+  ctx.fillStyle = "rgba(74, 14, 55, 0.15)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
   for (let i = particles.length - 1; i >= 0; i--) {
@@ -290,7 +287,7 @@ function animate() {
     if (p.life > 0) {
       ctx.save();
       ctx.globalAlpha = p.life / 140;
-      ctx.shadowBlur = 20 + p.life * 0.2;
+      ctx.shadowBlur = 25 + p.life * 0.2;
       ctx.shadowColor = p.color;
       
       if (p.isHeart) {
