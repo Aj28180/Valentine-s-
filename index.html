@@ -3,105 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <title>Valentine For Bhumika ❤️ Ankush</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
 /* ---------- GLOBAL ---------- */
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1a001f, #000000);
-    color: white;
-    text-align: center;
+body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    background:radial-gradient(circle at top,#1a001f,#000);
+    color:white;
+    text-align:center;
 }
 
 /* ---------- MAIN SCREEN ---------- */
-#mainScreen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('https://i.imgur.com/8Km9tLL.jpg') no-repeat center/cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#mainScreen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://i.imgur.com/8Km9tLL.jpg') center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
-/* Dark overlay */
-#mainScreen::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.65);
+/* Overlay */
+#mainScreen::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
 }
 
-.content {
-    position: relative;
-    z-index: 2;
+.content{
+    position:relative;
+    z-index:2;
 }
 
 /* ---------- TITLE ---------- */
-h1 {
-    font-size: 3em;
-    color: #ff4da6;
-    text-shadow: 0 0 20px #ff1a75;
+h1{
+    font-size:3em;
+    color:#ff4da6;
+    text-shadow:0 0 20px #ff1a75;
 }
 
 /* ---------- BUTTON ---------- */
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(45deg,#ff0066,#ff4da6);
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 20px #ff1a75;
-    transition: 0.3s;
+button{
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff0066,#ff4da6);
+    color:white;
+    cursor:pointer;
+    box-shadow:0 0 20px #ff1a75;
 }
 
-button:hover {
-    transform: scale(1.1);
+button:hover{
+    transform:scale(1.1);
 }
 
 /* ---------- MESSAGE ---------- */
-#message {
-    display: none;
-    position: absolute;
-    top: 30%;
-    width: 100%;
-    font-size: 24px;
-    padding: 20px;
-    color: #ffd6e7;
-    text-shadow: 0 0 10px #ff4da6;
+#message{
+    display:none;
+    position:absolute;
+    top:28%;
+    width:100%;
+    font-size:24px;
+    padding:20px;
+    color:#ffd6e7;
+    text-shadow:0 0 10px #ff4da6;
 }
 
 /* ---------- ROSE PETALS ---------- */
-.petal {
-    position: fixed;
-    top: -10px;
-    width: 25px;
-    height: 25px;
-    background: url('https://i.imgur.com/O7b6G7P.png') no-repeat center/contain;
-    animation: fall linear infinite;
+.petal{
+    position:fixed;
+    top:-20px;
+    width:25px;
+    height:25px;
+    background:url('https://i.imgur.com/O7b6G7P.png') center/contain no-repeat;
+    animation:fall linear infinite;
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
     }
 }
 
-/* ---------- FIREWORK CANVAS ---------- */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* ---------- CANVAS ---------- */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
 }
+
 </style>
 </head>
 
@@ -109,107 +109,115 @@ canvas {
 
 <!-- ---------- MAIN SCREEN ---------- -->
 <div id="mainScreen">
-    <div class="content">
-        <h1>Bhumika ❤️ Ankush</h1>
-        <button onclick="startValentine()">Tap My Love 💖</button>
-    </div>
+  <div class="content">
+    <h1>Bhumika ❤️ Ankush</h1>
+    <button onclick="startValentine()">Tap My Love 💖</button>
+  </div>
 </div>
 
 <!-- ---------- MESSAGE ---------- -->
 <div id="message">
-    <p>
-        My Dearest Bhumika Gupta ❤️<br><br>
-        You are the most beautiful chapter of my life…<br>
-        Every heartbeat whispers your name…<br>
-        Every moment feels magical with you… ✨<br><br>
-        Happy Valentine’s Day My Love 🌹<br>
-        Forever Yours — Ankush 💞
-    </p>
+<p>
+My Dearest Bhumika Gupta ❤️<br><br>
+You are the most beautiful chapter of my life…<br>
+Every heartbeat whispers your name…<br>
+Every moment feels magical with you… ✨<br><br>
+Happy Valentine’s Day My Love 🌹<br>
+Forever Yours — Ankush 💞
+</p>
 </div>
 
 <!-- ---------- MUSIC ---------- -->
 <audio id="music" loop>
-    <source src="zara_si.mp3" type="audio/mpeg">
+  <source src="zara_si.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ---------- FIREWORK CANVAS ---------- -->
 <canvas id="fireworks"></canvas>
 
 <script>
-/* ---------- START FUNCTION ---------- */
-function startValentine() {
 
-    document.getElementById("music").play();
-    document.getElementById("message").style.display = "block";
+/* ---------- START ---------- */
+function startValentine(){
 
-    createPetals();
-    startFireworks();
+  // iPhone autoplay fix
+  const music=document.getElementById("music");
+  music.play().catch(()=>{});
+
+  document.getElementById("message").style.display="block";
+
+  createPetals();
+  startFireworks();
 }
 
-/* ---------- ROSE PETALS ---------- */
-function createPetals() {
-    for (let i = 0; i < 30; i++) {
-        let petal = document.createElement("div");
-        petal.className = "petal";
-        petal.style.left = Math.random() * 100 + "vw";
-        petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-        document.body.appendChild(petal);
-    }
+/* ---------- PETALS ---------- */
+function createPetals(){
+  for(let i=0;i<35;i++){
+    let p=document.createElement("div");
+    p.className="petal";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(p);
+  }
 }
 
-/* ---------- INSANE FIREWORKS ---------- */
-function startFireworks() {
+/* ---------- REALISTIC FIREWORKS ---------- */
+function startFireworks(){
 
-    const canvas = document.getElementById("fireworks");
-    const ctx = canvas.getContext("2d");
+  const canvas=document.getElementById("fireworks");
+  const ctx=canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
 
-    let particles = [];
+  let particles=[];
 
-    function createFirework(x, y) {
-        for (let i = 0; i < 120; i++) {
-            particles.push({
-                x: x,
-                y: y,
-                angle: Math.random() * 2 * Math.PI,
-                speed: Math.random() * 6 + 2,
-                life: 100
-            });
-        }
+  function createFirework(x,y){
+
+    for(let i=0;i<150;i++){
+      particles.push({
+        x:x,
+        y:y,
+        angle:Math.random()*2*Math.PI,
+        speed:Math.random()*5+2,
+        gravity:0.05,
+        life:100
+      });
     }
+  }
 
-    setInterval(() => {
-        createFirework(
-            Math.random() * canvas.width,
-            Math.random() * canvas.height / 2
-        );
-    }, 800);
+  setInterval(()=>{
+    createFirework(
+      Math.random()*canvas.width,
+      Math.random()*canvas.height/2
+    );
+  },900);
 
-    function animate() {
-        requestAnimationFrame(animate);
+  function animate(){
+    requestAnimationFrame(animate);
 
-        ctx.fillStyle = "rgba(0,0,0,0.2)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle="rgba(0,0,0,0.25)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-        particles.forEach((p, i) => {
-            p.x += Math.cos(p.angle) * p.speed;
-            p.y += Math.sin(p.angle) * p.speed;
-            p.life--;
+    particles.forEach((p,i)=>{
 
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = "hsl(" + Math.random()*360 + ",100%,60%)";
-            ctx.fill();
+      p.x+=Math.cos(p.angle)*p.speed;
+      p.y+=Math.sin(p.angle)*p.speed;
+      p.speed*=0.98;
+      p.y+=p.gravity;
+      p.life--;
 
-            if (p.life <= 0) particles.splice(i, 1);
-        });
-    }
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,2,0,Math.PI*2);
+      ctx.fillStyle="hsl("+Math.random()*360+",100%,60%)";
+      ctx.fill();
 
-    animate();
+      if(p.life<=0) particles.splice(i,1);
+    });
+  }
+
+  animate();
 }
+
 </script>
-
 </body>
 </html>
