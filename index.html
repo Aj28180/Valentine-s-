@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Bhumika ❤️ Ankush</title>
 
 <style>
 
-/* 🌌 DARK DIAMOND THEME /
+/* 🌌 Background */
 body{
   margin:0;
   font-family:Georgia,serif;
@@ -19,16 +18,16 @@ body{
   text-align:center;
 }
 
-/ ✨ Neon Text /
+/* Neon Text */
 .neon{
-  font-size:42px;
+  font-size:40px;
   text-shadow:
   0 0 10px #ff4d6d,
   0 0 20px #ff1744,
   0 0 40px #ff1744;
 }
 
-/ Center /
+/* Center */
 .center{
   position:absolute;
   top:50%;
@@ -38,7 +37,7 @@ body{
 
 .hidden{display:none}
 
-/ Buttons /
+/* Buttons */
 button{
   padding:14px 30px;
   font-size:20px;
@@ -51,59 +50,22 @@ button{
 #startBtn{background:#ff1744;color:white;}
 #yesBtn{background:#e91e63;color:white;}
 #noBtn{background:#555;color:white;position:absolute;}
-#waBtn{background:#25D366;color:white;}
 
-/ Hearts /
-.heart{
+/* Love Message */
+.loveMsg{
+  max-width:650px;
+  margin:auto;
+  font-size:19px;
+  line-height:1.6;
+  color:#ffd1dc;
+}
+
+/* Canvas Fireworks */
+canvas{
   position:fixed;
-  animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-  0%{transform:translateY(-10vh);}
-  100%{transform:translateY(110vh);}
-}
-
-/ Firework particles /
-.fire{
-  position:fixed;
-  font-size:26px;
-  animation:explode 1.4s ease-out forwards;
-}
-
-@keyframes explode{
-  0%{transform:scale(0);opacity:1;}
-  100%{transform:scale(3) translate(var(--x),var(--y));opacity:0;}
-}
-
-/ Name Sky Text /
-#skyName{
-  position:fixed;
-  top:20%;
-  width:100%;
-  text-align:center;
-  font-size:48px;
-  opacity:0;
-  text-shadow:
-    0 0 20px #ff4d6d,
-    0 0 40px #ff1744,
-    0 0 60px #ff1744;
-  animation:fadeIn 3s forwards;
-}
-
-@keyframes fadeIn{
-  to{opacity:1;}
-}
-
-/ Final screen /
-#final{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  top:0;
+  left:0;
+  pointer-events:none;
 }
 
 </style>
@@ -111,7 +73,7 @@ button{
 
 <body>
 
-<!-- PASSWORD -->
+<!-- 🔐 PASSWORD -->
 <div id="lock" class="center">
   <h2>Enter Secret Password 🔐</h2>
   <input type="password" id="pass">
@@ -120,118 +82,162 @@ button{
   <p id="error"></p>
 </div>
 
-<!-- START -->
+<!-- ❤️ START -->
 <div id="startScreen" class="center hidden">
   <div class="neon">Bhumika ❤️ Ankush</div>
   <br>
   <button id="startBtn">Tap to Start ❤️</button>
 </div>
 
-<!-- MAIN -->
+<!-- 💌 MAIN -->
 <div id="content" class="center hidden">
 
 <h1 class="neon">I Love You Bhumika ❤️</h1>
-<p>Bhumika, will you be my Valentine? 💍</p>
+
+<p class="loveMsg">
+My Dearest Bhumika ❤️<br><br>
+From the moment you came into my life, everything felt magical ✨  
+Your smile is my peace, your love my forever 💖<br><br>
+Will you be my Valentine… forever? 💍
+</p>
+
+<br>
 
 <button id="yesBtn">Yes 💋</button>
 <button id="noBtn">No 😜</button>
 
-<br>
-
-<a href="https://wa.me/?text=Bhumika%20❤️%20Ankush%20Forever">
-<button id="waBtn">Chat on WhatsApp 💬</button>
-</a>
-
 </div>
 
-<!-- SKY NAME -->
-<div id="skyName">Bhumika ❤️ Ankush</div>
-
-<!-- FINAL -->
-<div id="final" class="hidden">
+<!-- 💖 FINAL -->
+<div id="final" class="hidden center">
   <h1>She Said YES 💖</h1>
-  <div class="neon">Bhumika ❤️ Ankush</div>
+  <div class="neon">Bhumika ❤️ Ankush Forever</div>
 </div>
 
-<!-- SONG -->
+<!-- 🎆 FIREWORK CANVAS -->
+<canvas id="fireworks"></canvas>
+
+<!-- 🎶 SONG (Zara Sa – YouTube Embed) -->
 <div id="ytSong" class="hidden">
 <iframe width="0" height="0"
-src="https://www.youtube.com/embed/2J7kq5J5y0M?autoplay=1&loop=1&playlist=2J7kq5J5y0M"
+src="https://www.youtube.com/embed/9x5K2G1c9F0?autoplay=1&loop=1&playlist=9x5K2G1c9F0"
 allow="autoplay">
 </iframe>
 </div>
 
 <script>
 
-/ PASSWORD /
+/* PASSWORD */
 function unlock(){
- if(pass.value.toLowerCase()=="iloveyou"){
-   lock.classList.add("hidden");
-   startScreen.classList.remove("hidden");
- }
+  const p=document.getElementById("pass").value.toLowerCase();
+  if(p==="iloveyou"){
+    lock.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+  }else{
+    error.innerText="Wrong Password 💔";
+  }
 }
 
-/ START /
+/* START */
 startBtn.onclick=()=>{
- startScreen.classList.add("hidden");
- content.classList.remove("hidden");
- ytSong.classList.remove("hidden");
- hearts();
+  startScreen.classList.add("hidden");
+  content.classList.remove("hidden");
+  ytSong.classList.remove("hidden"); // start music
 }
 
-/ HEARTS */
-function hearts(){
- setInterval(()=>{
-  let h=document.createElement("div");
-  h.innerHTML="❤️";
-  h.className="heart";
-  h.style.left=Math.random()100+"vw";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
- },300);
-}
-
-/ RUN NO */
+/* RUNNING NO */
 noBtn.onmouseover=()=>{
- noBtn.style.top=Math.random()*80+"vh";
- noBtn.style.left=Math.random()80+"vw";
+  noBtn.style.top=Math.random()*80+"vh";
+  noBtn.style.left=Math.random()*80+"vw";
 }
 
-/ YES CLICK /
+/* YES CLICK */
 yesBtn.onclick=()=>{
- content.classList.add("hidden");
- final.classList.remove("hidden");
- skyFireworks();
+  content.classList.add("hidden");
+  final.classList.remove("hidden");
+  textFireworks();
 }
 
-/ SKY NAME FIREWORKS */
-function skyFireworks(){
+/* 🎆 FIREWORK ENGINE */
 
- skyName.style.opacity=1;
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
 
- const emojis=["✨","🎆","💖","🎇","❤️"];
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
- setInterval(()=>{
+let particles=[];
 
-  for(let i=0;i<40;i++){
+function createFirework(x,y){
+  for(let i=0;i<90;i++){
+    particles.push({
+      x:x,
+      y:y,
+      angle:Math.random()*2*Math.PI,
+      speed:Math.random()*6+2,
+      life:100
+    });
+  }
+}
 
-   let f=document.createElement("div");
-   f.className="fire";
-   f.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+/* TEXT FIREWORKS */
+function textFireworks(){
 
-   f.style.left="50vw";
-   f.style.top="25vh";
+  const text="Bhumika ❤️ Ankush";
 
-   f.style.setProperty("--x",(Math.random()*600-300)+"px");
-   f.style.setProperty("--y",(Math.random()*300-150)+"px");
+  const temp=document.createElement("canvas");
+  const tctx=temp.getContext("2d");
 
-   document.body.appendChild(f);
-   setTimeout(()=>f.remove(),1400);
+  temp.width=900;
+  temp.height=200;
+
+  tctx.fillStyle="white";
+  tctx.font="60px Georgia";
+  tctx.fillText(text,50,120);
+
+  const data=tctx.getImageData(0,0,900,200).data;
+
+  for(let y=0;y<200;y+=6){
+    for(let x=0;x<900;x+=6){
+
+      const i=(y*900+x)*4;
+      if(data[i+3]>150){
+        createFirework(
+          x+canvas.width/2-450,
+          y+150
+        );
+      }
+    }
   }
 
- },500);
+  animate();
+}
+
+/* ANIMATION */
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach((p,i)=>{
+
+    p.x+=Math.cos(p.angle)*p.speed;
+    p.y+=Math.sin(p.angle)*p.speed;
+    p.life--;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,2*Math.PI);
+    ctx.fillStyle="hsl("+Math.random()*360+",100%,60%)";
+    ctx.fill();
+
+    if(p.life<=0) particles.splice(i,1);
+
+  });
 }
 
 </script>
 
-</bod
+</body>
+</html>
