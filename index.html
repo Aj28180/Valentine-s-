@@ -84,13 +84,13 @@ body {
 
 /* ✅ FIXED TITLE - SMALLER & VISIBLE ON iPhone 13 */
 .title-glow {
-  font-size: clamp(22px, 5.5vw, 36px) !important;
+  font-size: clamp(20px, 5.5vw, 36px) !important;
   line-height: 1;
   background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 25px rgba(255, 105, 180, 0.9), 2px 2px 10px rgba(0,0,0,0.3);
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.9), 1px 1px 8px rgba(0,0,0,0.4);
   font-weight: 800;
   margin: 5px 0 10px 0 !important;
   padding: 5px;
@@ -153,11 +153,11 @@ button {
   min-height: 50px;
 }
 
-/* ✅ OPTIMIZED LOVE MESSAGE - MINIMUM GAPS + BIGGER TEXT */
+/* ✅ OPTIMIZED LOVE MESSAGE - MINIMUM GAPS + LARGER TEXT */
 .loveMsg {
   max-width: 90vw;
   margin: 15px auto !important; 
-  font-size: clamp(17px, 3.2vw, 22px) !important; /* BIGGER TEXT */
+  font-size: clamp(17px, 3.2vw, 22px) !important; /* LARGER TEXT */
   line-height: 1.4 !important; /* MINIMUM GAPS */
   color: #d63384;
   background: rgba(255, 255, 255, 0.25);
@@ -177,7 +177,7 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* TYPING TEXT WHITE BACKGROUND */
+/* TYPING TEXT CONTAINERS */
 .typing-container {
   background: rgba(255, 255, 255, 0.25);
   border-radius: 20px;
@@ -261,14 +261,14 @@ button {
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- MAIN CONTENT - FIXED TITLE + TIGHT SPACING + BIGGER TEXT -->
+<!-- MAIN CONTENT - FIXED FOR iPhone 13 -->
 <div id="content" class="center hidden">
-  <!-- ✅ FIXED TITLE - NOW VISIBLE -->
+  <!-- ✅ SMALLER TITLE - NOW VISIBLE -->
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   
-  <!-- ✅ MINIMUM GAPS + BIGGER TEXT -->
+  <!-- ✅ MINIMUM GAPS + LARGER TEXT -->
   <p class="loveMsg">
-    My Dearest Bhumika,<br>
+    My Dearest Bhumika,<br><br>
     Every moment with you feels like a dream I never want to wake from ✨.<br>
     Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
     From stolen glances to forever promises—you are my always.<br>
