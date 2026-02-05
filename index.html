@@ -32,7 +32,7 @@ body {
 .bg-heart {
   position: absolute;
   color: rgba(255, 105, 180, 0.15);
-  font-size: 22px;
+  font-size: 20px;
   opacity: 0.1;
   animation: gentleFloat 20s infinite linear;
 }
@@ -44,8 +44,8 @@ body {
 
 .rose-petal-3d {
   position: absolute;
-  width: 28px;
-  height: 22px;
+  width: 25px;
+  height: 20px;
   background: radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
   border-radius: 70% 0 65% 45%;
   opacity: 0.9;
@@ -63,14 +63,14 @@ body {
 .password-heart {
   position: absolute;
   color: #ff1744;
-  text-shadow: 0 0 12px #ff1744;
-  font-size: 16px;
+  text-shadow: 0 0 10px #ff1744;
+  font-size: 14px;
   opacity: 0.8;
   animation: heartFall 15s linear infinite;
 }
-.password-heart.large { font-size: 28px; opacity: 1; animation-duration: 12s; }
-.password-heart.medium { font-size: 20px; opacity: 0.9; animation-duration: 14s; }
-.password-heart.small { font-size: 14px; opacity: 0.7; animation-duration: 16s; }
+.password-heart.large { font-size: 24px; opacity: 1; animation-duration: 12s; }
+.password-heart.medium { font-size: 18px; opacity: 0.9; animation-duration: 14s; }
+.password-heart.small { font-size: 12px; opacity: 0.7; animation-duration: 16s; }
 @keyframes heartFall {
   0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
   15% { opacity: 1; }
@@ -85,32 +85,22 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 18px rgba(255, 105, 180, 0.9);
+  text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
   font-weight: 800;
   margin: 8px 0 12px 0 !important;
-  padding: 6px;
+  padding: 5px;
 }
 
-.center { 
-  position: absolute; 
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  z-index: 10; 
-  width: 95%; 
-  padding: 12px; 
-  box-sizing: border-box; 
-}
-
+.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 95%; padding: 10px; box-sizing: border-box; }
 .hidden { display: none; }
 
 #lock {
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(22px);
-  border-radius: 28px;
-  padding: 28px 18px;
-  box-shadow: 0 18px 45px rgba(255, 107, 157, 0.35);
-  border: 2px solid rgba(255, 107, 157, 0.45);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 25px 15px;
+  box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+  border: 2px solid rgba(255, 107, 157, 0.4);
   max-height: 70vh;
   overflow: hidden;
 }
@@ -120,55 +110,55 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 18px;
-  font-size: clamp(22px, 6vw, 28px);
+  margin-bottom: 15px;
+  font-size: clamp(20px, 6vw, 28px);
   font-weight: 700;
 }
 
 #pass {
-  padding: 14px 18px;
-  font-size: 18px;
-  border-radius: 28px;
-  border: 2px solid rgba(255, 107, 157, 0.65);
-  margin: 12px;
-  width: clamp(260px, 42vw, 360px);
-  background: rgba(255, 248, 248, 0.9);
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 107, 157, 0.6);
+  margin: 10px;
+  width: clamp(240px, 40vw, 340px);
+  background: rgba(255, 248, 248, 0.85);
   color: #d63384;
-  backdrop-filter: blur(22px);
-  box-shadow: 0 10px 35px rgba(255, 107, 157, 0.3);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 30px rgba(255, 107, 157, 0.25);
 }
 
 button {
   padding: 10px 20px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   border: none; 
   border-radius: 22px; 
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 28px rgba(255, 23, 68, 0.45);
+  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
   background: linear-gradient(135deg, #ff1744, #ff69b4);
   color: white;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-  margin: 5px;
+  margin: 6px;
   min-height: 42px;
 }
 
 .loveMsg {
-  max-width: 92vw;
+  max-width: 90vw;
+  max-height: 35vh !important;
   margin: 15px auto !important; 
-  font-size: clamp(20px, 5vw, 28px) !important;
-  line-height: 1.45 !important;
+  font-size: clamp(18px, 4.5vw, 26px) !important;
+  line-height: 1.4 !important;
   color: #d63384;
-  background: rgba(255, 255, 255, 0.25);
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 18px;
   border-radius: 18px;
-  backdrop-filter: blur(15px);
-  animation: fadeInUp 1.6s ease-out;
+  backdrop-filter: blur(12px);
+  animation: fadeInUp 1.5s ease-out;
   font-weight: 700;
-  text-shadow: 1px 1px 4px rgba(249, 168, 212, 0.8);
-  max-height: 42vh;
-  overflow-y: auto;
+  text-shadow: 1px 1px 3px rgba(249, 168, 212, 0.7);
+  overflow-y: hidden !important;
   box-sizing: border-box;
 }
 
@@ -178,90 +168,89 @@ button {
 }
 
 .buttons-container {
-  margin-top: 25px !important;
-  padding-bottom: 25px !important;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-}
-
-.buttons-container button {
-  flex: 1;
-  min-width: 140px;
-  max-width: 200px;
+  padding: 20px;
+  z-index: 15;
 }
 
 .typing-container {
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 18px;
-  padding: 25px;
-  backdrop-filter: blur(15px);
-  margin: 18px auto;
-  max-width: 92vw;
-  box-shadow: 0 10px 35px rgba(255, 107, 157, 0.35);
-  border: 1px solid rgba(255, 105, 180, 0.35);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  margin: 15px auto;
+  max-width: 90vw;
+  box-shadow: 0 8px 30px rgba(255, 107, 157, 0.3);
+  border: 1px solid rgba(255, 105, 180, 0.3);
 }
 
-#thanksTyping { font-size: clamp(22px, 5.5vw, 32px) !important; color: #d63384; font-weight: 800; }
-#letterTyping { font-size: clamp(20px, 5vw, 28px) !important; color: #d63384; font-weight: 700; line-height: 1.55; }
-#loveTyping { font-size: clamp(36px, 8.5vw, 52px) !important; color: #ff1744; font-weight: 900; }
+#thanksTyping { font-size: clamp(20px, 5vw, 30px) !important; color: #d63384; font-weight: 700; }
+#letterTyping { font-size: clamp(18px, 4.5vw, 26px) !important; color: #d63384; font-weight: 600; line-height: 1.5; }
+#loveTyping { font-size: clamp(32px, 8vw, 48px) !important; color: #ff1744; font-weight: 800; }
 
 #photoScreen {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(22px);
-  border-radius: 22px;
-  padding: 25px 18px;
-  max-width: 92%;
-  margin: 18px auto;
-  box-shadow: 0 18px 50px rgba(255, 107, 157, 0.35);
-  animation: photoSlideIn 1.4s ease-out;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 20px 15px;
+  max-width: 90%;
+  margin: 15px auto;
+  box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+  animation: photoSlideIn 1.2s ease-out;
 }
 
 #photoText {
-  font-size: clamp(24px, 6vw, 34px);
+  font-size: clamp(22px, 6vw, 32px);
   color: #ff1744;
-  font-weight: 800;
-  margin: 18px 0;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+  font-weight: 700;
+  margin: 15px 0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
 }
 
 #ourPhoto {
-  width: clamp(240px, 65vw, 380px);
-  height: clamp(290px, 78vw, 480px);
+  width: clamp(220px, 60vw, 360px);
+  height: clamp(300px, 80vw, 520px);
   object-fit: cover;
   border-radius: 18px;
-  border: 4px solid rgba(255, 105, 180, 0.6);
-  box-shadow: 0 15px 45px rgba(255, 105, 180, 0.45);
-  margin: 18px auto;
+  border: 3px solid rgba(255, 105, 180, 0.5);
+  box-shadow: 0 12px 40px rgba(255, 105, 180, 0.4);
+  margin: 20px auto;
   display: block;
 }
 
 .start-subtitle {
-  font-size: clamp(20px, 5vw, 26px) !important;
-  margin: 18px 0; 
+  font-size: clamp(18px, 4.5vw, 24px) !important;
+  margin: 15px 0; 
   color: #d63384; 
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .photo-caption {
-  font-size: clamp(20px, 4.5vw, 24px) !important;
+  font-size: clamp(18px, 4vw, 22px) !important;
   color: #d63384; 
-  margin-top: 15px;
+  margin-top: 12px;
 }
 
 .final-big-heart {
-  font-size: clamp(100px, 24vw, 150px);
+  font-size: clamp(90px, 22vw, 140px);
   color: #ff1744;
-  text-shadow: 0 0 40px #ff1744;
+  text-shadow: 0 0 30px #ff1744;
   animation: bigHeartBeat 1.5s ease-in-out infinite;
-  margin-top: 20px;
+  margin-top: 15px;
   opacity: 0;
 }
 @keyframes bigHeartBeat {
   0%, 100% { transform: scale(1) rotate(-5deg); }
-  50% { transform: scale(1.25) rotate(5deg); }
+  50% { transform: scale(1.2) rotate(5deg); }
 }
 
 .feather-cursor {
@@ -307,11 +296,11 @@ button {
 </div>
 
 <!-- MAIN CONTENT -->
-<div id="content" class="center hidden">
+<div id="content" class="center hidden" style="padding-bottom: 200px;">
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   
   <p class="loveMsg">
-    My Dearest Bhumika,<br><br>
+    My Dearest Bhumika,<br>
     Every moment with you feels like a dream I never want to wake from ✨.<br>
     Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
     From stolen glances to forever promises—you are my always.<br>
@@ -319,13 +308,13 @@ button {
   </p>
   
   <div class="buttons-container">
-    <button id="yesBtn">Yes, Forever & Always! 💋</button>
-    <button id="noBtn">Maybe Later 😘</button>
+    <button id="yesBtn" style="flex: 1; min-width: 140px;">Yes, Forever & Always! 💋</button>
+    <button id="noBtn" style="flex: 1; min-width: 140px;">Chal nikal🤣 😘</button>
   </div>
 </div>
 
 <!-- FINAL TYPING SCREEN -->
-<div id="final" class="center hidden" style="padding: 15px;">
+<div id="final" class="center hidden" style="padding: 12px;">
   <div class="typing-container">
     <span class="typing-text" id="thanksTyping"></span>
     <span class="feather-cursor" id="cursor1"></span>
@@ -360,13 +349,13 @@ function createPasswordEffects() {
     petal.className = 'rose-petal-3d';
     petal.style.left = Math.random() * 100 + '%';
     const size = 0.8 + Math.random() * 0.6;
-    petal.style.width = (28 * size) + 'px';
-    petal.style.height = (22 * size) + 'px';
+    petal.style.width = (25 * size) + 'px';
+    petal.style.height = (20 * size) + 'px';
     const duration = 14 + Math.random() * 8;
     petal.style.animationDuration = duration + 's';
     petalsContainer.appendChild(petal);
     setTimeout(() => { if (petal.parentNode) petal.remove(); }, (duration + 3) * 1000);
-  }, 220);
+  }, 250);
   
   const heartSizes = ['small', 'medium', 'large'];
   setInterval(() => {
@@ -376,7 +365,7 @@ function createPasswordEffects() {
     heart.style.left = Math.random() * 100 + '%';
     heartsContainer.appendChild(heart);
     setTimeout(() => { if (heart.parentNode) heart.remove(); }, 20000);
-  }, 350);
+  }, 400);
 }
 
 function createBgHearts() {
@@ -386,13 +375,13 @@ function createBgHearts() {
     heart.className = 'bg-heart';
     heart.innerHTML = '💕';
     heart.style.left = Math.random() * 100 + '%';
-    heart.style.fontSize = (18 + Math.random() * 28) + 'px';
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
     bgHearts.appendChild(heart);
     setTimeout(() => heart.remove(), 30000);
-  }, 900);
+  }, 1000);
 }
 
-function typeWriter(element, text, speed = 75, callback) {
+function typeWriter(element, text, speed = 70, callback) {
   let i = 0;
   element.innerHTML = '';
   function type() {
@@ -412,7 +401,7 @@ function typeWriter(element, text, speed = 75, callback) {
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
-  const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
+  const secrets = ["iloveyou", "ilovebhumika", "bhumika", "forever", "mylove"];
   
   if (secrets.includes(p)) {
     document.getElementById("loveSong").play().catch(e => console.log('Music ready'));
@@ -421,7 +410,7 @@ function unlock() {
   } else {
     error.textContent = "❤️ Whisper our special words... 💕";
     error.style.color = "#ff6b9d";
-    error.style.fontSize = "18px";
+    error.style.fontSize = "16px";
     setTimeout(() => error.textContent = "", 3000);
   }
 }
@@ -431,7 +420,6 @@ document.getElementById("startBtn").onclick = () => {
   document.getElementById("content").classList.remove("hidden");
 };
 
-// NO BUTTON - RUNS AWAY LIKE BEFORE
 document.getElementById("noBtn").onmouseover = () => {
   const btn = document.getElementById("noBtn");
   btn.style.position = 'fixed';
@@ -439,32 +427,32 @@ document.getElementById("noBtn").onmouseover = () => {
   btn.style.left = (Math.random() * 50 + 10) + "vw";
   btn.style.transform = `rotate(${Math.random() * 360}deg)`;
   btn.style.zIndex = '20';
+  btn.style.width = '140px';
 };
 
-// YES BUTTON - PROCEEDS NORMALLY
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
   
   setTimeout(() => {
-    typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 85, () => {
+    typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 80, () => {
       setTimeout(() => {
-        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 70, () => {
+        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 65, () => {
           setTimeout(() => {
-            typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 95, () => {
+            typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 90, () => {
               setTimeout(() => {
                 document.getElementById("bigHeart").style.opacity = "1";
                 setTimeout(() => {
                   document.getElementById("final").classList.add("hidden");
                   document.getElementById("photoScreen").classList.remove("hidden");
-                }, 2800);
-              }, 450);
+                }, 2500);
+              }, 400);
             });
-          }, 700);
+          }, 600);
         });
-      }, 700);
+      }, 600);
     });
-  }, 250);
+  }, 200);
 };
 
 createPasswordEffects();
