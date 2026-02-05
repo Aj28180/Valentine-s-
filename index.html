@@ -32,7 +32,7 @@ body {
 .bg-heart {
   position: absolute;
   color: rgba(255, 105, 180, 0.15);
-  font-size: 20px;
+  font-size: 25px;
   opacity: 0.1;
   animation: gentleFloat 20s infinite linear;
 }
@@ -44,8 +44,8 @@ body {
 
 .rose-petal-3d {
   position: absolute;
-  width: 25px;
-  height: 20px;
+  width: 30px;
+  height: 25px;
   background: radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
   border-radius: 70% 0 65% 45%;
   opacity: 0.9;
@@ -64,13 +64,13 @@ body {
   position: absolute;
   color: #ff1744;
   text-shadow: 0 0 10px #ff1744;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.8;
   animation: heartFall 15s linear infinite;
 }
-.password-heart.large { font-size: 24px; opacity: 1; animation-duration: 12s; }
-.password-heart.medium { font-size: 18px; opacity: 0.9; animation-duration: 14s; }
-.password-heart.small { font-size: 12px; opacity: 0.7; animation-duration: 16s; }
+.password-heart.large { font-size: 28px; opacity: 1; animation-duration: 12s; }
+.password-heart.medium { font-size: 20px; opacity: 0.9; animation-duration: 14s; }
+.password-heart.small { font-size: 14px; opacity: 0.7; animation-duration: 16s; }
 @keyframes heartFall {
   0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
   15% { opacity: 1; }
@@ -79,26 +79,44 @@ body {
 }
 
 .title-glow {
-  font-size: clamp(20px, 6vw, 36px) !important;
-  line-height: 1;
+  font-size: clamp(24px, 7vw, 42px) !important;
+  line-height: 1.1;
   background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
   font-weight: 800;
-  margin: 5px 0 8px 0 !important;
-  padding: 5px;
+  margin: 8px 0 12px 0 !important;
+  padding: 8px;
 }
 
-.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 95%; padding: 10px; box-sizing: border-box; }
+.center { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  z-index: 10; 
+  width: 95%; 
+  padding: 15px; 
+  box-sizing: border-box; 
+}
+
 .hidden { display: none; }
+
+#content {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  justify-content: space-between;
+  padding-bottom: 40px !important;
+}
 
 #lock {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   border-radius: 25px;
-  padding: 25px 15px;
+  padding: 30px 20px;
   box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
   border: 2px solid rgba(255, 107, 157, 0.4);
   max-height: 70vh;
@@ -110,18 +128,18 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 15px;
-  font-size: clamp(18px, 5vw, 24px);
+  margin-bottom: 20px;
+  font-size: clamp(20px, 6vw, 28px);
   font-weight: 700;
 }
 
 #pass {
-  padding: 12px 16px;
-  font-size: 16px;
+  padding: 14px 18px;
+  font-size: 18px;
   border-radius: 25px;
   border: 2px solid rgba(255, 107, 157, 0.6);
-  margin: 10px;
-  width: clamp(240px, 40vw, 340px);
+  margin: 12px;
+  width: clamp(260px, 42vw, 360px);
   background: rgba(255, 248, 248, 0.85);
   color: #d63384;
   backdrop-filter: blur(20px);
@@ -129,37 +147,42 @@ body {
 }
 
 button {
-  padding: 12px 25px;
-  font-size: 16px;
+  padding: 10px 20px;
+  font-size: 15px;
   font-weight: 700;
   border: none; 
-  border-radius: 25px; 
+  border-radius: 22px; 
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
   background: linear-gradient(135deg, #ff1744, #ff69b4);
   color: white;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-  margin: 6px;
-  min-height: 48px;
+  margin: 5px;
+  min-height: 42px;
+  min-width: 130px;
 }
 
 .loveMsg {
-  max-width: 90vw;
-  margin: 8px auto !important; 
-  font-size: clamp(16px, 4vw, 22px) !important;
-  line-height: 1.4 !important;
+  max-width: 95vw;
+  margin: 15px auto !important; 
+  font-size: clamp(20px, 5vw, 28px) !important;
+  line-height: 1.5 !important;
   color: #d63384;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 15px;
-  border-radius: 15px;
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.25);
+  padding: 20px;
+  border-radius: 18px;
+  backdrop-filter: blur(15px);
   animation: fadeInUp 1.5s ease-out;
-  font-weight: 600;
-  text-shadow: 1px 1px 3px rgba(249, 168, 212, 0.7);
-  max-height: 45vh;
-  overflow-y: auto;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(249, 168, 212, 0.8);
+  max-height: 65vh;
+  height: 50vh;
+  overflow-y: visible;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes fadeInUp {
@@ -167,75 +190,94 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+
 .typing-container {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  padding: 20px;
-  backdrop-filter: blur(12px);
-  margin: 15px auto;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  padding: 25px;
+  backdrop-filter: blur(15px);
+  margin: 18px auto;
   max-width: 90vw;
-  box-shadow: 0 8px 30px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 10px 40px rgba(255, 107, 157, 0.3);
   border: 1px solid rgba(255, 105, 180, 0.3);
 }
 
-#thanksTyping { font-size: clamp(18px, 4.5vw, 26px) !important; color: #d63384; font-weight: 700; }
-#letterTyping { font-size: clamp(16px, 4vw, 22px) !important; color: #d63384; font-weight: 600; line-height: 1.5; }
-#loveTyping { font-size: clamp(28px, 7vw, 42px) !important; color: #ff1744; font-weight: 800; }
+#thanksTyping { font-size: clamp(22px, 5.5vw, 32px) !important; color: #d63384; font-weight: 700; }
+#letterTyping { font-size: clamp(20px, 5vw, 28px) !important; color: #d63384; font-weight: 700; line-height: 1.6; }
+#loveTyping { font-size: clamp(34px, 8vw, 48px) !important; color: #ff1744; font-weight: 800; }
 
 #photoScreen {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 20px 15px;
-  max-width: 90%;
-  margin: 15px auto;
-  box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
-  animation: photoSlideIn 1.2s ease-out;
+  border-radius: 25px;
+  padding: 25px 20px;
+  max-width: 95%;
+  margin: 20px auto;
+  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+  animation: photoSlideIn 1.5s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
 }
 
 #photoText {
-  font-size: clamp(20px, 5vw, 28px);
+  font-size: clamp(24px, 6vw, 34px);
   color: #ff1744;
-  font-weight: 700;
-  margin: 15px 0;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  font-weight: 800;
+  margin: 20px 0;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 
 #ourPhoto {
-  width: clamp(200px, 55vw, 320px);
-  height: clamp(240px, 65vw, 400px);
+  width: clamp(280px, 75vw, 420px);
+  height: clamp(340px, 90vw, 520px);
   object-fit: cover;
-  border-radius: 15px;
-  border: 3px solid rgba(255, 105, 180, 0.5);
-  box-shadow: 0 12px 40px rgba(255, 105, 180, 0.4);
-  margin: 15px auto;
+  border-radius: 20px;
+  border: 4px solid rgba(255, 105, 180, 0.6);
+  box-shadow: 0 15px 50px rgba(255, 105, 180, 0.5);
+  margin: 20px auto;
   display: block;
 }
 
 .start-subtitle {
-  font-size: clamp(16px, 4vw, 22px) !important;
-  margin: 15px 0; 
+  font-size: clamp(20px, 5vw, 26px) !important;
+  margin: 20px 0; 
   color: #d63384; 
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .photo-caption {
-  font-size: clamp(16px, 3.5vw, 20px) !important;
+  font-size: clamp(18px, 4.5vw, 24px) !important;
   color: #d63384; 
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
 .final-big-heart {
-  font-size: clamp(80px, 20vw, 120px);
+  font-size: clamp(100px, 25vw, 150px);
   color: #ff1744;
-  text-shadow: 0 0 30px #ff1744;
+  text-shadow: 0 0 40px #ff1744;
   animation: bigHeartBeat 1.5s ease-in-out infinite;
-  margin-top: 15px;
+  margin-top: 20px;
   opacity: 0;
 }
 @keyframes bigHeartBeat {
   0%, 100% { transform: scale(1) rotate(-5deg); }
-  50% { transform: scale(1.2) rotate(5deg); }
+  50% { transform: scale(1.25) rotate(5deg); }
 }
 
 .feather-cursor {
@@ -292,14 +334,14 @@ button {
     Will you be my Valentine... my eternal love... my eternity? 💍
   </p>
   
-  <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; padding-bottom: 15px;">
-    <button id="yesBtn" style="flex: 1; min-width: 150px;">Yes, Forever & Always! 💋</button>
-    <button id="noBtn" style="flex: 1; min-width: 150px;">Maybe Later 😘</button>
+  <div class="buttons-container">
+    <button id="yesBtn">Yes, Forever & Always! 💋</button>
+    <button id="noBtn">Maybe Later 😘</button>
   </div>
 </div>
 
 <!-- FINAL TYPING SCREEN -->
-<div id="final" class="center hidden" style="padding: 12px;">
+<div id="final" class="center hidden" style="padding: 15px;">
   <div class="typing-container">
     <span class="typing-text" id="thanksTyping"></span>
     <span class="feather-cursor" id="cursor1"></span>
@@ -318,7 +360,7 @@ button {
 <!-- PHOTO SCREEN -->
 <div id="photoScreen" class="center hidden">
   <div id="photoText">Our Forever Love 💍✨</div>
-  <img id="ourPhoto" src="IMG_6256.jpeg" alt="Bhumika & Ankush 💕">
+  <img id="ourPhoto" src="IMG_1058.jpeg" alt="Bhumika & Ankush 💕">
   <p class="photo-caption">Together Forever ❤️</p>
 </div>
 
@@ -334,8 +376,8 @@ function createPasswordEffects() {
     petal.className = 'rose-petal-3d';
     petal.style.left = Math.random() * 100 + '%';
     const size = 0.8 + Math.random() * 0.6;
-    petal.style.width = (25 * size) + 'px';
-    petal.style.height = (20 * size) + 'px';
+    petal.style.width = (30 * size) + 'px';
+    petal.style.height = (25 * size) + 'px';
     const duration = 14 + Math.random() * 8;
     petal.style.animationDuration = duration + 's';
     petalsContainer.appendChild(petal);
@@ -360,7 +402,7 @@ function createBgHearts() {
     heart.className = 'bg-heart';
     heart.innerHTML = '💕';
     heart.style.left = Math.random() * 100 + '%';
-    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    heart.style.fontSize = (18 + Math.random() * 30) + 'px';
     bgHearts.appendChild(heart);
     setTimeout(() => heart.remove(), 30000);
   }, 1000);
@@ -395,7 +437,7 @@ function unlock() {
   } else {
     error.textContent = "❤️ Whisper our special words... 💕";
     error.style.color = "#ff6b9d";
-    error.style.fontSize = "16px";
+    error.style.fontSize = "18px";
     setTimeout(() => error.textContent = "", 3000);
   }
 }
@@ -405,15 +447,18 @@ document.getElementById("startBtn").onclick = () => {
   document.getElementById("content").classList.remove("hidden");
 };
 
+// NO BUTTON - MOVES AROUND SCREEN (ORIGINAL BEHAVIOR RESTORED)
 document.getElementById("noBtn").onmouseover = () => {
   const btn = document.getElementById("noBtn");
   btn.style.position = 'fixed';
-  btn.style.top = (Math.random() * 50 + 10) + "vh";
-  btn.style.left = (Math.random() * 50 + 10) + "vw";
+  btn.style.top = (Math.random() * 40 + 10) + "vh";
+  btn.style.left = (Math.random() * 40 + 10) + "vw";
   btn.style.transform = `rotate(${Math.random() * 360}deg)`;
-  btn.style.zIndex = '20';
+  btn.style.zIndex = '25';
+  btn.style.transition = 'none';
 };
 
+// YES BUTTON - PROPER FUNCTIONALITY
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
@@ -421,7 +466,7 @@ document.getElementById("yesBtn").onclick = () => {
   setTimeout(() => {
     typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 80, () => {
       setTimeout(() => {
-        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 65, () => {
+        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 70, () => {
           setTimeout(() => {
             typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 90, () => {
               setTimeout(() => {
@@ -429,14 +474,14 @@ document.getElementById("yesBtn").onclick = () => {
                 setTimeout(() => {
                   document.getElementById("final").classList.add("hidden");
                   document.getElementById("photoScreen").classList.remove("hidden");
-                }, 2500);
-              }, 400);
+                }, 3000);
+              }, 500);
             });
-          }, 600);
+          }, 800);
         });
-      }, 600);
+      }, 800);
     });
-  }, 200);
+  }, 300);
 };
 
 createPasswordEffects();
