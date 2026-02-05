@@ -205,7 +205,7 @@ function animateFireworks(){
 }
 animateFireworks();
 
-/* ================= 3D PETALS TEXT ================= */
+/* ================= 3D PETALS SPELLING BHUMIKA ================= */
 
 const pc=document.getElementById("rosePetals3D");
 const pctx=pc.getContext("2d");
@@ -215,28 +215,29 @@ pc.height=innerHeight;
 let petals=[];
 let active=false;
 
+/* Generate text points */
 function createTextPetals(){
 
   const textCanvas=document.createElement("canvas");
   const tctx=textCanvas.getContext("2d");
 
-  textCanvas.width=1400;
-  textCanvas.height=300;
+  textCanvas.width=1000;
+  textCanvas.height=250;
 
   tctx.fillStyle="white";
-  tctx.font="bold 100px Georgia";
+  tctx.font="bold 120px Georgia";
   tctx.textAlign="center";
-  tctx.fillText("I LOVE YOU BHUMIKA",700,170);
+  tctx.fillText("BHUMIKA",500,150);
 
-  const data=tctx.getImageData(0,0,1400,300).data;
+  const data=tctx.getImageData(0,0,1000,250).data;
 
-  for(let y=0;y<300;y+=6){
-    for(let x=0;x<1400;x+=6){
+  for(let y=0;y<250;y+=6){
+    for(let x=0;x<1000;x+=6){
 
-      if(data[(y*1400+x)*4+3]>128){
+      if(data[(y*1000+x)*4+3]>128){
 
         petals.push({
-          tx:x+pc.width/2-700,
+          tx:x+pc.width/2-500,
           ty:y+50,
           x:Math.random()*pc.width,
           y:Math.random()*-pc.height,
@@ -251,6 +252,7 @@ function createTextPetals(){
   }
 }
 
+/* Draw petal */
 function drawPetal(p){
 
   pctx.save();
@@ -274,6 +276,7 @@ function drawPetal(p){
   pctx.restore();
 }
 
+/* Animate petals */
 function animatePetals(){
 
   if(!active) return;
@@ -281,15 +284,20 @@ function animatePetals(){
   pctx.clearRect(0,0,pc.width,pc.height);
 
   petals.forEach(p=>{
+
+    /* Move toward text position */
     p.x += (p.tx-p.x)*0.02;
     p.y += (p.ty-p.y)*0.02;
+
     p.rot+=p.rotSpd;
+
     drawPetal(p);
   });
 
   requestAnimationFrame(animatePetals);
 }
 
+/* Start petals */
 function start3DRosePetals(){
   active=true;
   createTextPetals();
