@@ -92,9 +92,9 @@ body {
 }
 .hidden { display: none; }
 
-/* TITLE */
+/* TITLE – slightly bigger */
 .title-glow {
-  font-size: clamp(22px, 6.2vw, 30px); /* slightly bigger than last */
+  font-size: clamp(24px, 6.8vw, 32px);
   line-height: 1.1;
   background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
   -webkit-background-clip: text;
@@ -124,7 +124,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 15px;
-  font-size: clamp(20px, 5.2vw, 26px);
+  font-size: clamp(21px, 5.5vw, 27px);
   font-weight: 700;
 }
 
@@ -160,21 +160,20 @@ button {
 
 /* START SCREEN */
 .start-subtitle {
-  font-size: clamp(17px, 4.4vw, 22px);
+  font-size: clamp(18px, 4.8vw, 23px);
   margin: 15px 0; 
   color: #d63384; 
   font-weight: 600;
 }
 
-/* MAIN CONTENT LAYOUT:
-   message fixed area, buttons at bottom of viewport */
+/* MAIN CONTENT LAYOUT */
 #contentWrapper {
   position: absolute;
   inset: 0;
   z-index: 10;
   display: flex;
   flex-direction: column;
-  padding: 10px 12px 80px 12px; /* extra bottom padding for buttons */
+  padding: 10px 12px 80px 12px;
   box-sizing: border-box;
 }
 
@@ -184,7 +183,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 8vh; /* push title + message a bit lower from very top */
+  padding-top: 8vh;
 }
 
 #buttonsBar {
@@ -199,11 +198,11 @@ button {
   box-sizing: border-box;
 }
 
-/* LOVE MESSAGE – slightly bigger but no scroll */
+/* LOVE MESSAGE – little bigger but fits */
 .loveMsg {
   max-width: 90vw;
   margin: 10px auto 0 auto !important; 
-  font-size: clamp(17px, 4.4vw, 23px); /* little bigger */
+  font-size: clamp(18px, 4.8vw, 24px);
   line-height: 1.35;
   color: #d63384;
   background: rgba(255, 255, 255, 0.22);
@@ -213,7 +212,7 @@ button {
   animation: fadeInUp 1.2s ease-out;
   font-weight: 600;
   text-shadow: 1px 1px 3px rgba(249, 168, 212, 0.7);
-  max-height: 42vh; /* ensures whole text fits on standard phone without scroll */
+  max-height: 42vh;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -235,9 +234,9 @@ button {
   border: 1px solid rgba(255, 105, 180, 0.3);
 }
 
-#thanksTyping { font-size: clamp(19px, 4.6vw, 26px); color: #d63384; font-weight: 700; }
-#letterTyping { font-size: clamp(17px, 4.3vw, 23px); color: #d63384; font-weight: 600; line-height: 1.5; }
-#loveTyping { font-size: clamp(29px, 7.3vw, 40px); color: #ff1744; font-weight: 800; }
+#thanksTyping { font-size: clamp(20px, 4.9vw, 27px); color: #d63384; font-weight: 700; }
+#letterTyping { font-size: clamp(18px, 4.6vw, 24px); color: #d63384; font-weight: 600; line-height: 1.5; }
+#loveTyping { font-size: clamp(30px, 7.6vw, 41px); color: #ff1744; font-weight: 800; }
 
 #photoScreen {
   background: rgba(255, 255, 255, 0.15);
@@ -251,14 +250,14 @@ button {
 }
 
 #photoText {
-  font-size: clamp(21px, 5.2vw, 28px);
+  font-size: clamp(22px, 5.5vw, 29px);
   color: #ff1744;
   font-weight: 700;
   margin: 15px 0;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
 }
 
-/* IMAGE – bigger width and height (top & bottom) */
+/* IMAGE */
 #ourPhoto {
   width: clamp(260px, 70vw, 420px);
   height: clamp(320px, 85vw, 520px);
@@ -331,7 +330,7 @@ button {
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- MAIN CONTENT WRAPPER (message + buttons at bottom) -->
+<!-- MAIN CONTENT WRAPPER -->
 <div id="contentWrapper" class="hidden">
   <div id="contentTop">
     <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
@@ -483,14 +482,11 @@ document.getElementById("yesBtn").onclick = () => {
   }, 200);
 };
 
-/* NO BUTTON – behaves like before: runs away on hover and click does nothing */
+/* NO BUTTON – runs away on hover AND click (no navigation) */
 const noBtn = document.getElementById("noBtn");
 
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("click", moveNoButton);
-
 function moveNoButton(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   const btn = noBtn;
   btn.style.position = 'fixed';
   btn.style.bottom = (Math.random() * 40 + 10) + "vh";
@@ -498,6 +494,9 @@ function moveNoButton(e) {
   btn.style.transform = `rotate(${Math.random() * 360}deg)`;
   btn.style.zIndex = '20';
 }
+
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("click", moveNoButton);
 
 createPasswordEffects();
 createBgHearts();
