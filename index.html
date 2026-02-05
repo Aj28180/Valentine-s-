@@ -31,31 +31,6 @@ body {
   100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
 }
 
-/* ❤️ PASSWORD SCREEN HEARTS */
-.password-hearts {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-  pointer-events: none; z-index: 2;
-}
-.password-heart {
-  position: absolute; 
-  font-size: 20px; 
-  color: rgba(255, 23, 68, 0.8);
-  animation: passwordHeartFloat 6s infinite linear;
-  text-shadow: 0 0 15px #ff1744;
-}
-@keyframes passwordHeartFloat {
-  0% { 
-    transform: translateY(100vh) rotate(0deg) scale(0.5); 
-    opacity: 0.3; 
-  }
-  20% { opacity: 1; }
-  80% { opacity: 0.6; }
-  100% { 
-    transform: translateY(-50px) rotate(360deg) scale(1.2); 
-    opacity: 0; 
-  }
-}
-
 .neon {
   font-size: clamp(32px, 6vw, 55px); line-height: 1.2;
   text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1744, 0 0 40px #ff1744, 0 0 60px #ff1744;
@@ -98,7 +73,6 @@ body {
   background-clip: text;
   animation: shimmer 3s infinite;
   margin-bottom: 25px;
-  font-size: clamp(24px, 5vw, 32px);
 }
 
 @keyframes shimmer {
@@ -114,9 +88,6 @@ body {
     0 8px 25px rgba(255, 23, 68, 0.3),
     inset 0 2px 10px rgba(255, 255, 255, 0.1);
   transition: all 0.4s ease;
-  padding: 15px; font-size: 20px; border-radius: 30px;
-  margin: 15px; width: clamp(280px, 40vw, 350px);
-  color: white; placeholder-color: rgba(255,255,255,0.7);
 }
 
 #pass:focus {
@@ -173,7 +144,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   font-weight: 700;
   margin: 20px 0;
 }
-#perfectMsg {
+#perfectMsg, #foreverMsg {
   font-size: clamp(18px, 3vw, 24px);
   color: #ffd1dc;
   font-weight: 500;
@@ -187,13 +158,10 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 </head>
 
 <body>
-<!-- 🎵 ZARA SI MUSIC -->
+<!-- 🎵 ZARA SI MUSIC WITH ANALYSER (Auto plays, no controls) -->
 <audio id="loveSong" loop preload="auto" autoplay style="display:none;">
   <source src="zara_si.mp3" type="audio/mpeg">
 </audio>
-
-<!-- ❤️ PASSWORD SCREEN HEARTS -->
-<div id="passwordHearts" class="password-hearts"></div>
 
 <div id="heartsBg" class="hearts-bg"></div>
 
@@ -202,7 +170,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   <h2>Enter Our Secret Password 🔐</h2>
   <input type="password" id="pass" placeholder="Our special words...">
   <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
-  <p id="error" style="color: #ff6b9d; font-size: 18px;"></p>
+  <p id="error"></p>
 </div>
 
 <!-- ❤️ START -->
@@ -231,7 +199,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <!-- 💖 FINAL -->
 <div id="final" class="center hidden">
   <div id="loveYouMsg" class="neon" style="display:none;">I love you Babe 💋💋💋💋💋</div>
-  <div id="foreverMsg" class="neon" style="display:none; font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px;">Forever Entwined ❤️</div>
+  <div id="foreverMsg" class="neon" style="display:none;">Forever Entwined ❤️</div>
   <div id="perfectMsg" style="display:none;">
     My beautiful Bhumika, today you made me the happiest man alive. 
     From this moment forward, every heartbeat, every breath, every dream will be for you. 
@@ -244,23 +212,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <canvas id="fireworks"></canvas>
 
 <script>
-// ❤️ PASSWORD SCREEN HEART ANIMATIONS
-function createPasswordHearts() {
-  const passwordHearts = document.getElementById('passwordHearts');
-  setInterval(() => {
-    const heart = document.createElement('div');
-    heart.className = 'password-heart';
-    heart.innerHTML = '💖';
-    heart.style.left = Math.random() * 100 + '%';
-    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-    heart.style.fontSize = (15 + Math.random() * 20) + 'px';
-    passwordHearts.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-  }, 150);
-}
-createPasswordHearts();
-
-// [Rest of the JavaScript remains exactly the same as previous version]
+// [Previous JavaScript code remains exactly the same - no changes needed]
 let fireworksActive = false;
 let threeDHeartsRainActive = false;
 
@@ -288,8 +240,145 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 function getUltraRealisticRedFireworkColor() {
-  const shades = ['#ff1744', '#ff4081', '#e91e63', '#f48fb1', '#ec407a', '#ff69b4', '#ff5252', '#ff8a80', '#ffccbc', '#ffab91'];
+  const shades = [
+    '#ff1744', '#ff4081', '#e91e63', '#f48fb1', '#ec407a', '#ff69b4',
+    '#ff5252', '#ff8a80', '#ffccbc', '#ffab91'
+  ];
   return shades[Math.floor(Math.random() * shades.length)];
 }
 
-function createUltraRealisticFirework(x, y
+function createUltraRealisticFirework(x, y, count = 200) {
+  for (let i = 0; i < count; i++) {
+    if (particles.length < MAX_PARTICLES) {
+      const angle = (Math.PI * 2 * i) / count;
+      const velocity = 15 + Math.random() * 8;
+      particles.push({
+        x, y,
+        vx: Math.cos(angle) * velocity,
+        vy: Math.sin(angle) * velocity - 3,
+        life: 180,
+        maxLife: 180,
+        decay: 0.008 + Math.random() * 0.005,
+        size: 3 + Math.random() * 5,
+        maxSize: 3 + Math.random() * 5,
+        color: getUltraRealisticRedFireworkColor(),
+        trail: []
+      });
+    }
+  }
+}
+
+function createHeartParticle(x, y) {
+  const angle = Math.random() * Math.PI * 2;
+  const speed = Math.random() * 10 + 3;
+  particles.push({
+    x, y,
+    vx: Math.cos(angle) * speed * 0.6,
+    vy: Math.sin(angle) * speed * 0.6,
+    life: 160,
+    maxLife: 160,
+    decay: 0.01,
+    size: 2.5 + Math.random() * 4,
+    color: getUltraRealisticRedFireworkColor(),
+    isHeart: true
+  });
+}
+
+function start3DHeartsRain() {
+  if (threeDHeartsRainActive) return;
+  threeDHeartsRainActive = true;
+  
+  const heartsBg = document.getElementById('heartsBg');
+  const rainInterval = setInterval(() => {
+    const heart = document.createElement('div');
+    heart.innerHTML = '❤️';
+    heart.style.cssText = `
+      position: absolute;
+      font-size: ${25 + Math.random() * 25}px;
+      color: #ff1744;
+      left: ${Math.random() * 100}vw;
+      animation: rain3D 3.5s linear forwards;
+      text-shadow: 0 0 20px #ff1744, 0 0 40px #ff1744, 3px 3px 6px rgba(0,0,0,0.7);
+      transform: perspective(600px) rotateX(${Math.random() * 30 - 15}deg) rotateY(${Math.random() * 30 - 15}deg);
+      z-index: 8;
+    `;
+    heartsBg.appendChild(heart);
+    setTimeout(() => heart.remove(), 3500);
+  }, 80);
+}
+
+const rainStyle = document.createElement('style');
+rainStyle.textContent = `
+  @keyframes rain3D {
+    0% { 
+      transform: translateY(-120px) perspective(600px) rotateX(0deg) rotateY(0deg) scale(1); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: translateY(130vh) perspective(600px) rotateX(720deg) rotateY(720deg) scale(0.2); 
+      opacity: 0; 
+    }
+  }
+`;
+document.head.appendChild(rainStyle);
+
+function createHearts() {
+  const heartsBg = document.getElementById('heartsBg');
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+    heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+    heartsBg.appendChild(heart);
+    setTimeout(() => heart.remove(), 9000);
+  }, 250);
+}
+
+function spawnContinuousFireworks() {
+  if (Math.random() < 0.15) {
+    const x = Math.random() * canvas.width;
+    const y = canvas.height * (0.1 + Math.random() * 0.3);
+    createUltraRealisticFirework(x, y, 220 + Math.random() * 80);
+  }
+  if (Math.random() < 0.08) {
+    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.8);
+  }
+}
+
+function drawUltraRealisticHeart(ctx, x, y, size) {
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.bezierCurveTo(x, y - size/3, x - size/1.8, y - size/1.5, x - size/3, y - size);
+  ctx.bezierCurveTo(x - size/1.2, y - size/2, x - size/4, y - size/1.2, x, y - size/1.5);
+  ctx.bezierCurveTo(x + size/4, y - size/1.2, x + size/1.2, y - size/2, x + size/3, y - size);
+  ctx.bezierCurveTo(x + size/1.8, y - size/1.5, x, y - size/3, x, y);
+  ctx.closePath();
+}
+
+function animate() {
+  time++;
+  requestAnimationFrame(animate);
+  
+  spawnContinuousFireworks();
+  
+  if (!audio.paused && particles.length < MAX_PARTICLES * 0.85) {
+    try {
+      analyser.getByteFrequencyData(dataArray);
+      const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
+      if (avg > 0.2 * 255) {
+        createUltraRealisticFirework(Math.random() * canvas.width, canvas.height * 0.25, 280);
+      }
+    } catch(e) {}
+  }
+  
+  ctx.fillStyle = "rgba(5, 0, 12, 0.18)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  while (particles.length > MAX_PARTICLES) {
+    particles.shift();
+  }
+  
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x
