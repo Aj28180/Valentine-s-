@@ -17,6 +17,7 @@ body {
 }
 
 .hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.rose-petals { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
 .heart {
   position: absolute; width: 24px; height: 22px; animation: float 8s infinite linear;
 }
@@ -31,7 +32,56 @@ body {
   100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
 }
 
-/* REMOVED NEON GLOW - Simple elegant styling */
+/* 🌹 UPGRADED ROMANTIC ROSE PETALS */
+.rose-petal {
+  position: absolute;
+  width: 22px;
+  height: 18px;
+  background: radial-gradient(ellipse at center, #ffb6c1 0%, #ff69b4 35%, #ff1493 65%, #c71585 100%);
+  border-radius: 60% 0 60% 50%;
+  opacity: 0.88;
+  box-shadow: 
+    0 3px 12px rgba(255, 105, 180, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+  animation: fallRoseDreamy linear infinite;
+}
+.rose-petal::before {
+  content: '';
+  position: absolute;
+  width: 11px;
+  height: 9px;
+  background: inherit;
+  border-radius: 55% 0 55% 45%;
+  top: -4px;
+  left: 5.5px;
+  transform: rotate(18deg);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+.rose-petal::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 12px;
+  background: radial-gradient(ellipse at center, #ffc0cb 0%, #ff69b4 70%);
+  border-radius: 45% 0 45% 40%;
+  top: 1.5px;
+  left: 3.5px;
+  transform: rotate(-12deg);
+}
+@keyframes fallRoseDreamy {
+  0% { 
+    transform: translateY(-60px) rotate(0deg) scale(0.6); 
+    opacity: 0; 
+  }
+  8% { opacity: 0.92; }
+  92% { opacity: 0.92; }
+  100% { 
+    transform: translateY(130vh) rotate(1080deg) scale(1.15); 
+    opacity: 0; 
+  }
+}
+
+/* Title styling (no neon) */
 .title-glow {
   font-size: clamp(32px, 6vw, 55px); 
   line-height: 1.2;
@@ -61,9 +111,6 @@ button:hover {
   background: linear-gradient(135deg, #f44336, #d32f2f, #ef5350); color: white; 
   box-shadow: 0 0 25px rgba(244, 67, 54, 0.6);
 }
-#yesBtn {
-  margin-right: 15px;
-}
 
 .loveMsg {
   max-width: 700px; margin: 25px auto; font-size: clamp(17px, 2.8vw, 22px);
@@ -78,7 +125,6 @@ button:hover {
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 
-/* Love you message styling (no neon animation) */
 #loveYouMsg { 
   font-size: clamp(28px, 5vw, 40px) !important; 
   color: #ff69b4; 
@@ -92,7 +138,6 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* 🪶 FEATHER TYPING ANIMATION */
 #perfectMsg {
   font-size: clamp(18px, 3vw, 24px);
   color: #ffd1dc;
@@ -120,10 +165,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   0%, 50% { opacity: 1; transform: translateY(-50%) scaleY(1); }
   51%, 100% { opacity: 0; transform: translateY(-50%) scaleY(0.3); }
 }
-.typing-text {
-  display: inline-block;
-  border-right: none;
-}
+.typing-text { display: inline-block; border-right: none; }
 .feather-cursor {
   display: inline-block;
   width: 25px;
@@ -137,7 +179,6 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   100% { transform: translateY(-2px) rotate(3deg); }
 }
 
-/* NEW ROMANTIC THANKS MESSAGE */
 #final p { 
   font-size: clamp(20px, 4vw, 28px); 
   opacity: 0.95; 
@@ -157,12 +198,12 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 </head>
 
 <body>
-<!-- 🎵 ZARA SI MUSIC WITH ANALYSER (Auto plays, no controls) -->
 <audio id="loveSong" loop preload="auto" autoplay style="display:none;">
   <source src="zara_si.mp3" type="audio/mpeg">
 </audio>
 
 <div id="heartsBg" class="hearts-bg"></div>
+<div id="rosePetals" class="rose-petals"></div>
 
 <!-- 🔐 PASSWORD -->
 <div id="lock" class="center">
@@ -207,21 +248,55 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <canvas id="fireworks"></canvas>
 
 <script>
-// 🎵 AUTO MUSIC (no controls)
-let celebrationFireworksActive = false;
+// MUSIC SETUP
 const audio = document.getElementById('loveSong');
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
 const source = audioContext.createMediaElementSource(audio);
-
-// Setup audio analyser
 source.connect(analyser);
 analyser.connect(audioContext.destination);
 analyser.fftSize = 256;
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
-// 🪶 FEATHER TYPING FUNCTION
+// 🌹 ENHANCED ROMANTIC ROSE PETALS
+let rosePetalsActive = false;
+function createRosePetals() {
+  rosePetalsActive = true;
+  const roseContainer = document.getElementById('rosePetals');
+  
+  function spawnPetal() {
+    if (!rosePetalsActive) return;
+    
+    const petal = document.createElement('div');
+    petal.className = 'rose-petal';
+    
+    // Romantic size variation (smaller, more delicate)
+    const size = 0.75 + Math.random() * 0.5;
+    petal.style.width = (22 * size) + 'px';
+    petal.style.height = (18 * size) + 'px';
+    petal.style.left = Math.random() * 100 + '%';
+    
+    // SLOWER, more romantic fall (15-25 seconds)
+    const duration = 15 + Math.random() * 10;
+    
+    // Optimized spawn rate for romance
+    petal.style.animationDuration = duration + 's';
+    petal.style.animationDelay = Math.random() * 1.5 + 's';
+    
+    roseContainer.appendChild(petal);
+    
+    setTimeout(() => {
+      if (petal.parentNode) petal.remove();
+    }, (duration + 2) * 1000);
+  }
+  
+  // Perfect romantic density (every 150ms)
+  setInterval(spawnPetal, 150);
+  spawnPetal(); // Initial burst
+}
+
+// FEATHER TYPING
 function typeWriter(element, text, speed = 80) {
   let i = 0;
   element.innerHTML = '';
@@ -239,7 +314,7 @@ function typeWriter(element, text, speed = 80) {
   type();
 }
 
-// 🔥 3D RED HEARTS SLOW BLAST after password
+// 3D HEARTS
 let heartsRainActive = false;
 function create3DHeartsSlowBlast() {
   heartsRainActive = true;
@@ -257,7 +332,7 @@ function create3DHeartsSlowBlast() {
         color: #ff1744;
         left: 50vw;
         top: 30vh;
-        text-shadow: 0 0 20px #ff1744, 0 0 40px #ff1744, 2px 2px 8px rgba(0,0,0,0.7);
+        text-shadow: 0 0 20px #ff1744, 0 0 40px #ff1744;
         transform: translate(-50%, -50%) rotate(${angle * 180/Math.PI}deg);
         z-index: 12;
         animation: slowHeartBlast 6s ease-out forwards;
@@ -265,24 +340,6 @@ function create3DHeartsSlowBlast() {
       heartsBg.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-    
-    setTimeout(() => {
-      if(heartsRainActive) {
-        const heart = document.createElement('div');
-        heart.innerHTML = '❤️';
-        heart.style.cssText = `
-          position: absolute;
-          font-size: ${18 + Math.random() * 15}px;
-          color: #ff1744;
-          left: ${Math.random() * 100}vw;
-          animation: slowRain3D 5s linear forwards;
-          text-shadow: 0 0 15px #ff1744, 2px 2px 6px rgba(0,0,0,0.6);
-          z-index: 8;
-        `;
-        heartsBg.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }
-    }, 2000);
   }
   
   blastHearts();
@@ -291,20 +348,7 @@ function create3DHeartsSlowBlast() {
   }, 4000);
 }
 
-const slowRainStyle = document.createElement('style');
-slowRainStyle.textContent = `
-  @keyframes slowHeartBlast {
-    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
-    100% { transform: translate(calc(var(--x) * 200px), calc(var(--y) * 200px)) scale(0.2) rotate(720deg); opacity: 0; }
-  }
-  @keyframes slowRain3D {
-    0% { transform: translateY(-50px) perspective(600px) rotateX(0deg) rotateY(0deg) scale(1); opacity: 1; }
-    100% { transform: translateY(150vh) perspective(600px) rotateX(180deg) rotateY(360deg) scale(0.4); opacity: 0; }
-  }
-`;
-document.head.appendChild(slowRainStyle);
-
-// 🌟 REGULAR HEARTS
+// REGULAR HEARTS
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
@@ -312,13 +356,12 @@ function createHearts() {
     heart.className = 'heart';
     heart.style.left = Math.random() * 100 + '%';
     heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
-    heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
     heartsBg.appendChild(heart);
     setTimeout(() => heart.remove(), 9000);
   }, 300);
 }
 
-// 🔐 PASSWORD UNLOCK
+// PASSWORD
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
@@ -340,7 +383,7 @@ function unlock() {
   }
 }
 
-// 🚀 OTHER EVENTS
+// EVENTS
 document.getElementById("startBtn").onclick = () => {
   document.getElementById("startScreen").classList.add("hidden");
   document.getElementById("content").classList.remove("hidden");
@@ -356,10 +399,12 @@ document.getElementById("noBtn").onmouseover = () => {
   btn.style.zIndex = '20';
 };
 
-// 🔥 YES BUTTON WITH FEATHER TYPING
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
+  
+  // 🌹 START ROMANTIC PETAL RAIN
+  createRosePetals();
   
   setTimeout(() => {
     document.getElementById("loveYouMsg").style.display = "block";
@@ -372,7 +417,7 @@ document.getElementById("yesBtn").onclick = () => {
   }, 2000);
 };
 
-// 🔥 FIREWORKS (unchanged)
+// FIREWORKS (unchanged)
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d", { alpha: true });
 let particles = [], time = 0;
