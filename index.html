@@ -44,68 +44,12 @@ body {
 .center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 90%; }
 .hidden { display: none; }
 
-/* ✨ ROMANTIC PASSWORD SCREEN */
-#lock {
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(255, 107, 158, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(255, 23, 68, 0.25) 0%, transparent 50%),
-    radial-gradient(circle at 10% 70%, rgba(233, 30, 99, 0.2) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(255, 64, 129, 0.15) 0%, rgba(255, 23, 68, 0.1) 50%, rgba(43, 0, 0, 0.9) 100%);
-  background-size: 200% 200%;
-  animation: romanticPulse 8s ease-in-out infinite;
-  backdrop-filter: blur(20px);
-  border-radius: 30px;
-  padding: 40px;
-  box-shadow: 
-    0 20px 60px rgba(255, 23, 68, 0.4),
-    inset 0 0 50px rgba(255, 255, 255, 0.05);
-}
-
-@keyframes romanticPulse {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-#lock h2 {
-  background: linear-gradient(45deg, #ff69b4, #ff4081, #e91e63);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s infinite;
-  margin-bottom: 25px;
-}
-
-@keyframes shimmer {
-  0% { background-position: 0%; }
-  100% { background-position: 200%; }
-}
-
-#pass {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 107, 158, 0.6);
-  box-shadow: 
-    0 8px 25px rgba(255, 23, 68, 0.3),
-    inset 0 2px 10px rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
-}
-
-#pass:focus {
-  border-color: #ff69b4;
-  box-shadow: 
-    0 12px 35px rgba(255, 105, 180, 0.5),
-    inset 0 2px 10px rgba(255, 255, 255, 0.2),
-    0 0 30px rgba(255, 105, 180, 0.4);
-  transform: scale(1.02);
-}
-
 button {
   padding: 12px 28px; font-size: 18px; font-weight: bold;
   border: none; border-radius: 30px; margin: 8px; cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 0 6px 20px rgba(255, 23, 68, 0.4);
   display: inline-block;
-  background: linear-gradient(135deg, #ff4081, #e91e63, #ff1744);
 }
 button:hover {
   transform: translateY(-2px) scale(1.05); box-shadow: 0 12px 30px rgba(255, 23, 68, 0.7);
@@ -144,7 +88,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   font-weight: 700;
   margin: 20px 0;
 }
-#perfectMsg, #foreverMsg {
+#perfectMsg {
   font-size: clamp(18px, 3vw, 24px);
   color: #ffd1dc;
   font-weight: 500;
@@ -165,12 +109,12 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 
 <div id="heartsBg" class="hearts-bg"></div>
 
-<!-- 🔐 ROMANTIC PASSWORD SCREEN -->
+<!-- 🔐 PASSWORD -->
 <div id="lock" class="center">
-  <h2>Enter Our Secret Password 🔐</h2>
-  <input type="password" id="pass" placeholder="Our special words...">
+  <h2 style="font-size: clamp(24px, 5vw, 32px);">Enter Our Secret Password 🔐</h2>
+  <input type="password" id="pass" style="padding: 15px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d; margin: 15px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px);" placeholder="Our special words...">
   <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
-  <p id="error"></p>
+  <p id="error" style="color: #ff6b9d; font-size: 18px;"></p>
 </div>
 
 <!-- ❤️ START -->
@@ -199,7 +143,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <!-- 💖 FINAL -->
 <div id="final" class="center hidden">
   <div id="loveYouMsg" class="neon" style="display:none;">I love you Babe 💋💋💋💋💋</div>
-  <div id="foreverMsg" class="neon" style="display:none;">Forever Entwined ❤️</div>
+  <div id="foreverMsg" class="neon" style="display:none; font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px;">Forever Entwined ❤️</div>
   <div id="perfectMsg" style="display:none;">
     My beautiful Bhumika, today you made me the happiest man alive. 
     From this moment forward, every heartbeat, every breath, every dream will be for you. 
@@ -212,25 +156,28 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <canvas id="fireworks"></canvas>
 
 <script>
-// [Previous JavaScript code remains exactly the same - no changes needed]
+// GLOBAL FLAGS
 let fireworksActive = false;
 let threeDHeartsRainActive = false;
 
+// 🎵 AUTO MUSIC (no controls)
 const audio = document.getElementById('loveSong');
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
 const source = audioContext.createMediaElementSource(audio);
 
+// Setup audio analyser
 source.connect(analyser);
 analyser.connect(audioContext.destination);
 analyser.fftSize = 256;
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
+// 🔥 ULTRA REALISTIC FIREWORKS ENGINE (Continuous + High Quality)
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 let particles = [], time = 0;
-const MAX_PARTICLES = 2000;
+const MAX_PARTICLES = 2000; // Ultra high quality
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -284,6 +231,7 @@ function createHeartParticle(x, y) {
   });
 }
 
+// 🔥 3D RED HEARTS RAIN (FIXED - Works immediately)
 function start3DHeartsRain() {
   if (threeDHeartsRainActive) return;
   threeDHeartsRainActive = true;
@@ -304,7 +252,7 @@ function start3DHeartsRain() {
     `;
     heartsBg.appendChild(heart);
     setTimeout(() => heart.remove(), 3500);
-  }, 80);
+  }, 80); // Super frequent 3D hearts
 }
 
 const rainStyle = document.createElement('style');
@@ -322,6 +270,7 @@ rainStyle.textContent = `
 `;
 document.head.appendChild(rainStyle);
 
+// 🌟 REGULAR HEARTS
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
@@ -335,12 +284,14 @@ function createHearts() {
   }, 250);
 }
 
+// CONTINUOUS FIREWORKS FUNCTION
 function spawnContinuousFireworks() {
-  if (Math.random() < 0.15) {
+  if (Math.random() < 0.15) { // Frequent fireworks
     const x = Math.random() * canvas.width;
     const y = canvas.height * (0.1 + Math.random() * 0.3);
     createUltraRealisticFirework(x, y, 220 + Math.random() * 80);
   }
+  
   if (Math.random() < 0.08) {
     createHeartParticle(Math.random() * canvas.width, canvas.height * 0.8);
   }
@@ -360,25 +311,139 @@ function animate() {
   time++;
   requestAnimationFrame(animate);
   
+  // Continuous fireworks everywhere
   spawnContinuousFireworks();
   
+  // Beat sync fireworks
   if (!audio.paused && particles.length < MAX_PARTICLES * 0.85) {
     try {
       analyser.getByteFrequencyData(dataArray);
       const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
       if (avg > 0.2 * 255) {
-        createUltraRealisticFirework(Math.random() * canvas.width, canvas.height * 0.25, 280);
+        createUltraRealisticFirework(
+          Math.random() * canvas.width, 
+          canvas.height * 0.25, 
+          280
+        );
       }
     } catch(e) {}
   }
   
+  // Ultra smooth trail effect
   ctx.fillStyle = "rgba(5, 0, 12, 0.18)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
+  // Particle limit
   while (particles.length > MAX_PARTICLES) {
     particles.shift();
   }
   
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
-    p.x
+    p.x += p.vx *= 0.982;
+    p.y += p.vy += 0.016;
+    p.life -= p.decay;
+    
+    if (p.life > 0) {
+      const alpha = p.life / p.maxLife;
+      ctx.save();
+      ctx.globalAlpha = alpha * alpha; // Quadratic fade for realism
+      
+      // Ultra realistic glow
+      const glowSize = p.size * 3;
+      ctx.shadowBlur = glowSize * 2;
+      ctx.shadowColor = p.color;
+      
+      ctx.fillStyle = p.color;
+      
+      if (p.isHeart) {
+        drawUltraRealisticHeart(ctx, p.x, p.y, p.size);
+      } else {
+        // Realistic star/sparkle effect
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Inner glow highlight
+        ctx.shadowBlur = glowSize * 0.5;
+        ctx.globalCompositeOperation = 'screen';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      
+      ctx.restore();
+    } else {
+      particles.splice(i, 1);
+    }
+  }
+}
+
+function infiniteCelebration() {
+  // Fireworks continue forever via spawnContinuousFireworks()
+}
+
+// 🔐 PASSWORD UNLOCK (FIXED 3D HEARTS)
+function unlock() {
+  const p = document.getElementById("pass").value.toLowerCase().trim();
+  const error = document.getElementById("error");
+  const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
+  
+  if (secrets.includes(p)) {
+    // 🎵 START MUSIC
+    audioContext.resume();
+    audio.play().catch(e => console.log('Music ready'));
+    
+    // 🔥 IMMEDIATE 3D HEARTS RAIN + FIREWORKS
+    start3DHeartsRain();
+    fireworksActive = true;
+    
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("startScreen").classList.remove("hidden");
+    error.textContent = "";
+  } else {
+    error.textContent = "❤️ Whisper our special words... 💕";
+    document.getElementById("pass").style.borderColor = "#ff6b9d";
+    setTimeout(() => document.getElementById("pass").style.borderColor = "#ff4d6d", 500);
+    document.getElementById("pass").value = "";
+  }
+}
+
+// EVENT HANDLERS
+document.getElementById("startBtn").onclick = () => {
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("content").classList.remove("hidden");
+  createHearts();
+};
+
+document.getElementById("noBtn").onmouseover = () => {
+  const btn = document.getElementById("noBtn");
+  btn.style.position = 'fixed';
+  btn.style.top = (Math.random() * 60 + 10) + "vh";
+  btn.style.left = (Math.random() * 60 + 10) + "vw";
+  btn.style.transform = `rotate(${Math.random() * 360}deg)`;
+  btn.style.zIndex = '20';
+};
+
+document.getElementById("yesBtn").onclick = () => {
+  document.getElementById("content").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+  
+  setTimeout(() => {
+    document.getElementById("loveYouMsg").style.display = "block";
+    document.getElementById("foreverMsg").style.display = "block";
+  }, 500);
+  
+  setTimeout(() => {
+    document.getElementById("perfectMsg").style.display = "block";
+  }, 2000);
+  
+  infiniteCelebration();
+};
+
+// START ANIMATION
+animate();
+</script>
+</body>
+</html>
