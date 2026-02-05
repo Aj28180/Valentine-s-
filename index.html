@@ -88,6 +88,8 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   font-weight: 700;
   margin: 20px 0;
 }
+
+/* 🪶 FEATHER TYPING ANIMATION */
 #perfectMsg {
   font-size: clamp(18px, 3vw, 24px);
   color: #ffd1dc;
@@ -95,6 +97,40 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   max-width: 600px;
   margin: 0 auto 30px;
   line-height: 1.6;
+  overflow: hidden;
+  border-right: 3px solid transparent;
+}
+#perfectMsg::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 28px;
+  background: linear-gradient(to bottom, #ff69b4, #ff1744);
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: featherBlink 1s infinite;
+  box-shadow: 0 0 10px #ff69b4;
+}
+@keyframes featherBlink {
+  0%, 50% { opacity: 1; transform: translateY(-50%) scaleY(1); }
+  51%, 100% { opacity: 0; transform: translateY(-50%) scaleY(0.3); }
+}
+.typing-text {
+  display: inline-block;
+  border-right: none;
+}
+.feather-cursor {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url('image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff69b4"><path d="M20.71 5.62l-2.34-2.34a1 1 0 0 0-1.41 0l-3.38 3.38-1.35-1.35a1 1 0 0 0-1.41 0L11 8.59l2.12 2.13a1 1 0 0 0 1.41 0L17.41 8l1.83 1.83a1 1 0 0 0 1.41 0l1.86-1.86a1 1 0 0 0-.01-1.41zM5 17.5l1.41-1.41L10 20.41l-2.88 2.89a1 1 0 0 1-1.41 0L3 21.41a1 1 0 0 1 0-1.41L5 17.5zm14.46-8.46L21 9.41l-4.46 4.46-2.12-2.12 4.46-4.46 1.58 1.58z"/></svg>') center/contain no-repeat;
+  animation: writeFeather 0.3s ease-in-out infinite alternate;
+  margin-left: -8px;
+}
+@keyframes writeFeather {
+  0% { transform: translateY(0) rotate(-5deg); }
+  100% { transform: translateY(-2px) rotate(3deg); }
 }
 
 #musicBtn { display: none; }
@@ -140,15 +176,11 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   </div>
 </div>
 
-<!-- 💖 FINAL -->
+<!-- 💖 FINAL (REMOVED "Bhumika & Ankush - Forever Entwined ❤️") -->
 <div id="final" class="center hidden">
   <div id="loveYouMsg" class="neon" style="display:none;">I love you Babe 💋💋💋💋💋</div>
-  <div class="neon">Bhumika & Ankush - Forever Entwined ❤️</div>
-  <div id="perfectMsg" style="display:none;">
-    My beautiful Bhumika, today you made me the happiest man alive. 
-    From this moment forward, every heartbeat, every breath, every dream will be for you. 
-    Together we'll create a lifetime of magical memories, endless laughter, and unbreakable love. 
-    You're my soulmate, my partner in every adventure, my forever home. 💍✨
+  <div id="perfectMsg">
+    <span class="typing-text" id="typingText"></span><span class="feather-cursor"></span>
   </div>
   <p style="margin-top: 30px;">Our love story just became legendary! 💫</p>
 </div>
@@ -170,6 +202,25 @@ analyser.fftSize = 256;
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
+// 🪶 FEATHER TYPING FUNCTION
+function typeWriter(element, text, speed = 80) {
+  let i = 0;
+  element.innerHTML = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      // Remove feather cursor after typing complete
+      element.nextElementSibling.style.display = 'none';
+      document.getElementById('perfectMsg').style.borderRight = 'none';
+    }
+  }
+  type();
+}
+
 // 🔥 3D RED HEARTS SLOW BLAST after password
 let heartsRainActive = false;
 function create3DHeartsSlowBlast() {
@@ -177,12 +228,10 @@ function create3DHeartsSlowBlast() {
   const heartsBg = document.getElementById('heartsBg');
   
   function blastHearts() {
-    // Slow burst from center
     for(let i = 0; i < 8; i++) {
       const heart = document.createElement('div');
       heart.innerHTML = '💖';
       const angle = (i / 8) * Math.PI * 2;
-      const distance = 100 + Math.random() * 100;
       
       heart.style.cssText = `
         position: absolute;
@@ -196,11 +245,9 @@ function create3DHeartsSlowBlast() {
         animation: slowHeartBlast 6s ease-out forwards;
       `;
       heartsBg.appendChild(heart);
-      
       setTimeout(() => heart.remove(), 6000);
     }
     
-    // Continue slow raining
     setTimeout(() => {
       if(heartsRainActive) {
         const heart = document.createElement('div');
@@ -220,7 +267,6 @@ function create3DHeartsSlowBlast() {
     }, 2000);
   }
   
-  // Initial blast + continuous slow rain
   blastHearts();
   setInterval(() => {
     if(heartsRainActive) blastHearts();
@@ -230,24 +276,12 @@ function create3DHeartsSlowBlast() {
 const slowRainStyle = document.createElement('style');
 slowRainStyle.textContent = `
   @keyframes slowHeartBlast {
-    0% { 
-      transform: translate(-50%, -50%) scale(1) rotate(0deg); 
-      opacity: 1; 
-    }
-    100% { 
-      transform: translate(calc(var(--x) * 200px), calc(var(--y) * 200px)) scale(0.2) rotate(720deg); 
-      opacity: 0; 
-    }
+    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translate(calc(var(--x) * 200px), calc(var(--y) * 200px)) scale(0.2) rotate(720deg); opacity: 0; }
   }
   @keyframes slowRain3D {
-    0% { 
-      transform: translateY(-50px) perspective(600px) rotateX(0deg) rotateY(0deg) scale(1); 
-      opacity: 1; 
-    }
-    100% { 
-      transform: translateY(150vh) perspective(600px) rotateX(180deg) rotateY(360deg) scale(0.4); 
-      opacity: 0; 
-    }
+    0% { transform: translateY(-50px) perspective(600px) rotateX(0deg) rotateY(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(150vh) perspective(600px) rotateX(180deg) rotateY(360deg) scale(0.4); opacity: 0; }
   }
 `;
 document.head.appendChild(slowRainStyle);
@@ -273,11 +307,8 @@ function unlock() {
   const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
   if (secrets.includes(p)) {
-    // 🎵 AUTO MUSIC START
     audioContext.resume();
     audio.play().catch(e => console.log('Music ready'));
-    
-    // 🔥 START 3D RED HEARTS SLOW BLAST
     create3DHeartsSlowBlast();
     
     document.getElementById("lock").classList.add("hidden");
@@ -307,25 +338,27 @@ document.getElementById("noBtn").onmouseover = () => {
   btn.style.zIndex = '20';
 };
 
+// 🔥 YES BUTTON WITH FEATHER TYPING
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
-  celebrationFireworksActive = true;
   
   setTimeout(() => {
     document.getElementById("loveYouMsg").style.display = "block";
   }, 500);
   
   setTimeout(() => {
-    document.getElementById("perfectMsg").style.display = "block";
+    const typingText = document.getElementById("typingText");
+    const finalMessage = `My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat, every breath, every dream will be for you. Together we'll create a lifetime of magical memories, endless laughter, and unbreakable love. You're my soulmate, my partner in every adventure, my forever home. 💍✨`;
+    typeWriter(typingText, finalMessage, 75);
   }, 2000);
 };
 
-// 🔥 ULTRA HIGH QUALITY FIREWORKS - CONTINUOUS TILL END
+// 🔥 FIREWORKS
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d", { alpha: true });
 let particles = [], time = 0;
-const MAX_PARTICLES = 2000; // Ultra high quality
+const MAX_PARTICLES = 2000;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -335,10 +368,7 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 function getPremiumRedFireworkColor() {
-  const shades = [
-    '#ff1744', '#ff4081', '#e91e63', '#f48fb1', '#ec407a', '#ff69b4',
-    '#ff3366', '#ff1a4d', '#cc0f39', '#990d2e'
-  ];
+  const shades = ['#ff1744', '#ff4081', '#e91e63', '#f48fb1', '#ec407a', '#ff69b4', '#ff3366', '#ff1a4d', '#cc0f39', '#990d2e'];
   return shades[Math.floor(Math.random() * shades.length)];
 }
 
@@ -346,14 +376,9 @@ function createHeartParticle(x, y) {
   const angle = Math.random() * Math.PI * 2;
   const speed = Math.random() * 10 + 3;
   particles.push({
-    x, y,
-    vx: Math.cos(angle) * speed * 0.8,
-    vy: Math.sin(angle) * speed * 0.8,
-    life: 180,
-    decay: 0.008 + Math.random() * 0.005,
-    size: 2.2 + Math.random() * 4,
-    color: getPremiumRedFireworkColor(),
-    isHeart: true
+    x, y, vx: Math.cos(angle) * speed * 0.8, vy: Math.sin(angle) * speed * 0.8,
+    life: 180, decay: 0.008 + Math.random() * 0.005, size: 2.2 + Math.random() * 4,
+    color: getPremiumRedFireworkColor(), isHeart: true
   });
 }
 
@@ -363,107 +388,30 @@ function createFirework(x, y, count = 200) {
       const angle = (i / count) * Math.PI * 2;
       const speed = 2 + Math.random() * 12;
       particles.push({
-        x, y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 1,
-        life: 160,
-        decay: 0.01 + Math.random() * 0.007,
-        size: 2.5 + Math.random() * 5,
+        x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 1,
+        life: 160, decay: 0.01 + Math.random() * 0.007, size: 2.5 + Math.random() * 5,
         color: getPremiumRedFireworkColor()
       });
     }
   }
 }
 
-function textFireworks() {
-  const text = "Bhumika ❤️ Ankush Forever";
-  const temp = document.createElement("canvas");
-  const tctx = temp.getContext("2d");
-  temp.width = 1200; temp.height = 300;
-  tctx.fillStyle = "#fff";
-  tctx.font = "bold 85px Georgia";
-  tctx.textAlign = "center"; tctx.textBaseline = "middle";
-  tctx.fillText(text, 600, 150);
-  
-  const data = tctx.getImageData(0, 0, 1200, 300).data;
-  for (let y = 0; y < 300; y += 3) {
-    for (let x = 0; x < 1200; x += 3) {
-      if (data[(y * 1200 + x) * 4 + 3] > 128 && particles.length < MAX_PARTICLES) {
-        createFirework(x + canvas.width/2 - 600, y + canvas.height/2 - 150, 6);
-      }
-    }
-  }
-}
-
-function createMassiveConfettiBurst() {
-  if (celebrationFireworksActive) {
-    for (let i = 0; i < 20; i++) {
-      if (particles.length < MAX_PARTICLES) {
-        createFirework(
-          Math.random() * canvas.width, 
-          Math.random() * canvas.height * 0.4, 
-          180
-        );
-        createHeartParticle(Math.random() * canvas.width, canvas.height * 0.6);
-      }
-    }
-  }
-}
-
-let celebrationActive = false;
-function infiniteCelebration() {
-  celebrationActive = true;
-  celebrationFireworksActive = true;
-  textFireworks();
-  setInterval(createMassiveConfettiBurst, 400);
-  
-  // Continuous fireworks during celebration
-  setInterval(() => {
-    if (celebrationFireworksActive && particles.length < MAX_PARTICLES * 0.7) {
-      createFirework(
-        Math.random() * canvas.width * 0.8 + canvas.width * 0.1,
-        canvas.height * 0.2,
-        250
-      );
-    }
-  }, 800);
-}
-
-function drawHeart(ctx, x, y, size) {
-  ctx.beginPath();
-  ctx.moveTo(x, y);
-  ctx.bezierCurveTo(x, y - size/4, x - size/2, y - size/2, x, y - size);
-  ctx.bezierCurveTo(x + size/2, y - size/2, x, y - size/4, x, y);
-  ctx.lineTo(x, y);
-  ctx.closePath();
-}
-
 function animate() {
   time++;
   requestAnimationFrame(animate);
   
-  // Continuous beat-sync fireworks
   if (!audio.paused && particles.length < MAX_PARTICLES * 0.85) {
     analyser.getByteFrequencyData(dataArray);
     const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
-    
     if (avg > 0.2 * 255) {
-      createFirework(
-        Math.random() * canvas.width, 
-        canvas.height * 0.25, 
-        220
-      );
+      createFirework(Math.random() * canvas.width, canvas.height * 0.25, 220);
     }
   }
   
-  // Ultra smooth trail effect
   ctx.fillStyle = "rgba(7, 0, 15, 0.15)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  // Particle limit
-  while (particles.length > MAX_PARTICLES) {
-    particles.shift();
-  }
+  while (particles.length > MAX_PARTICLES) particles.shift();
   
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
@@ -475,27 +423,26 @@ function animate() {
     if (p.life > 0) {
       ctx.save();
       ctx.globalAlpha = Math.pow(p.life / 180, 2);
-      
-      // Premium glow effect
       ctx.shadowBlur = 25 + p.life * 0.2;
       ctx.shadowColor = p.color;
-      
       ctx.translate(p.x, p.y);
       
       if (p.isHeart) {
-        drawHeart(ctx, 0, 0, p.size * 1.6);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(0, -p.size/4, -p.size/2, -p.size/2, 0, -p.size);
+        ctx.bezierCurveTo(p.size/2, -p.size/2, 0, -p.size/4, 0, 0);
+        ctx.lineTo(0, 0);
+        ctx.closePath();
       } else {
         ctx.beginPath();
         ctx.arc(0, 0, p.size, 0, Math.PI * 2);
         ctx.fill();
-        
-        // Inner glow circle
         ctx.shadowBlur = 12;
         ctx.beginPath();
         ctx.arc(0, 0, p.size * 0.4, 0, Math.PI * 2);
         ctx.fill();
       }
-      
       ctx.shadowBlur = 0;
       ctx.fillStyle = p.color;
       ctx.fill();
@@ -505,29 +452,10 @@ function animate() {
     }
   }
   
-  // Continuous celebration particles
-  if (celebrationFireworksActive && particles.length < MAX_PARTICLES && Math.random() < 0.5) {
-    createHeartParticle(
-      Math.random() * canvas.width, 
-      canvas.height * 0.85
-    );
+  if (document.getElementById("final").classList.contains("hidden") === false && particles.length < MAX_PARTICLES && Math.random() < 0.5) {
+    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.85);
   }
 }
-
-// Initialize celebration on yes click
-document.getElementById("yesBtn").onclick = () => {
-  document.getElementById("content").classList.add("hidden");
-  document.getElementById("final").classList.remove("hidden");
-  infiniteCelebration();
-  
-  setTimeout(() => {
-    document.getElementById("loveYouMsg").style.display = "block";
-  }, 500);
-  
-  setTimeout(() => {
-    document.getElementById("perfectMsg").style.display = "block";
-  }, 2000);
-};
 
 animate();
 </script>
