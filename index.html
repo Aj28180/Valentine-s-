@@ -8,7 +8,6 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  background: radial-gradient(circle at 20% 20%, #2b0000, #1a0000 40%, #000);
   color: white;
   overflow: hidden;
   height: 100vh;
@@ -85,23 +84,91 @@ body {
 .center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 90%; }
 .hidden { display: none; }
 
+/* ❤️ ROMANTIC PASSWORD BACKGROUND */
+#lock {
+  background: 
+    linear-gradient(rgba(43, 0, 0, 0.85), rgba(26, 0, 0, 0.9)),
+    /* Romantic rose pattern */
+    radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(255, 105, 180, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 20, 147, 0.2) 0%, transparent 50%);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 
+    0 20px 60px rgba(255, 20, 147, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#lock::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Subtle heart pattern */
+    radial-gradient(circle at 15% 15%, rgba(255, 105, 180, 0.15) 1px, transparent 1px),
+    radial-gradient(circle at 85% 85%, rgba(255, 182, 193, 0.15) 1px, transparent 1px),
+    /* Romantic vignette */
+    radial-gradient(ellipse 100% 100% at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+  border-radius: 25px;
+  z-index: -1;
+}
+
+#lock h2 {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 25px;
+  font-size: clamp(24px, 5vw, 32px);
+}
+
+#pass {
+  padding: 18px;
+  font-size: 22px;
+  border-radius: 35px;
+  border: 3px solid rgba(255, 105, 180, 0.6);
+  margin: 20px;
+  width: clamp(300px, 45vw, 380px);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffdbac;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(255, 20, 147, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+}
+#pass:focus {
+  border-color: #ff69b4;
+  box-shadow: 
+    0 12px 40px rgba(255, 105, 180, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+}
+#pass::placeholder {
+  color: rgba(255, 219, 172, 0.8);
+}
+
 button {
-  padding: 12px 28px; font-size: 18px; font-weight: bold;
-  border: none; border-radius: 30px; margin: 8px; cursor: pointer;
+  padding: 15px 35px; 
+  font-size: 20px; 
+  font-weight: bold;
+  border: none; 
+  border-radius: 35px; 
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 6px 20px rgba(255, 23, 68, 0.4);
+  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
   display: inline-block;
+  background: linear-gradient(135deg, #ff69b4, #ff1493, #ff1744);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 button:hover {
-  transform: translateY(-2px) scale(1.05); box-shadow: 0 12px 30px rgba(255, 23, 68, 0.7);
-}
-#startBtn, #yesBtn { 
-  background: linear-gradient(135deg, #4CAF50, #45a049, #66BB6A); color: white; 
-  box-shadow: 0 0 25px rgba(76, 175, 80, 0.6);
-}
-#noBtn { 
-  background: linear-gradient(135deg, #f44336, #d32f2f, #ef5350); color: white; 
-  box-shadow: 0 0 25px rgba(244, 67, 54, 0.6);
+  transform: translateY(-3px) scale(1.08); 
+  box-shadow: 0 15px 45px rgba(255, 105, 180, 0.6);
 }
 
 .loveMsg {
@@ -117,7 +184,6 @@ button:hover {
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 
-/* TYPING MESSAGE CONTAINERS */
 .typing-container {
   margin: 25px 0;
   min-height: 40px;
@@ -169,10 +235,10 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <div id="heartsBg" class="hearts-bg"></div>
 <div id="rosePetals" class="rose-petals"></div>
 
-<!-- 🔐 PASSWORD -->
+<!-- 🔐 ROMANTIC PASSWORD SCREEN -->
 <div id="lock" class="center">
-  <h2 style="font-size: clamp(24px, 5vw, 32px);">Enter Our Secret Password 🔐</h2>
-  <input type="password" id="pass" style="padding: 15px; font-size: 20px; border-radius: 30px; border: 2px solid #ff4d6d; margin: 15px; width: clamp(280px, 40vw, 350px); background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px);" placeholder="Our special words...">
+  <h2>Enter Our Secret Password 🔐</h2>
+  <input type="password" id="pass" placeholder="Our special words...">
   <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
   <p id="error" style="color: #ff6b9d; font-size: 18px;"></p>
 </div>
@@ -200,19 +266,14 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   </div>
 </div>
 
-<!-- 💖 FINAL - REORDERED MESSAGES WITH TYPING -->
+<!-- 💖 FINAL -->
 <div id="final" class="center hidden">
-  <!-- 1st: Thank You Message (TOP) -->
   <div class="typing-container">
     <span class="typing-text" id="thanksTyping"></span><span class="feather-cursor" id="cursor1"></span>
   </div>
-  
-  <!-- 2nd: Love Letter (MIDDLE) -->
   <div class="typing-container">
     <span class="typing-text" id="letterTyping"></span><span class="feather-cursor" id="cursor2"></span>
   </div>
-  
-  <!-- 3rd: I Love You Babe (BOTTOM - LAST) -->
   <div class="typing-container">
     <span class="typing-text" id="loveTyping"></span><span class="feather-cursor" id="cursor3"></span>
   </div>
@@ -221,7 +282,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 <canvas id="fireworks"></canvas>
 
 <script>
-// MUSIC SETUP
+// [Previous JavaScript remains exactly the same - no changes needed]
 const audio = document.getElementById('loveSong');
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
@@ -232,12 +293,10 @@ analyser.fftSize = 256;
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
-// 🌹 ROSE PETALS
 let rosePetalsActive = false;
 function createRosePetals() {
   rosePetalsActive = true;
   const roseContainer = document.getElementById('rosePetals');
-  
   function spawnPetal() {
     if (!rosePetalsActive) return;
     const petal = document.createElement('div');
@@ -256,29 +315,23 @@ function createRosePetals() {
   spawnPetal();
 }
 
-// 🪶 UNIVERSAL TYPING FUNCTION
 function typeWriter(element, text, speed = 80, callback) {
   let i = 0;
   element.innerHTML = '';
-  
   function type() {
     if (i < text.length) {
       element.innerHTML += text.charAt(i);
       i++;
       setTimeout(type, speed);
     } else {
-      // Hide cursor after typing
       const cursor = element.nextElementSibling;
       if (cursor) cursor.style.display = 'none';
-      
-      // Continue sequence
       if (callback) callback();
     }
   }
   type();
 }
 
-// 3D HEARTS
 let heartsRainActive = false;
 function create3DHeartsSlowBlast() {
   heartsRainActive = true;
@@ -307,7 +360,6 @@ function create3DHeartsSlowBlast() {
   setInterval(() => { if(heartsRainActive) blastHearts(); }, 4000);
 }
 
-// REGULAR HEARTS
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
@@ -320,7 +372,6 @@ function createHearts() {
   }, 300);
 }
 
-// PASSWORD
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
@@ -336,12 +387,11 @@ function unlock() {
   } else {
     error.textContent = "❤️ Whisper our special words... 💕";
     document.getElementById("pass").style.borderColor = "#ff6b9d";
-    setTimeout(() => document.getElementById("pass").style.borderColor = "#ff4d6d", 500);
+    setTimeout(() => document.getElementById("pass").style.borderColor = "rgba(255, 105, 180, 0.6)", 500);
     document.getElementById("pass").value = "";
   }
 }
 
-// EVENTS
 document.getElementById("startBtn").onclick = () => {
   document.getElementById("startScreen").classList.add("hidden");
   document.getElementById("content").classList.remove("hidden");
@@ -357,45 +407,24 @@ document.getElementById("noBtn").onmouseover = () => {
   btn.style.zIndex = '20';
 };
 
-// 🔥 PERFECT SEQUENCED TYPING (TOP → BOTTOM → LAST)
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
-  
-  // 🌹 START PETALS
   createRosePetals();
-  
-  // 1. Thank You FIRST (TOP)
   setTimeout(() => {
-    typeWriter(
-      document.getElementById("thanksTyping"), 
-      "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 
-      90,
-      () => {
-        // 2. Love Letter SECOND (MIDDLE)
-        setTimeout(() => {
-          typeWriter(
-            document.getElementById("letterTyping"), 
-            "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat, every breath, every dream will be for you. Together we'll create a lifetime of magical memories, endless laughter, and unbreakable love. You're my soulmate, my partner in every adventure, my forever home. 💍✨", 
-            75,
-            () => {
-              // 3. I Love You LAST (BOTTOM)
-              setTimeout(() => {
-                typeWriter(
-                  document.getElementById("loveTyping"), 
-                  "I love you Babe 💋💋💋💋💋", 
-                  100
-                );
-              }, 800);
-            }
-          );
-        }, 600);
-      }
-    );
+    typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 90, () => {
+      setTimeout(() => {
+        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat, every breath, every dream will be for you. Together we'll create a lifetime of magical memories, endless laughter, and unbreakable love. You're my soulmate, my partner in every adventure, my forever home. 💍✨", 75, () => {
+          setTimeout(() => {
+            typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 100);
+          }, 800);
+        });
+      }, 600);
+    });
   }, 300);
 };
 
-// FIREWORKS (unchanged)
+// Fireworks code [unchanged from previous]
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d", { alpha: true });
 let particles = [], time = 0;
@@ -440,7 +469,6 @@ function createFirework(x, y, count = 200) {
 function animate() {
   time++;
   requestAnimationFrame(animate);
-  
   if (!audio.paused && particles.length < MAX_PARTICLES * 0.85) {
     analyser.getByteFrequencyData(dataArray);
     const avg = dataArray.reduce((a, b) => a + b) / bufferLength;
@@ -448,26 +476,21 @@ function animate() {
       createFirework(Math.random() * canvas.width, canvas.height * 0.25, 220);
     }
   }
-  
   ctx.fillStyle = "rgba(7, 0, 15, 0.15)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
   while (particles.length > MAX_PARTICLES) particles.shift();
-  
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
     p.x += (p.vx *= 0.987);
     p.y += (p.vy += 0.015);
     p.life -= p.decay;
     p.size *= 0.991;
-    
     if (p.life > 0) {
       ctx.save();
       ctx.globalAlpha = Math.pow(p.life / 180, 2);
       ctx.shadowBlur = 25 + p.life * 0.2;
       ctx.shadowColor = p.color;
       ctx.translate(p.x, p.y);
-      
       if (p.isHeart) {
         ctx.beginPath();
         ctx.moveTo(0, 0);
@@ -492,7 +515,6 @@ function animate() {
       particles.splice(i, 1);
     }
   }
-  
   if (document.getElementById("final").classList.contains("hidden") === false && particles.length < MAX_PARTICLES && Math.random() < 0.5) {
     createHeartParticle(Math.random() * canvas.width, canvas.height * 0.85);
   }
