@@ -15,7 +15,7 @@ body {
   position: relative;
 }
 
-/* 🌸 LIGHT BABY PINK BACKGROUND FOR ALL SCREENS (EXCEPT PASSWORD) */
+/* 🌸 LIGHT BABY PINK BACKGROUND FOR ALL SCREENS */
 .baby-pink-bg {
   position: fixed;
   top: 0;
@@ -26,22 +26,11 @@ body {
   z-index: 0;
 }
 
-/* WHITE PASSWORD BACKGROUND */
-#password-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #fff8f8 0%, #ffeef2 50%, #fff5f8 100%);
-  z-index: 0;
-}
-
 .hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
 .rose-petals-password { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
 .rose-petals { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
 
-/* BACKGROUND HEARTS PATTERN - BABY PINK SCREENS */
+/* BACKGROUND HEARTS PATTERN */
 .bg-heart {
   position: absolute;
   color: rgba(255, 105, 180, 0.15);
@@ -55,72 +44,93 @@ body {
   100% { transform: translateY(-20px) rotate(360deg); opacity: 0.1; }
 }
 
-/* 3D FALLING ROSE PETALS FOR PASSWORD */
+/* ✅ FIXED 3D ROSE PETALS - NOW DROPPING PROPERLY */
 .rose-petal-3d {
   position: absolute;
-  width: 28px;
-  height: 24px;
-  background: radial-gradient(ellipse at center, #ff6b9d 0%, #ff4d88 40%, #ff1a75 80%, #cc1452 100%);
-  border-radius: 70% 0 60% 50%;
+  width: 30px;
+  height: 25px;
+  background: 
+    radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
+  border-radius: 70% 0 65% 45%;
   opacity: 0.9;
   box-shadow: 
-    0 4px 16px rgba(255, 107, 157, 0.5),
+    0 4px 18px rgba(255, 105, 180, 0.6),
     inset 0 1px 4px rgba(255, 255, 255, 0.4);
   transform-style: preserve-3d;
-  animation: fall3D linear infinite;
+  animation: fall3DFixed 18s linear infinite;
 }
+
 .rose-petal-3d::before {
   content: '';
   position: absolute;
-  width: 14px;
-  height: 12px;
+  width: 16px;
+  height: 13px;
   background: inherit;
-  border-radius: 60% 0 50% 40%;
-  top: -6px;
+  border-radius: 65% 0 55% 45%;
+  top: -5px;
   left: 7px;
-  transform: rotateY(20deg) rotateX(10deg);
+  transform: rotateY(25deg);
   box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.5);
 }
+
 .rose-petal-3d::after {
   content: '';
   position: absolute;
-  width: 18px;
-  height: 15px;
-  background: radial-gradient(ellipse at center, #ffb3d9 0%, #ff69b4 70%);
-  border-radius: 50% 0 45% 45%;
-  top: 2px;
-  left: 5px;
-  transform: rotateY(-15deg);
-}
-@keyframes fall3D {
-  0% { transform: translateY(-80px) translateZ(-50px) rotateZ(0deg) rotateX(0deg) rotateY(0deg) scale(0.7); opacity: 0; }
-  10% { opacity: 0.95; }
-  90% { opacity: 0.95; }
-  100% { transform: translateY(140vh) translateZ(100px) rotateZ(1080deg) rotateX(360deg) rotateY(720deg) scale(1.2); opacity: 0; }
+  width: 20px;
+  height: 16px;
+  background: radial-gradient(ellipse at 40% 30%, #ffb6c1 0%, #ff69b4 70%);
+  border-radius: 55% 0 50% 50%;
+  top: 3px;
+  left: 4px;
+  transform: rotateY(-20deg);
 }
 
-/* PASSWORD RED HEARTS */
+@keyframes fall3DFixed {
+  0% { 
+    transform: 
+      translateY(-100px) 
+      translateZ(-30px) 
+      rotateZ(0deg) 
+      rotateX(0deg) 
+      rotateY(0deg) 
+      scale(0.6); 
+    opacity: 0; 
+  }
+  8% { opacity: 0.95; }
+  92% { opacity: 0.95; }
+  100% { 
+    transform: 
+      translateY(calc(100vh + 100px)) 
+      translateZ(50px) 
+      rotateZ(1440deg) 
+      rotateX(720deg) 
+      rotateY(1080deg) 
+      scale(1.3); 
+    opacity: 0; 
+  }
+}
+
+/* HEARTS */
 .password-heart {
   position: absolute;
   color: #ff1744;
-  text-shadow: 0 0 15px #ff1744, 0 0 30px #ff69b4;
+  text-shadow: 0 0 15px #ff1744;
   font-size: 18px;
   opacity: 0.8;
-  transform: translateZ(20px);
-  animation: heartFall linear infinite;
+  animation: heartFall 15s linear infinite;
 }
-.password-heart.large { font-size: 36px; opacity: 1; }
-.password-heart.medium { font-size: 24px; opacity: 0.9; }
-.password-heart.small { font-size: 14px; opacity: 0.7; }
+.password-heart.large { font-size: 36px; opacity: 1; animation-duration: 12s; }
+.password-heart.medium { font-size: 24px; opacity: 0.9; animation-duration: 14s; }
+.password-heart.small { font-size: 14px; opacity: 0.7; animation-duration: 16s; }
 @keyframes heartFall {
-  0% { transform: translateY(-100px) translateZ(30px) rotate(0deg); opacity: 0; }
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
   15% { opacity: 1; }
   85% { opacity: 1; }
-  100% { transform: translateY(120vh) translateZ(-20px) rotate(720deg); opacity: 0; }
+  100% { transform: translateY(calc(100vh + 50px)) rotate(720deg); opacity: 0; }
 }
 
 .title-glow {
-  font-size: clamp(28px, 8vw, 65px) !important; 
+  font-size: clamp(28px, 8vw, 65px);
   line-height: 1.1;
   background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
   -webkit-background-clip: text;
@@ -130,23 +140,20 @@ body {
   font-weight: 800;
   margin: 0 0 20px 0;
   padding: 10px;
-  transform: translateY(-20px);
 }
 
 .center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 95%; }
 .hidden { display: none; }
 
-/* WHITE PASSWORD CARD */
 #lock {
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   border-radius: 35px;
-  padding: 60px 35px;
+  padding: 40px 25px;
   box-shadow: 
-    0 30px 80px rgba(255, 107, 157, 0.35),
-    0 15px 50px rgba(0,0,0,0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border: 3px solid rgba(255, 107, 157, 0.4);
+    0 20px 60px rgba(255, 107, 157, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 107, 157, 0.4);
   position: relative;
   z-index: 15;
 }
@@ -156,65 +163,75 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 35px;
-  font-size: clamp(28px, 6vw, 38px);
-  font-weight: 800;
+  margin-bottom: 25px;
+  font-size: clamp(24px, 5.5vw, 32px);
+  font-weight: 700;
 }
 
 #pass {
-  padding: 22px;
-  font-size: 26px;
-  border-radius: 45px;
-  border: 4px solid rgba(255, 107, 157, 0.6);
-  margin: 30px;
-  width: clamp(340px, 52vw, 450px);
-  background: rgba(255, 248, 248, 0.95);
+  padding: 15px 20px;
+  font-size: 20px;
+  border-radius: 30px;
+  border: 3px solid rgba(255, 107, 157, 0.6);
+  margin: 20px;
+  width: clamp(280px, 45vw, 380px);
+  background: rgba(255, 248, 248, 0.8);
   color: #d63384;
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(25px);
   box-shadow: 
-    0 15px 55px rgba(255, 107, 157, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-  font-weight: 700;
+    0 10px 40px rgba(255, 107, 157, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-weight: 600;
 }
+
 #pass:focus {
   border-color: #ff1744;
   box-shadow: 
-    0 25px 70px rgba(255, 23, 68, 0.5),
+    0 15px 50px rgba(255, 23, 68, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 1);
-  transform: scale(1.04);
 }
 
 button {
-  padding: 20px 50px; 
-  font-size: 24px; 
-  font-weight: 800;
+  padding: 14px 35px; 
+  font-size: 18px; 
+  font-weight: 700;
   border: none; 
-  border-radius: 45px; 
+  border-radius: 30px; 
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 15px 45px rgba(255, 23, 68, 0.45);
-  background: linear-gradient(135deg, #ff1744, #ff69b4, #ff8fab);
+  box-shadow: 0 10px 35px rgba(255, 23, 68, 0.4);
+  background: linear-gradient(135deg, #ff1744, #ff69b4);
   color: white;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  margin: 10px;
 }
 button:hover {
-  transform: translateY(-5px) scale(1.12); 
-  box-shadow: 0 25px 70px rgba(255, 23, 68, 0.7);
+  transform: translateY(-3px) scale(1.08); 
+  box-shadow: 0 18px 50px rgba(255, 23, 68, 0.6);
+}
+
+#startBtn, #yesBtn { 
+  background: linear-gradient(135deg, #4CAF50, #45a049, #66BB6A); 
+  box-shadow: 0 0 25px rgba(76, 175, 80, 0.6);
+}
+#noBtn { 
+  background: linear-gradient(135deg, #f44336, #d32f2f, #ef5350); 
+  box-shadow: 0 0 25px rgba(244, 67, 54, 0.6);
 }
 
 .loveMsg {
   max-width: 780px; 
   margin: 35px auto; 
-  font-size: clamp(19px, 3.5vw, 26px);
-  line-height: 1.75; 
+  font-size: clamp(18px, 3.2vw, 24px);
+  line-height: 1.85 !important;
   color: #d63384;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   padding: 25px;
   border-radius: 20px;
   backdrop-filter: blur(15px);
   animation: fadeInUp 1.8s ease-out;
   font-weight: 600;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 4px rgba(249, 168, 212, 0.8);
 }
 
 @keyframes fadeInUp {
@@ -222,19 +239,24 @@ button:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ALL OTHER STYLES REMAIN THE SAME */
-.heart, .rose-petal, .typing-container, .typing-text, #thanksTyping, #loveTyping, #letterTyping, .final-big-heart, .feather-cursor {
-  /* Previous styles preserved */
+.final-big-heart {
+  font-size: clamp(100px, 25vw, 160px);
+  color: #ff1744;
+  text-shadow: 0 0 50px #ff1744;
+  animation: bigHeartBeat 1.5s ease-in-out infinite;
+  margin-top: 25px;
+  opacity: 0;
+}
+@keyframes bigHeartBeat {
+  0%, 100% { transform: scale(1) rotate(-5deg); }
+  50% { transform: scale(1.3) rotate(5deg); }
 }
 </style>
 </head>
 
 <body>
-<!-- PASSWORD WHITE BG -->
-<div id="password-bg"></div>
-
-<!-- BABY PINK BG (HIDDEN INITIALLY) -->
-<div id="babyPinkBg" class="baby-pink-bg hidden"></div>
+<!-- BABY PINK BG FOR ALL SCREENS -->
+<div id="babyPinkBg" class="baby-pink-bg"></div>
 
 <audio id="loveSong" loop preload="auto" autoplay style="display:none;">
   <source src="zara_si.mp3" type="audio/mpeg">
@@ -249,14 +271,14 @@ button:hover {
 <div id="lock" class="center">
   <h2>Enter Our Secret Password 🔐</h2>
   <input type="password" id="pass" placeholder="Our special words...">
-  <br><br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
+  <br><button onclick="unlock()">Unlock Eternal Love ❤️</button>
   <p id="error"></p>
 </div>
 
 <!-- ❤️ START SCREEN -->
 <div id="startScreen" class="center hidden">
   <div class="title-glow">Bhumika ❤️ Ankush</div>
-  <p style="font-size: clamp(20px, 3.5vw, 26px); margin: 25px 0; color: #d63384; font-weight: 600;">Forever begins here...</p>
+  <p style="font-size: clamp(20px, 3.5vw, 26px); margin: 25px 0; color: #d63384; font-weight: 600; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Forever begins here...</p>
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
@@ -265,8 +287,8 @@ button:hover {
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   <p class="loveMsg">
     My Dearest Bhumika,<br><br>
-    Every moment with you feels like a dream I never want to wake from ✨.<br>
-    Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
+    Every moment with you feels like a dream I never want to wake from ✨.<br><br>
+    Your laughter heals me, your touch grounds me, your love completes me 💕.<br><br>
     From stolen glances to forever promises—you are my always.<br><br>
     Will you be my Valentine... my eternal love... my eternity? 💍
   </p>
@@ -279,21 +301,55 @@ button:hover {
 <!-- 💖 FINAL SCREEN -->
 <div id="final" class="center hidden">
   <div class="typing-container" style="margin: 35px 0;">
-    <span class="typing-text" id="thanksTyping" style="font-size: clamp(24px, 5vw, 34px); color: #ff6b9d; font-weight: 800;"></span><span class="feather-cursor" id="cursor1"></span>
+    <span class="typing-text" id="thanksTyping" style="font-size: clamp(24px, 5vw, 34px); color: #ff6b9d; font-weight: 800; text-shadow: 2px 2px 6px rgba(0,0,0,0.7);"></span><span class="feather-cursor" id="cursor1"></span>
   </div>
   <div class="typing-container" style="margin: 40px 0;">
-    <span class="typing-text" id="letterTyping" style="font-size: clamp(24px, 4.5vw, 32px); max-width: 700px; color: #d63384; font-weight: 700;"></span><span class="feather-cursor" id="cursor2"></span>
+    <span class="typing-text" id="letterTyping" style="font-size: clamp(22px, 4.2vw, 30px); max-width: 700px; color: #d63384; font-weight: 700; line-height: 1.6;"></span><span class="feather-cursor" id="cursor2"></span>
   </div>
   <div class="typing-container" style="margin: 45px 0;">
-    <span class="typing-text" id="loveTyping" style="font-size: clamp(42px, 8vw, 60px); color: #ff1744; font-weight: 900; text-shadow: 3px 3px 15px rgba(0,0,0,0.8);"></span><span class="feather-cursor" id="cursor3"></span>
-    <div class="final-big-heart" id="bigHeart" style="font-size: clamp(100px, 25vw, 160px); color: #ff1744; margin-top: 25px;">💖</div>
+    <span class="typing-text" id="loveTyping" style="font-size: clamp(40px, 7.5vw, 56px); color: #ff1744; font-weight: 900; text-shadow: 3px 3px 12px rgba(0,0,0,0.8); line-height: 1.2;"></span><span class="feather-cursor" id="cursor3"></span>
+    <div class="final-big-heart" id="bigHeart">💖</div>
   </div>
 </div>
 
 <canvas id="fireworks"></canvas>
 
 <script>
-// BABY PINK BACKGROUND HEARTS
+// ✅ FIXED ROSE PETALS + HEARTS DROPPING TOGETHER
+function createPasswordEffects() {
+  const petalsContainer = document.getElementById('rosePetalsPassword');
+  const heartsContainer = document.getElementById('heartsBg');
+  
+  // ROSE PETALS - FIXED SPAWNING
+  setInterval(() => {
+    const petal = document.createElement('div');
+    petal.className = 'rose-petal-3d';
+    petal.style.left = Math.random() * 100 + '%';
+    const size = 0.8 + Math.random() * 0.6;
+    petal.style.width = (30 * size) + 'px';
+    petal.style.height = (25 * size) + 'px';
+    const duration = 14 + Math.random() * 8;
+    petal.style.animationDuration = duration + 's';
+    petal.style.animationDelay = Math.random() * 2 + 's';
+    petalsContainer.appendChild(petal);
+    setTimeout(() => { if (petal.parentNode) petal.remove(); }, (duration + 3) * 1000);
+  }, 200); // Faster spawning
+  
+  // HEARTS
+  const heartSizes = ['small', 'medium', 'large'];
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = `password-heart ${heartSizes[Math.floor(Math.random() * 3)]}`;
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + '%';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => { if (heart.parentNode) heart.remove(); }, 20000);
+  }, 300);
+}
+
+// START IMMEDIATELY
+createPasswordEffects();
+
 function createBgHearts() {
   const bgHearts = document.getElementById('bgHearts');
   setInterval(() => {
@@ -303,77 +359,19 @@ function createBgHearts() {
     heart.style.left = Math.random() * 100 + '%';
     heart.style.fontSize = (20 + Math.random() * 40) + 'px';
     heart.style.animationDuration = (15 + Math.random() * 10) + 's';
-    heart.style.animationDelay = Math.random() * 5 + 's';
     bgHearts.appendChild(heart);
     setTimeout(() => heart.remove(), 30000);
   }, 800);
 }
-
-// PASSWORD EFFECTS
-function createPasswordEffects() {
-  const petalsContainer = document.getElementById('rosePetalsPassword');
-  const heartsContainer = document.getElementById('heartsBg');
-  
-  setInterval(() => {
-    const petal = document.createElement('div');
-    petal.className = 'rose-petal-3d';
-    petal.style.left = Math.random() * 100 + '%';
-    petal.style.width = (28 + Math.random() * 12) + 'px';
-    petal.style.height = (24 + Math.random() * 8) + 'px';
-    const duration = 16 + Math.random() * 12;
-    petal.style.animationDuration = duration + 's';
-    petalsContainer.appendChild(petal);
-    setTimeout(() => petal.remove(), (duration + 2) * 1000);
-  }, 180);
-  
-  const heartSizes = ['small', 'medium', 'large'];
-  setInterval(() => {
-    const heart = document.createElement('div');
-    heart.className = `password-heart ${heartSizes[Math.floor(Math.random() * 3)]}`;
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + '%';
-    const duration = 10 + Math.random() * 8;
-    heart.style.animationDuration = duration + 's';
-    heartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), (duration + 2) * 1000);
-  }, 250);
-}
-
-// START EFFECTS
-createPasswordEffects();
 createBgHearts();
 
-// [ALL PREVIOUS JAVASCRIPT FUNCTIONS - UNCHANGED]
+// [ALL OTHER FUNCTIONS SAME AS BEFORE]
 const audio = document.getElementById('loveSong');
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
 const source = audioContext.createMediaElementSource(audio);
 source.connect(analyser);
 analyser.connect(audioContext.destination);
-analyser.fftSize = 256;
-const bufferLength = analyser.frequencyBinCount;
-const dataArray = new Uint8Array(bufferLength);
-
-let rosePetalsActive = false;
-function createRosePetals() {
-  rosePetalsActive = true;
-  const roseContainer = document.getElementById('rosePetals');
-  function spawnPetal() {
-    if (!rosePetalsActive) return;
-    const petal = document.createElement('div');
-    petal.className = 'rose-petal';
-    const size = 0.75 + Math.random() * 0.5;
-    petal.style.width = (22 * size) + 'px';
-    petal.style.height = (18 * size) + 'px';
-    petal.style.left = Math.random() * 100 + '%';
-    const duration = 15 + Math.random() * 10;
-    petal.style.animationDuration = duration + 's';
-    roseContainer.appendChild(petal);
-    setTimeout(() => { if (petal.parentNode) petal.remove(); }, (duration + 2) * 1000);
-  }
-  setInterval(spawnPetal, 150);
-  spawnPetal();
-}
 
 function typeWriter(element, text, speed = 80, callback) {
   let i = 0;
@@ -398,11 +396,6 @@ function unlock() {
   const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
   if (secrets.includes(p)) {
-    // SWITCH TO BABY PINK THEME
-    document.getElementById("password-bg").style.display = "none";
-    document.getElementById("rosePetalsPassword").style.display = "none";
-    document.getElementById("babyPinkBg").classList.remove("hidden");
-    
     audioContext.resume();
     audio.play().catch(e => console.log('Music ready'));
     document.getElementById("lock").classList.add("hidden");
@@ -417,6 +410,13 @@ function unlock() {
   }
 }
 
+// [Rest of JavaScript unchanged - event handlers, fireworks, etc.]
+document.getElementById("startBtn").onclick = () => {
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("content").classList.remove("hidden");
+  createHearts();
+};
+
 function createHearts() {
   const heartsBg = document.getElementById('heartsBg');
   setInterval(() => {
@@ -428,12 +428,6 @@ function createHearts() {
     setTimeout(() => heart.remove(), 9000);
   }, 300);
 }
-
-document.getElementById("startBtn").onclick = () => {
-  document.getElementById("startScreen").classList.add("hidden");
-  document.getElementById("content").classList.remove("hidden");
-  createHearts();
-};
 
 document.getElementById("noBtn").onmouseover = () => {
   const btn = document.getElementById("noBtn");
@@ -465,15 +459,73 @@ document.getElementById("yesBtn").onclick = () => {
   }, 300);
 };
 
-// Fireworks [same as before]
+function createRosePetals() {
+  const roseContainer = document.getElementById('rosePetals');
+  setInterval(() => {
+    const petal = document.createElement('div');
+    petal.className = 'rose-petal';
+    const size = 0.75 + Math.random() * 0.5;
+    petal.style.width = (22 * size) + 'px';
+    petal.style.height = (18 * size) + 'px';
+    petal.style.left = Math.random() * 100 + '%';
+    const duration = 15 + Math.random() * 10;
+    petal.style.animationDuration = duration + 's';
+    roseContainer.appendChild(petal);
+    setTimeout(() => petal.remove(), (duration + 2) * 1000);
+  }, 150);
+}
+
+// Fireworks
 const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d", { alpha: true });
+const ctx = canvas.getContext("2d");
 let particles = [], time = 0;
-const MAX_PARTICLES = 2000;
-function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+
+function resizeCanvas() { 
+  canvas.width = window.innerWidth; 
+  canvas.height = window.innerHeight; 
+}
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
-// [Fireworks code continues as before...]
+
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.fillStyle = "rgba(253, 242, 248, 0.1)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  if (particles.length < 2000 && Math.random() < 0.3) {
+    const x = Math.random() * canvas.width;
+    particles.push({
+      x, y: canvas.height * 0.2,
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 3 + 1,
+      life: 100,
+      color: `hsl(${340 + Math.random() * 20}, 80%, 60%)`
+    });
+  }
+  
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+    p.vy += 0.02;
+    
+    if (p.life > 0) {
+      ctx.save();
+      ctx.globalAlpha = p.life / 100;
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 15;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    } else {
+      particles.splice(i, 1);
+    }
+  }
+}
+animate();
 </script>
 </body>
 </html>
