@@ -54,16 +54,22 @@ button:hover {
   transform: translateY(-3px) scale(1.08); box-shadow: 0 15px 35px rgba(255, 23, 68, 0.7);
 }
 #startBtn, #yesBtn { 
-  background: linear-gradient(135deg, #ff1744, #e91e63, #ff4081); color: white; 
-  box-shadow: 0 0 30px rgba(255, 23, 68, 0.6);
+  background: linear-gradient(135deg, #4CAF50, #45a049, #66BB6A); color: white; 
+  box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
 }
 #noBtn { 
-  background: linear-gradient(135deg, #666, #444); color: white; position: absolute; z-index: 15;
+  background: linear-gradient(135deg, #f44336, #d32f2f, #ef5350); color: white; position: absolute; z-index: 15;
+  padding: 16px 36px !important; font-size: 20px !important;
+}
+#yesBtn {
+  padding: 16px 36px !important; font-size: 20px !important;
 }
 
 .loveMsg {
   max-width: 700px; margin: 25px auto; font-size: clamp(17px, 2.8vw, 22px);
   line-height: 1.8; color: #ffd1dc; animation: fadeInUp 1.2s ease-out;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
@@ -73,6 +79,21 @@ button:hover {
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 #final h1 { font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px; }
 #final p { font-size: clamp(20px, 4vw, 28px); opacity: 0.9; }
+#loveYouMsg { 
+  font-size: clamp(28px, 5vw, 40px) !important; 
+  color: #ff69b4; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+  font-weight: 700;
+  margin: 20px 0;
+}
+#perfectMsg {
+  font-size: clamp(18px, 3vw, 24px);
+  color: #ffd1dc;
+  font-weight: 500;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
 
 #musicBtn { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); z-index:25; opacity:0; transition:opacity 0.5s; }
 </style>
@@ -119,8 +140,15 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 
 <!-- 💖 FINAL -->
 <div id="final" class="center hidden">
+  <div id="loveYouMsg" class="neon" style="display:none;">I love you Babe 💋💋💋💋💋</div>
   <h1 class="neon">SHE SAID YES! 🎉💖</h1>
   <div class="neon">Bhumika & Ankush - Forever Entwined ❤️</div>
+  <div id="perfectMsg" style="display:none;">
+    My beautiful Bhumika, today you made me the happiest man alive. 
+    From this moment forward, every heartbeat, every breath, every dream will be for you. 
+    Together we'll create a lifetime of magical memories, endless laughter, and unbreakable love. 
+    You're not just my wife—you're my soulmate, my partner in every adventure, my forever home. 💍✨
+  </div>
   <p style="margin-top: 30px;">Our love story just became legendary! 💫</p>
 </div>
 
@@ -223,7 +251,7 @@ function createBeatFirework() {
     if (avg > beatThreshold * 80) {
       const x = Math.random() * canvas.width;
       const y = canvas.height * 0.3;
-      createFirework(x, y, 150);
+      createFirework(x, y, 80); // Reduced particles for iPhone
       createHeartParticle(x, canvas.height * 0.7);
       beatHoldTime = audio.currentTime;
     }
@@ -237,7 +265,7 @@ function musicPatternFireworks() {
     const patternIndex = Math.floor(beatPosition) % beatTimes.length;
     
     if (Math.abs(beatPosition - beatTimes[patternIndex] * 10) < 0.3) {
-      createFirework(canvas.width * 0.5, canvas.height * 0.2, 200);
+      createFirework(canvas.width * 0.5, canvas.height * 0.2, 100); // Reduced particles
     }
   }
 }
@@ -258,13 +286,26 @@ document.getElementById("noBtn").onmouseover = () => {
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
+  
+  // Show I love you message first
+  setTimeout(() => {
+    document.getElementById("loveYouMsg").style.display = "block";
+  }, 500);
+  
+  // Then show perfect message
+  setTimeout(() => {
+    document.getElementById("perfectMsg").style.display = "block";
+  }, 2000);
+  
   infiniteCelebration();
 };
 
-// 🔥 FIREWORKS ENGINE (enhanced with beat sync)
+// 🔥 FIREWORKS ENGINE (OPTIMIZED FOR IPHONE)
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 let particles = [], time = 0, celebrationMode = false;
+let frameSkip = 0; // iPhone performance optimization
+const MAX_PARTICLES = 400; // Reduced for mobile
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -273,36 +314,37 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-function getRomanticColor() {
-  const hue = 300 + (Math.sin(time * 0.02) * 20) + Math.random() * 40;
-  return `hsl(${hue}, ${95 + Math.random()*5}%, ${50 + Math.random()*20}%)`;
+function getRedFireworkColor() {
+  const shades = ['#ff1744', '#ff4081', '#e91e63', '#f48fb1', '#ec407a'];
+  return shades[Math.floor(Math.random() * shades.length)];
 }
 
 function createHeartParticle(x, y) {
   const angle = Math.random() * Math.PI * 2;
-  const speed = Math.random() * 8 + 2;
+  const speed = Math.random() * 6 + 1.5; // Slower for smoothness
   particles.push({
     x, y,
-    vx: Math.cos(angle) * speed * 0.7,
-    vy: Math.sin(angle) * speed * 0.7,
-    life: 120,
-    decay: 0.012 + Math.random() * 0.008,
-    size: 1.5 + Math.random() * 2.5,
-    color: getRomanticColor(),
+    vx: Math.cos(angle) * speed * 0.6,
+    vy: Math.sin(angle) * speed * 0.6,
+    life: 90, // Shorter life
+    decay: 0.015 + Math.random() * 0.01,
+    size: 1.2 + Math.random() * 1.8,
+    color: getRedFireworkColor(),
     isHeart: true
   });
 }
 
-function createFirework(x, y, count = 120) {
-  for (let i = 0; i < count; i++) {
+function createFirework(x, y, count = 80) { // Reduced default count
+  const actualCount = Math.min(count, 60); // Cap for iPhone
+  for (let i = 0; i < actualCount; i++) {
     particles.push({
       x, y,
-      vx: (Math.random() - 0.5) * 12,
-      vy: (Math.random() - 0.5) * 12 - 2,
-      life: 110,
-      decay: 0.015 + Math.random() * 0.01,
-      size: 1.8 + Math.random() * 3,
-      color: getRomanticColor()
+      vx: (Math.random() - 0.5) * 10, // Slower particles
+      vy: (Math.random() - 0.5) * 10 - 1.5,
+      life: 90, // Shorter life
+      decay: 0.018 + Math.random() * 0.012,
+      size: 1.5 + Math.random() * 2.2,
+      color: getRedFireworkColor()
     });
   }
 }
@@ -311,33 +353,35 @@ function textFireworks() {
   const text = "Bhumika ❤️ Ankush Forever";
   const temp = document.createElement("canvas");
   const tctx = temp.getContext("2d");
-  temp.width = 1000; temp.height = 250;
+  temp.width = 800; temp.height = 200; // Smaller canvas
   tctx.fillStyle = "#fff";
-  tctx.font = "bold 70px Georgia";
+  tctx.font = "bold 55px Georgia"; // Smaller font
   tctx.textAlign = "center"; tctx.textBaseline = "middle";
-  tctx.fillText(text, 500, 125);
+  tctx.fillText(text, 400, 100);
   
-  const data = tctx.getImageData(0, 0, 1000, 250).data;
-  for (let y = 0; y < 250; y += 5) {
-    for (let x = 0; x < 1000; x += 5) {
-      if (data[(y * 1000 + x) * 4 + 3] > 128) {
-        createFirework(x + canvas.width/2 - 500, y + canvas.height/2 - 125, 3);
+  const data = tctx.getImageData(0, 0, 800, 200).data;
+  for (let y = 0; y < 200; y += 6) {
+    for (let x = 0; x < 800; x += 6) {
+      if (data[(y * 800 + x) * 4 + 3] > 128 && particles.length < MAX_PARTICLES) {
+        createFirework(x + canvas.width/2 - 400, y + canvas.height/2 - 100, 2);
       }
     }
   }
 }
 
 function createConfettiBurst() {
-  for (let i = 0; i < 8; i++) {
-    createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.3, 80);
-    createHeartParticle(Math.random() * canvas.width, canvas.height * 0.7);
+  if (particles.length < MAX_PARTICLES) {
+    for (let i = 0; i < 5; i++) { // Reduced bursts
+      createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.3, 50);
+      createHeartParticle(Math.random() * canvas.width, canvas.height * 0.7);
+    }
   }
 }
 
 function infiniteCelebration() {
   celebrationMode = true;
   textFireworks();
-  setInterval(createConfettiBurst, 800);
+  setInterval(createConfettiBurst, 1200); // Slower interval
 }
 
 function drawHeart(ctx, x, y, size) {
@@ -350,33 +394,48 @@ function drawHeart(ctx, x, y, size) {
 
 function animate() {
   time++;
+  
+  // Frame skipping for iPhone performance
+  frameSkip++;
+  if (frameSkip % 2 !== 0) {
+    requestAnimationFrame(animate);
+    return;
+  }
+  
   requestAnimationFrame(animate);
   
-  // 🎵 BEAT SYNC FIREWORKS
-  if (musicPlaying) {
+  // 🎵 BEAT SYNC FIREWORKS (less frequent)
+  if (musicPlaying && frameSkip % 3 === 0) {
     createBeatFirework();
     musicPatternFireworks();
   }
   
-  ctx.fillStyle = "rgba(7, 0, 15, 0.18)";
+  // Faster clear with higher opacity for trail effect
+  ctx.fillStyle = "rgba(7, 0, 15, 0.25)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Limit particles
+  while (particles.length > MAX_PARTICLES) {
+    particles.shift();
+  }
   
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
-    p.x += (p.vx *= 0.985);
-    p.y += (p.vy += 0.013);
+    p.x += (p.vx *= 0.988); // Slightly more drag
+    p.y += (p.vy += 0.012);
     p.life -= p.decay;
-    p.size *= 0.992;
+    p.size *= 0.994;
     
     if (p.life > 0) {
       ctx.save();
-      ctx.globalAlpha = p.life / 120;
+      ctx.globalAlpha = p.life / 90;
       
-      ctx.shadowBlur = 15 + p.life * 0.1;
+      // Reduced shadow for performance
+      ctx.shadowBlur = 8 + p.life * 0.08;
       ctx.shadowColor = p.color;
       
       if (p.isHeart) {
-        drawHeart(ctx, p.x, p.y, p.size * 1.5);
+        drawHeart(ctx, p.x, p.y, p.size * 1.3);
       } else {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -389,7 +448,7 @@ function animate() {
     }
   }
   
-  if (celebrationMode && particles.length < 800 && Math.random() < 0.3) {
+  if (celebrationMode && particles.length < MAX_PARTICLES && Math.random() < 0.2) {
     createHeartParticle(Math.random() * canvas.width, canvas.height * 0.8);
   }
 }
