@@ -31,14 +31,13 @@ body {
   100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
 }
 
-.neon {
-  font-size: clamp(32px, 6vw, 55px); line-height: 1.2;
-  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1744, 0 0 40px #ff1744, 0 0 60px #ff1744;
-  animation: glow 2.5s ease-in-out infinite alternate;
-}
-@keyframes glow {
-  from { text-shadow: 0 0 15px #ff4d6d, 0 0 25px #ff1744, 0 0 45px #ff1744, 0 0 65px #ff1744; }
-  to { text-shadow: 0 0 25px #ff4d6d, 0 0 35px #ff1744, 0 0 55px #ff1744, 0 0 85px #ff1744, 0 0 100px #ff1744; }
+/* REMOVED NEON GLOW - Simple elegant styling */
+.title-glow {
+  font-size: clamp(32px, 6vw, 55px); 
+  line-height: 1.2;
+  color: #ff69b4;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 2px 2px 8px rgba(0,0,0,0.7);
+  font-weight: 700;
 }
 
 .center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 90%; }
@@ -78,15 +77,19 @@ button:hover {
 }
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
-#final h1 { display: none; }
-#final div.neon { font-size: clamp(45px, 9vw, 70px) !important; margin-bottom: 25px; }
-#final p { font-size: clamp(20px, 4vw, 28px); opacity: 0.9; }
+
+/* Love you message styling (no neon animation) */
 #loveYouMsg { 
   font-size: clamp(28px, 5vw, 40px) !important; 
   color: #ff69b4; 
   text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
   font-weight: 700;
   margin: 20px 0;
+  animation: fadeInHeart 1.5s ease-out;
+}
+@keyframes fadeInHeart {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* 🪶 FEATHER TYPING ANIMATION */
@@ -99,6 +102,7 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   line-height: 1.6;
   overflow: hidden;
   border-right: 3px solid transparent;
+  position: relative;
 }
 #perfectMsg::after {
   content: '';
@@ -133,6 +137,21 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   100% { transform: translateY(-2px) rotate(3deg); }
 }
 
+/* NEW ROMANTIC THANKS MESSAGE */
+#final p { 
+  font-size: clamp(20px, 4vw, 28px); 
+  opacity: 0.95; 
+  color: #ffdbac;
+  font-weight: 600;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+  margin-top: 35px;
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.02); opacity: 1; }
+}
+
 #musicBtn { display: none; }
 </style>
 </head>
@@ -155,14 +174,14 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 
 <!-- ❤️ START -->
 <div id="startScreen" class="center hidden">
-  <div class="neon">Bhumika ❤️ Ankush</div>
+  <div class="title-glow">Bhumika ❤️ Ankush</div>
   <p style="font-size: clamp(18px, 3vw, 24px); margin: 20px 0; opacity: 0.9;">Forever begins here...</p>
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
 <!-- 💌 MAIN -->
 <div id="content" class="center hidden">
-  <h1 class="neon">Bhumika, You Are My Universe 💖</h1>
+  <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   <p class="loveMsg">
     My Dearest Bhumika,<br><br>
     Every moment with you feels like a dream I never want to wake from ✨.<br>
@@ -176,13 +195,13 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   </div>
 </div>
 
-<!-- 💖 FINAL (REMOVED "Bhumika & Ankush - Forever Entwined ❤️") -->
+<!-- 💖 FINAL -->
 <div id="final" class="center hidden">
-  <div id="loveYouMsg" class="neon" style="display:none;">I love you Babe 💋💋💋💋💋</div>
+  <div id="loveYouMsg" style="display:none;">I love you Babe 💋💋💋💋💋</div>
   <div id="perfectMsg">
     <span class="typing-text" id="typingText"></span><span class="feather-cursor"></span>
   </div>
-  <p style="margin-top: 30px;">Our love story just became legendary! 💫</p>
+  <p>Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨</p>
 </div>
 
 <canvas id="fireworks"></canvas>
@@ -213,7 +232,6 @@ function typeWriter(element, text, speed = 80) {
       i++;
       setTimeout(type, speed);
     } else {
-      // Remove feather cursor after typing complete
       element.nextElementSibling.style.display = 'none';
       document.getElementById('perfectMsg').style.borderRight = 'none';
     }
@@ -300,7 +318,7 @@ function createHearts() {
   }, 300);
 }
 
-// 🔐 PASSWORD UNLOCK WITH 3D HEARTS BLAST
+// 🔐 PASSWORD UNLOCK
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
@@ -354,7 +372,7 @@ document.getElementById("yesBtn").onclick = () => {
   }, 2000);
 };
 
-// 🔥 FIREWORKS
+// 🔥 FIREWORKS (unchanged)
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d", { alpha: true });
 let particles = [], time = 0;
