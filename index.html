@@ -15,6 +15,7 @@ body {
   position: relative;
 }
 
+/* BACKGROUND */
 .baby-pink-bg {
   position: fixed;
   top: 0;
@@ -32,7 +33,7 @@ body {
 .bg-heart {
   position: absolute;
   color: rgba(255, 105, 180, 0.15);
-  font-size: 20px;
+  font-size: 22px;
   opacity: 0.1;
   animation: gentleFloat 20s infinite linear;
 }
@@ -42,10 +43,11 @@ body {
   100% { transform: translateY(-20px) rotate(360deg); opacity: 0.1; }
 }
 
+/* PETALS */
 .rose-petal-3d {
   position: absolute;
-  width: 25px;
-  height: 20px;
+  width: 26px;
+  height: 22px;
   background: radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
   border-radius: 70% 0 65% 45%;
   opacity: 0.9;
@@ -60,6 +62,7 @@ body {
   100% { transform: translateY(calc(100vh + 100px)) translateZ(50px) rotateZ(1440deg) rotateX(720deg) rotateY(1080deg) scale(1.3); opacity: 0; }
 }
 
+/* SMALL FALLING HEARTS */
 .password-heart {
   position: absolute;
   color: #ff1744;
@@ -68,7 +71,7 @@ body {
   opacity: 0.8;
   animation: heartFall 15s linear infinite;
 }
-.password-heart.large { font-size: 24px; opacity: 1; animation-duration: 12s; }
+.password-heart.large { font-size: 26px; opacity: 1; animation-duration: 12s; }
 .password-heart.medium { font-size: 18px; opacity: 0.9; animation-duration: 14s; }
 .password-heart.small { font-size: 12px; opacity: 0.7; animation-duration: 16s; }
 @keyframes heartFall {
@@ -78,8 +81,9 @@ body {
   100% { transform: translateY(calc(100vh + 50px)) rotate(720deg); opacity: 0; }
 }
 
+/* TITLE */
 .title-glow {
-  font-size: clamp(24px, 7vw, 42px) !important;
+  font-size: clamp(24px, 7vw, 40px) !important;
   line-height: 1.1;
   background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
   -webkit-background-clip: text;
@@ -87,13 +91,24 @@ body {
   background-clip: text;
   text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
   font-weight: 800;
-  margin: 8px 0 12px 0 !important;
+  margin: 8px 0 10px 0 !important;
   padding: 5px;
 }
 
-.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 95%; padding: 10px; box-sizing: border-box; }
+/* LAYOUT */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 95%;
+  padding: 10px;
+  box-sizing: border-box;
+}
 .hidden { display: none; }
 
+/* PASSWORD CARD */
 #lock {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
@@ -111,13 +126,13 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 15px;
-  font-size: clamp(20px, 6vw, 28px);
+  font-size: clamp(20px, 5.5vw, 26px);
   font-weight: 700;
 }
 
 #pass {
-  padding: 12px 16px;
-  font-size: 16px;
+  padding: 13px 18px;
+  font-size: 17px;
   border-radius: 25px;
   border: 2px solid rgba(255, 107, 157, 0.6);
   margin: 10px;
@@ -128,15 +143,16 @@ body {
   box-shadow: 0 8px 30px rgba(255, 107, 157, 0.25);
 }
 
+/* BUTTON BASE STYLE (GLOBAL) */
 button {
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 10px 22px;
+  font-size: 15px;
   font-weight: 700;
-  border: none; 
-  border-radius: 22px; 
+  border: none;
+  border-radius: 22px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+  box-shadow: 0 6px 22px rgba(255, 23, 68, 0.35);
   background: linear-gradient(135deg, #ff1744, #ff69b4);
   color: white;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
@@ -144,21 +160,22 @@ button {
   min-height: 42px;
 }
 
+/* MAIN LOVE MESSAGE – slightly larger, no scroll */
 .loveMsg {
-  max-width: 90vw;
-  max-height: 35vh !important;
-  margin: 15px auto !important; 
-  font-size: clamp(18px, 4.5vw, 26px) !important;
-  line-height: 1.4 !important;
+  max-width: 92vw;
+  margin: 10px auto !important;
+  font-size: clamp(18px, 4.5vw, 24px) !important; /* increased a bit */
+  line-height: 1.45 !important;
   color: #d63384;
   background: rgba(255, 255, 255, 0.2);
-  padding: 18px;
-  border-radius: 18px;
+  padding: 15px 14px;
+  border-radius: 16px;
   backdrop-filter: blur(12px);
   animation: fadeInUp 1.5s ease-out;
-  font-weight: 700;
+  font-weight: 600;
   text-shadow: 1px 1px 3px rgba(249, 168, 212, 0.7);
-  overflow-y: hidden !important;
+  max-height: none;     /* allow full text */
+  overflow: visible;    /* no scroll */
   box-sizing: border-box;
 }
 
@@ -167,81 +184,107 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.buttons-container {
+/* CONTAINER THAT HOLDS MESSAGE + BUTTONS */
+#content {
   position: absolute;
-  bottom: 80px;
+  top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 95%;
+  padding: 10px 10px 80px 10px; /* extra bottom padding to push buttons down */
+  box-sizing: border-box;
+}
+
+/* BUTTON WRAPPER AT BOTTOM */
+.buttons-wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: 18px; /* move buttons to bottom */
   transform: translateX(-50%);
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 20px;
-  z-index: 15;
+  gap: 8px;
+  padding: 0 14px;
+  box-sizing: border-box;
 }
 
+/* YES/NO BUTTONS SMALLER */
+#yesBtn, #noBtn {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px 14px;
+  font-size: 14px;
+  min-height: 38px;
+}
+
+/* TYPING CONTAINERS */
 .typing-container {
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
+  border-radius: 16px;
   padding: 20px;
   backdrop-filter: blur(12px);
   margin: 15px auto;
-  max-width: 90vw;
+  max-width: 92vw;
   box-shadow: 0 8px 30px rgba(255, 107, 157, 0.3);
   border: 1px solid rgba(255, 105, 180, 0.3);
 }
 
-#thanksTyping { font-size: clamp(20px, 5vw, 30px) !important; color: #d63384; font-weight: 700; }
-#letterTyping { font-size: clamp(18px, 4.5vw, 26px) !important; color: #d63384; font-weight: 600; line-height: 1.5; }
-#loveTyping { font-size: clamp(32px, 8vw, 48px) !important; color: #ff1744; font-weight: 800; }
+#thanksTyping { font-size: clamp(20px, 4.8vw, 28px) !important; color: #d63384; font-weight: 700; }
+#letterTyping { font-size: clamp(18px, 4.3vw, 24px) !important; color: #d63384; font-weight: 600; line-height: 1.5; }
+#loveTyping { font-size: clamp(30px, 7.5vw, 44px) !important; color: #ff1744; font-weight: 800; }
 
+/* START SCREEN SUBTITLE */
+.start-subtitle {
+  font-size: clamp(18px, 4.5vw, 24px) !important;
+  margin: 15px 0;
+  color: #d63384;
+  font-weight: 600;
+}
+
+/* PHOTO SCREEN */
 #photoScreen {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 20px 15px;
-  max-width: 90%;
-  margin: 15px auto;
+  border-radius: 22px;
+  padding: 24px 16px 26px 16px;
+  max-width: 92%;
+  margin: 18px auto;
   box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
   animation: photoSlideIn 1.2s ease-out;
 }
 
 #photoText {
-  font-size: clamp(22px, 6vw, 32px);
+  font-size: clamp(22px, 5.5vw, 30px);
   color: #ff1744;
   font-weight: 700;
-  margin: 15px 0;
+  margin: 18px 0;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
 }
 
+/* IMAGE – larger width and height */
 #ourPhoto {
-  width: clamp(220px, 60vw, 360px);
-  height: clamp(300px, 80vw, 520px);
+  width: clamp(260px, 70vw, 420px);   /* increased */
+  height: clamp(320px, 90vw, 560px);  /* increased top & bottom */
   object-fit: cover;
   border-radius: 18px;
-  border: 3px solid rgba(255, 105, 180, 0.5);
-  box-shadow: 0 12px 40px rgba(255, 105, 180, 0.4);
-  margin: 20px auto;
+  border: 3px solid rgba(255, 105, 180, 0.6);
+  box-shadow: 0 14px 44px rgba(255, 105, 180, 0.45);
+  margin: 18px auto;
   display: block;
-}
-
-.start-subtitle {
-  font-size: clamp(18px, 4.5vw, 24px) !important;
-  margin: 15px 0; 
-  color: #d63384; 
-  font-weight: 600;
 }
 
 .photo-caption {
   font-size: clamp(18px, 4vw, 22px) !important;
-  color: #d63384; 
+  color: #d63384;
   margin-top: 12px;
 }
 
+/* FINAL HEART */
 .final-big-heart {
-  font-size: clamp(90px, 22vw, 140px);
+  font-size: clamp(90px, 22vw, 130px);
   color: #ff1744;
   text-shadow: 0 0 30px #ff1744;
   animation: bigHeartBeat 1.5s ease-in-out infinite;
@@ -296,20 +339,21 @@ button {
 </div>
 
 <!-- MAIN CONTENT -->
-<div id="content" class="center hidden" style="padding-bottom: 200px;">
+<div id="content" class="hidden">
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
-  
+
   <p class="loveMsg">
-    My Dearest Bhumika,<br>
+    My Dearest Bhumika,<br><br>
     Every moment with you feels like a dream I never want to wake from ✨.<br>
     Your laughter heals me, your touch grounds me, your love completes me 💕.<br>
     From stolen glances to forever promises—you are my always.<br>
     Will you be my Valentine... my eternal love... my eternity? 💍
   </p>
-  
-  <div class="buttons-container">
-    <button id="yesBtn" style="flex: 1; min-width: 140px;">Yes, Forever & Always! 💋</button>
-    <button id="noBtn" style="flex: 1; min-width: 140px;">Chal nikal🤣 😘</button>
+
+  <!-- Buttons at bottom -->
+  <div class="buttons-wrapper">
+    <button id="yesBtn">Yes, Forever & Always! 💋</button>
+    <button id="noBtn">Maybe Later 😘</button>
   </div>
 </div>
 
@@ -333,6 +377,7 @@ button {
 <!-- PHOTO SCREEN -->
 <div id="photoScreen" class="center hidden">
   <div id="photoText">Our Forever Love 💍✨</div>
+  <!-- IMAGE NAME UPDATED -->
   <img id="ourPhoto" src="IMG_1058.jpeg" alt="Bhumika & Ankush 💕">
   <p class="photo-caption">Together Forever ❤️</p>
 </div>
@@ -343,20 +388,20 @@ button {
 function createPasswordEffects() {
   const petalsContainer = document.getElementById('rosePetalsPassword');
   const heartsContainer = document.getElementById('heartsBg');
-  
+
   setInterval(() => {
     const petal = document.createElement('div');
     petal.className = 'rose-petal-3d';
     petal.style.left = Math.random() * 100 + '%';
     const size = 0.8 + Math.random() * 0.6;
-    petal.style.width = (25 * size) + 'px';
-    petal.style.height = (20 * size) + 'px';
+    petal.style.width = (26 * size) + 'px';
+    petal.style.height = (22 * size) + 'px';
     const duration = 14 + Math.random() * 8;
     petal.style.animationDuration = duration + 's';
     petalsContainer.appendChild(petal);
     setTimeout(() => { if (petal.parentNode) petal.remove(); }, (duration + 3) * 1000);
   }, 250);
-  
+
   const heartSizes = ['small', 'medium', 'large'];
   setInterval(() => {
     const heart = document.createElement('div');
@@ -375,7 +420,7 @@ function createBgHearts() {
     heart.className = 'bg-heart';
     heart.innerHTML = '💕';
     heart.style.left = Math.random() * 100 + '%';
-    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    heart.style.fontSize = (18 + Math.random() * 26) + 'px';
     bgHearts.appendChild(heart);
     setTimeout(() => heart.remove(), 30000);
   }, 1000);
@@ -401,8 +446,8 @@ function typeWriter(element, text, speed = 70, callback) {
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
-  const secrets = ["iloveyou", "ilovebhumika", "bhumika", "forever", "mylove"];
-  
+  const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
+
   if (secrets.includes(p)) {
     document.getElementById("loveSong").play().catch(e => console.log('Music ready'));
     document.getElementById("lock").classList.add("hidden");
@@ -420,20 +465,24 @@ document.getElementById("startBtn").onclick = () => {
   document.getElementById("content").classList.remove("hidden");
 };
 
+/* NO BUTTON – run away on hover like before, click does nothing now */
 document.getElementById("noBtn").onmouseover = () => {
   const btn = document.getElementById("noBtn");
   btn.style.position = 'fixed';
-  btn.style.top = (Math.random() * 50 + 10) + "vh";
-  btn.style.left = (Math.random() * 50 + 10) + "vw";
+  btn.style.top = (Math.random() * 55 + 10) + "vh";
+  btn.style.left = (Math.random() * 55 + 10) + "vw";
   btn.style.transform = `rotate(${Math.random() * 360}deg)`;
   btn.style.zIndex = '20';
-  btn.style.width = '140px';
+};
+document.getElementById("noBtn").onclick = (e) => {
+  e.preventDefault(); // do nothing on click
 };
 
+/* YES BUTTON – go to final, same as before */
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
-  
+
   setTimeout(() => {
     typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 80, () => {
       setTimeout(() => {
