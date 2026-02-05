@@ -82,9 +82,9 @@ body {
   100% { transform: translateY(calc(100vh + 50px)) rotate(720deg); opacity: 0; }
 }
 
-/* ✅ FIXED TITLE - SMALLER & VISIBLE ON iPhone 13 */
+/* ✅ TITLE SIZE INCREASED */
 .title-glow {
-  font-size: clamp(20px, 5.5vw, 36px) !important;
+  font-size: clamp(22px, 6vw, 40px) !important;
   line-height: 1;
   background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
   -webkit-background-clip: text;
@@ -92,9 +92,9 @@ body {
   background-clip: text;
   text-shadow: 0 0 20px rgba(255, 105, 180, 0.9), 1px 1px 8px rgba(0,0,0,0.4);
   font-weight: 800;
-  margin: 5px 0 10px 0 !important;
+  margin: 5px 0 8px 0 !important;
   padding: 5px;
-  max-height: 60px;
+  max-height: 65px;
   overflow: hidden;
 }
 
@@ -153,21 +153,21 @@ button {
   min-height: 50px;
 }
 
-/* ✅ OPTIMIZED LOVE MESSAGE - MINIMUM GAPS + LARGER TEXT */
+/* ✅ LOVE MESSAGE TEXT SIZE INCREASED */
 .loveMsg {
   max-width: 90vw;
-  margin: 15px auto !important; 
-  font-size: clamp(17px, 3.2vw, 22px) !important; /* LARGER TEXT */
-  line-height: 1.4 !important; /* MINIMUM GAPS */
+  margin: 12px auto !important; 
+  font-size: clamp(18px, 3.5vw, 24px) !important; /* INCREASED */
+  line-height: 1.4 !important;
   color: #d63384;
   background: rgba(255, 255, 255, 0.25);
-  padding: 18px;
+  padding: 16px;
   border-radius: 20px;
   backdrop-filter: blur(15px);
   animation: fadeInUp 1.8s ease-out;
   font-weight: 600;
   text-shadow: 1px 1px 4px rgba(249, 168, 212, 0.8);
-  max-height: 50vh;
+  max-height: 48vh;
   overflow-y: auto;
   box-sizing: border-box;
 }
@@ -261,12 +261,12 @@ button {
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- MAIN CONTENT - FIXED FOR iPhone 13 -->
+<!-- MAIN CONTENT -->
 <div id="content" class="center hidden">
-  <!-- ✅ SMALLER TITLE - NOW VISIBLE -->
+  <!-- ✅ TITLE SIZE INCREASED: clamp(22px, 6vw, 40px) -->
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   
-  <!-- ✅ MINIMUM GAPS + LARGER TEXT -->
+  <!-- ✅ LOVE MESSAGE TEXT SIZE INCREASED: clamp(18px, 3.5vw, 24px) -->
   <p class="loveMsg">
     My Dearest Bhumika,<br><br>
     Every moment with you feels like a dream I never want to wake from ✨.<br>
