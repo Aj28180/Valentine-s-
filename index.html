@@ -32,7 +32,7 @@ body {
 .bg-heart {
   position: absolute;
   color: rgba(255, 105, 180, 0.15);
-  font-size: 28px;
+  font-size: 22px;
   opacity: 0.1;
   animation: gentleFloat 20s infinite linear;
 }
@@ -44,8 +44,8 @@ body {
 
 .rose-petal-3d {
   position: absolute;
-  width: 32px;
-  height: 26px;
+  width: 28px;
+  height: 22px;
   background: radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
   border-radius: 70% 0 65% 45%;
   opacity: 0.9;
@@ -63,14 +63,14 @@ body {
 .password-heart {
   position: absolute;
   color: #ff1744;
-  text-shadow: 0 0 14px #ff1744;
-  font-size: 18px;
+  text-shadow: 0 0 12px #ff1744;
+  font-size: 16px;
   opacity: 0.8;
   animation: heartFall 15s linear infinite;
 }
-.password-heart.large { font-size: 32px; opacity: 1; animation-duration: 12s; }
-.password-heart.medium { font-size: 24px; opacity: 0.9; animation-duration: 14s; }
-.password-heart.small { font-size: 16px; opacity: 0.7; animation-duration: 16s; }
+.password-heart.large { font-size: 28px; opacity: 1; animation-duration: 12s; }
+.password-heart.medium { font-size: 20px; opacity: 0.9; animation-duration: 14s; }
+.password-heart.small { font-size: 14px; opacity: 0.7; animation-duration: 16s; }
 @keyframes heartFall {
   0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
   15% { opacity: 1; }
@@ -79,28 +79,38 @@ body {
 }
 
 .title-glow {
-  font-size: clamp(28px, 8vw, 48px) !important;
+  font-size: clamp(24px, 7vw, 42px) !important;
   line-height: 1.1;
   background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 20px rgba(255, 105, 180, 0.9);
+  text-shadow: 0 0 18px rgba(255, 105, 180, 0.8);
   font-weight: 800;
-  margin: 10px 0 14px 0 !important;
+  margin: 15px 0 12px 0 !important;
   padding: 8px;
 }
 
-.center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 95%; padding: 14px; box-sizing: border-box; }
+.center { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  z-index: 10; 
+  width: 95%; 
+  padding: 15px; 
+  box-sizing: border-box; 
+}
+
 .hidden { display: none; }
 
 #lock {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(22px);
-  border-radius: 30px;
-  padding: 32px 20px;
-  box-shadow: 0 20px 55px rgba(255, 107, 157, 0.4);
-  border: 2px solid rgba(255, 107, 157, 0.5);
+  border-radius: 28px;
+  padding: 28px 18px;
+  box-shadow: 0 18px 45px rgba(255, 107, 157, 0.35);
+  border: 2px solid rgba(255, 107, 157, 0.45);
   max-height: 70vh;
   overflow: hidden;
 }
@@ -110,132 +120,134 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 20px;
-  font-size: clamp(24px, 6.5vw, 32px);
+  margin-bottom: 18px;
+  font-size: clamp(20px, 5.5vw, 28px);
   font-weight: 700;
 }
 
 #pass {
-  padding: 16px 20px;
-  font-size: 20px;
+  padding: 14px 18px;
+  font-size: 18px;
   border-radius: 28px;
-  border: 3px solid rgba(255, 107, 157, 0.7);
-  margin: 14px;
-  width: clamp(280px, 44vw, 380px);
-  background: rgba(255, 248, 248, 0.9);
+  border: 2.5px solid rgba(255, 107, 157, 0.65);
+  margin: 12px;
+  width: clamp(260px, 42vw, 360px);
+  background: rgba(255, 248, 248, 0.88);
   color: #d63384;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 12px 40px rgba(255, 107, 157, 0.35);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 10px 35px rgba(255, 107, 157, 0.3);
 }
 
 button {
-  padding: 16px 32px;
-  font-size: 20px;
+  padding: 14px 28px;
+  font-size: 18px;
   font-weight: 700;
   border: none; 
   border-radius: 28px; 
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 12px 35px rgba(255, 23, 68, 0.5);
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(255, 23, 68, 0.45);
   background: linear-gradient(135deg, #ff1744, #ff69b4);
   color: white;
   text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  margin: 10px;
-  min-height: 56px;
+  margin: 8px;
+  min-height: 52px;
 }
 
 .loveMsg {
-  max-width: 94vw;
-  margin: 12px auto !important; 
-  font-size: clamp(24px, 6vw, 30px) !important;
-  line-height: 1.5 !important;
+  max-width: 92vw;
+  margin: 20px auto !important; 
+  font-size: clamp(20px, 5vw, 28px) !important;
+  line-height: 1.45 !important;
   color: #d63384;
-  background: rgba(255, 255, 255, 0.28);
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 22px;
   border-radius: 20px;
-  backdrop-filter: blur(16px);
-  animation: fadeInUp 1.7s ease-out;
+  backdrop-filter: blur(15px);
+  animation: fadeInUp 1.6s ease-out;
   font-weight: 700;
-  text-shadow: 1px 1px 5px rgba(249, 168, 212, 0.85);
-  max-height: 48vh;
+  text-shadow: 1px 1px 4px rgba(249, 168, 212, 0.8);
+  max-height: 55vh;
   overflow-y: auto;
   box-sizing: border-box;
+  /* Ensure full visibility */
+  min-height: 200px;
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(50px); }
+  from { opacity: 0; transform: translateY(45px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .typing-container {
-  background: rgba(255, 255, 255, 0.28);
-  border-radius: 20px;
-  padding: 28px;
-  backdrop-filter: blur(16px);
-  margin: 20px auto;
-  max-width: 94vw;
-  box-shadow: 0 12px 40px rgba(255, 107, 157, 0.4);
-  border: 1px solid rgba(255, 105, 180, 0.4);
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  padding: 25px;
+  backdrop-filter: blur(15px);
+  margin: 18px auto;
+  max-width: 92vw;
+  box-shadow: 0 10px 35px rgba(255, 107, 157, 0.35);
+  border: 1.5px solid rgba(255, 105, 180, 0.35);
 }
 
-#thanksTyping { font-size: clamp(26px, 6.5vw, 36px) !important; color: #d63384; font-weight: 800; }
-#letterTyping { font-size: clamp(24px, 6vw, 30px) !important; color: #d63384; font-weight: 700; line-height: 1.6; }
-#loveTyping { font-size: clamp(42px, 10vw, 58px) !important; color: #ff1744; font-weight: 900; }
+#thanksTyping { font-size: clamp(22px, 5.5vw, 32px) !important; color: #d63384; font-weight: 700; }
+#letterTyping { font-size: clamp(20px, 5vw, 28px) !important; color: #d63384; font-weight: 700; line-height: 1.55; }
+#loveTyping { font-size: clamp(36px, 8.5vw, 52px) !important; color: #ff1744; font-weight: 900; }
 
 #photoScreen {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(22px);
-  border-radius: 24px;
-  padding: 28px 20px;
-  max-width: 94%;
-  margin: 20px auto;
-  box-shadow: 0 20px 55px rgba(255, 107, 157, 0.4);
-  animation: photoSlideIn 1.5s ease-out;
+  border-radius: 22px;
+  padding: 25px 18px;
+  max-width: 92%;
+  margin: 18px auto;
+  box-shadow: 0 18px 50px rgba(255, 107, 157, 0.35);
+  animation: photoSlideIn 1.4s ease-out;
 }
 
 #photoText {
-  font-size: clamp(28px, 7vw, 36px);
+  font-size: clamp(24px, 6vw, 34px);
   color: #ff1744;
   font-weight: 800;
-  margin: 20px 0;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  margin: 18px 0;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
 }
 
 #ourPhoto {
-  width: clamp(240px, 65vw, 360px);
-  height: clamp(280px, 75vw, 440px);
+  width: clamp(220px, 60vw, 340px);
+  height: clamp(260px, 70vw, 420px);
   object-fit: cover;
-  border-radius: 20px;
-  border: 4px solid rgba(255, 105, 180, 0.6);
-  box-shadow: 0 18px 50px rgba(255, 105, 180, 0.5);
-  margin: 20px auto;
+  border-radius: 18px;
+  border: 4px solid rgba(255, 105, 180, 0.55);
+  box-shadow: 0 15px 45px rgba(255, 105, 180, 0.45);
+  margin: 18px auto;
   display: block;
 }
 
 .start-subtitle {
-  font-size: clamp(24px, 6vw, 30px) !important;
-  margin: 20px 0; 
+  font-size: clamp(20px, 5vw, 26px) !important;
+  margin: 18px 0; 
   color: #d63384; 
   font-weight: 700;
 }
 
 .photo-caption {
-  font-size: clamp(22px, 5vw, 28px) !important;
+  font-size: clamp(18px, 4.5vw, 24px) !important;
   color: #d63384; 
-  margin-top: 18px;
+  margin-top: 15px;
 }
 
 .final-big-heart {
-  font-size: clamp(120px, 28vw, 160px);
+  font-size: clamp(100px, 24vw, 140px);
   color: #ff1744;
-  text-shadow: 0 0 45px #ff1744;
+  text-shadow: 0 0 40px #ff1744;
   animation: bigHeartBeat 1.5s ease-in-out infinite;
-  margin-top: 20px;
+  margin-top: 18px;
   opacity: 0;
 }
 @keyframes bigHeartBeat {
   0%, 100% { transform: scale(1) rotate(-5deg); }
-  50% { transform: scale(1.3) rotate(5deg); }
+  50% { transform: scale(1.25) rotate(5deg); }
 }
 
 .feather-cursor {
@@ -247,7 +259,7 @@ button {
 }
 
 @keyframes photoSlideIn {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(35px); }
   to { opacity: 1; transform: translateY(0); }
 }
 </style>
@@ -280,10 +292,12 @@ button {
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN CONTENT - RESTRUCTURED FOR BETTER LAYOUT -->
 <div id="content" class="center hidden">
-  <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
+  <!-- TOP TITLE MOVED DOWN -->
+  <h1 class="title-glow" style="margin-top: 20px;">Bhumika, You Are My Universe 💖</h1>
   
+  <!-- MIDDLE LOVE MESSAGE - FULLY VISIBLE -->
   <p class="loveMsg">
     My Dearest Bhumika,<br><br>
     Every moment with you feels like a dream I never want to wake from ✨.<br>
@@ -292,14 +306,15 @@ button {
     Will you be my Valentine... my eternal love... my eternity? 💍
   </p>
   
-  <div style="display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 12px; padding-bottom: 20px;">
-    <button id="yesBtn" style="flex: 1; min-width: 170px;">Yes, Forever & Always! 💋</button>
-    <button id="noBtn" style="flex: 1; min-width: 170px;">Maybe Later 😘</button>
+  <!-- BUTTONS MOVED TO BOTTOM -->
+  <div style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 25px; padding-bottom: 20px; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%;">
+    <button id="yesBtn" style="flex: 1; min-width: 160px;">Yes, Forever & Always! 💋</button>
+    <button id="noBtn" style="flex: 1; min-width: 160px;">Maybe Later 😘</button>
   </div>
 </div>
 
 <!-- FINAL TYPING SCREEN -->
-<div id="final" class="center hidden" style="padding: 16px;">
+<div id="final" class="center hidden" style="padding: 15px;">
   <div class="typing-container">
     <span class="typing-text" id="thanksTyping"></span>
     <span class="feather-cursor" id="cursor1"></span>
@@ -334,13 +349,13 @@ function createPasswordEffects() {
     petal.className = 'rose-petal-3d';
     petal.style.left = Math.random() * 100 + '%';
     const size = 0.8 + Math.random() * 0.6;
-    petal.style.width = (32 * size) + 'px';
-    petal.style.height = (26 * size) + 'px';
+    petal.style.width = (28 * size) + 'px';
+    petal.style.height = (22 * size) + 'px';
     const duration = 14 + Math.random() * 8;
     petal.style.animationDuration = duration + 's';
     petalsContainer.appendChild(petal);
     setTimeout(() => { if (petal.parentNode) petal.remove(); }, (duration + 3) * 1000);
-  }, 250);
+  }, 220);
   
   const heartSizes = ['small', 'medium', 'large'];
   setInterval(() => {
@@ -350,7 +365,7 @@ function createPasswordEffects() {
     heart.style.left = Math.random() * 100 + '%';
     heartsContainer.appendChild(heart);
     setTimeout(() => { if (heart.parentNode) heart.remove(); }, 20000);
-  }, 400);
+  }, 350);
 }
 
 function createBgHearts() {
@@ -360,13 +375,13 @@ function createBgHearts() {
     heart.className = 'bg-heart';
     heart.innerHTML = '💕';
     heart.style.left = Math.random() * 100 + '%';
-    heart.style.fontSize = (20 + Math.random() * 32) + 'px';
+    heart.style.fontSize = (18 + Math.random() * 28) + 'px';
     bgHearts.appendChild(heart);
     setTimeout(() => heart.remove(), 30000);
-  }, 1000);
+  }, 900);
 }
 
-function typeWriter(element, text, speed = 80, callback) {
+function typeWriter(element, text, speed = 75, callback) {
   let i = 0;
   element.innerHTML = '';
   function type() {
@@ -395,7 +410,7 @@ function unlock() {
   } else {
     error.textContent = "❤️ Whisper our special words... 💕";
     error.style.color = "#ff6b9d";
-    error.style.fontSize = "20px";
+    error.style.fontSize = "18px";
     setTimeout(() => error.textContent = "", 3000);
   }
 }
@@ -419,24 +434,24 @@ document.getElementById("yesBtn").onclick = () => {
   document.getElementById("final").classList.remove("hidden");
   
   setTimeout(() => {
-    typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 90, () => {
+    typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 85, () => {
       setTimeout(() => {
-        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 75, () => {
+        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 70, () => {
           setTimeout(() => {
-            typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 100, () => {
+            typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 95, () => {
               setTimeout(() => {
                 document.getElementById("bigHeart").style.opacity = "1";
                 setTimeout(() => {
                   document.getElementById("final").classList.add("hidden");
                   document.getElementById("photoScreen").classList.remove("hidden");
-                }, 3000);
-              }, 500);
+                }, 2800);
+              }, 450);
             });
-          }, 800);
+          }, 700);
         });
-      }, 800);
+      }, 700);
     });
-  }, 300);
+  }, 250);
 };
 
 createPasswordEffects();
