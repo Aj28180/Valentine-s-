@@ -32,7 +32,6 @@ body {
   100% { transform: translateY(-120px) rotate(720deg) scale(1.2); opacity: 0; }
 }
 
-/* 🌹 UPGRADED ROMANTIC ROSE PETALS */
 .rose-petal {
   position: absolute;
   width: 22px;
@@ -69,19 +68,12 @@ body {
   transform: rotate(-12deg);
 }
 @keyframes fallRoseDreamy {
-  0% { 
-    transform: translateY(-60px) rotate(0deg) scale(0.6); 
-    opacity: 0; 
-  }
+  0% { transform: translateY(-60px) rotate(0deg) scale(0.6); opacity: 0; }
   8% { opacity: 0.92; }
   92% { opacity: 0.92; }
-  100% { 
-    transform: translateY(130vh) rotate(1080deg) scale(1.15); 
-    opacity: 0; 
-  }
+  100% { transform: translateY(130vh) rotate(1080deg) scale(1.15); opacity: 0; }
 }
 
-/* Title styling (no neon) */
 .title-glow {
   font-size: clamp(32px, 6vw, 55px); 
   line-height: 1.2;
@@ -125,47 +117,35 @@ button:hover {
 
 canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
 
-#loveYouMsg { 
-  font-size: clamp(28px, 5vw, 40px) !important; 
-  color: #ff69b4; 
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
-  font-weight: 700;
-  margin: 20px 0;
-  animation: fadeInHeart 1.5s ease-out;
+/* TYPING MESSAGE CONTAINERS */
+.typing-container {
+  margin: 25px 0;
+  min-height: 40px;
 }
-@keyframes fadeInHeart {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-#perfectMsg {
-  font-size: clamp(18px, 3vw, 24px);
+.typing-text { 
+  display: inline-block; 
   color: #ffd1dc;
   font-weight: 500;
+  line-height: 1.6;
+}
+#thanksTyping {
+  font-size: clamp(20px, 4vw, 28px);
+  color: #ffdbac;
+  font-weight: 600;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+#loveTyping {
+  font-size: clamp(28px, 5vw, 40px);
+  color: #ff69b4;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+  margin: 20px 0;
+}
+#letterTyping {
+  font-size: clamp(18px, 3vw, 24px);
   max-width: 600px;
   margin: 0 auto 30px;
-  line-height: 1.6;
-  overflow: hidden;
-  border-right: 3px solid transparent;
-  position: relative;
 }
-#perfectMsg::after {
-  content: '';
-  position: absolute;
-  width: 3px;
-  height: 28px;
-  background: linear-gradient(to bottom, #ff69b4, #ff1744);
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: featherBlink 1s infinite;
-  box-shadow: 0 0 10px #ff69b4;
-}
-@keyframes featherBlink {
-  0%, 50% { opacity: 1; transform: translateY(-50%) scaleY(1); }
-  51%, 100% { opacity: 0; transform: translateY(-50%) scaleY(0.3); }
-}
-.typing-text { display: inline-block; border-right: none; }
 .feather-cursor {
   display: inline-block;
   width: 25px;
@@ -178,22 +158,6 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   0% { transform: translateY(0) rotate(-5deg); }
   100% { transform: translateY(-2px) rotate(3deg); }
 }
-
-#final p { 
-  font-size: clamp(20px, 4vw, 28px); 
-  opacity: 0.95; 
-  color: #ffdbac;
-  font-weight: 600;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
-  margin-top: 35px;
-  animation: gentlePulse 3s ease-in-out infinite;
-}
-@keyframes gentlePulse {
-  0%, 100% { transform: scale(1); opacity: 0.95; }
-  50% { transform: scale(1.02); opacity: 1; }
-}
-
-#musicBtn { display: none; }
 </style>
 </head>
 
@@ -236,13 +200,22 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 5; }
   </div>
 </div>
 
-<!-- 💖 FINAL -->
+<!-- 💖 FINAL - REORDERED MESSAGES WITH TYPING -->
 <div id="final" class="center hidden">
-  <div id="loveYouMsg" style="display:none;">I love you Babe 💋💋💋💋💋</div>
-  <div id="perfectMsg">
-    <span class="typing-text" id="typingText"></span><span class="feather-cursor"></span>
+  <!-- 1st: Thank You Message (TOP) -->
+  <div class="typing-container">
+    <span class="typing-text" id="thanksTyping"></span><span class="feather-cursor" id="cursor1"></span>
   </div>
-  <p>Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨</p>
+  
+  <!-- 2nd: Love Letter (MIDDLE) -->
+  <div class="typing-container">
+    <span class="typing-text" id="letterTyping"></span><span class="feather-cursor" id="cursor2"></span>
+  </div>
+  
+  <!-- 3rd: I Love You Babe (BOTTOM - LAST) -->
+  <div class="typing-container">
+    <span class="typing-text" id="loveTyping"></span><span class="feather-cursor" id="cursor3"></span>
+  </div>
 </div>
 
 <canvas id="fireworks"></canvas>
@@ -259,7 +232,7 @@ analyser.fftSize = 256;
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
-// 🌹 ENHANCED ROMANTIC ROSE PETALS
+// 🌹 ROSE PETALS
 let rosePetalsActive = false;
 function createRosePetals() {
   rosePetalsActive = true;
@@ -267,37 +240,24 @@ function createRosePetals() {
   
   function spawnPetal() {
     if (!rosePetalsActive) return;
-    
     const petal = document.createElement('div');
     petal.className = 'rose-petal';
-    
-    // Romantic size variation (smaller, more delicate)
     const size = 0.75 + Math.random() * 0.5;
     petal.style.width = (22 * size) + 'px';
     petal.style.height = (18 * size) + 'px';
     petal.style.left = Math.random() * 100 + '%';
-    
-    // SLOWER, more romantic fall (15-25 seconds)
     const duration = 15 + Math.random() * 10;
-    
-    // Optimized spawn rate for romance
     petal.style.animationDuration = duration + 's';
     petal.style.animationDelay = Math.random() * 1.5 + 's';
-    
     roseContainer.appendChild(petal);
-    
-    setTimeout(() => {
-      if (petal.parentNode) petal.remove();
-    }, (duration + 2) * 1000);
+    setTimeout(() => { if (petal.parentNode) petal.remove(); }, (duration + 2) * 1000);
   }
-  
-  // Perfect romantic density (every 150ms)
   setInterval(spawnPetal, 150);
-  spawnPetal(); // Initial burst
+  spawnPetal();
 }
 
-// FEATHER TYPING
-function typeWriter(element, text, speed = 80) {
+// 🪶 UNIVERSAL TYPING FUNCTION
+function typeWriter(element, text, speed = 80, callback) {
   let i = 0;
   element.innerHTML = '';
   
@@ -307,8 +267,12 @@ function typeWriter(element, text, speed = 80) {
       i++;
       setTimeout(type, speed);
     } else {
-      element.nextElementSibling.style.display = 'none';
-      document.getElementById('perfectMsg').style.borderRight = 'none';
+      // Hide cursor after typing
+      const cursor = element.nextElementSibling;
+      if (cursor) cursor.style.display = 'none';
+      
+      // Continue sequence
+      if (callback) callback();
     }
   }
   type();
@@ -319,13 +283,11 @@ let heartsRainActive = false;
 function create3DHeartsSlowBlast() {
   heartsRainActive = true;
   const heartsBg = document.getElementById('heartsBg');
-  
   function blastHearts() {
     for(let i = 0; i < 8; i++) {
       const heart = document.createElement('div');
       heart.innerHTML = '💖';
       const angle = (i / 8) * Math.PI * 2;
-      
       heart.style.cssText = `
         position: absolute;
         font-size: ${25 + Math.random() * 15}px;
@@ -341,11 +303,8 @@ function create3DHeartsSlowBlast() {
       setTimeout(() => heart.remove(), 6000);
     }
   }
-  
   blastHearts();
-  setInterval(() => {
-    if(heartsRainActive) blastHearts();
-  }, 4000);
+  setInterval(() => { if(heartsRainActive) blastHearts(); }, 4000);
 }
 
 // REGULAR HEARTS
@@ -371,7 +330,6 @@ function unlock() {
     audioContext.resume();
     audio.play().catch(e => console.log('Music ready'));
     create3DHeartsSlowBlast();
-    
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("startScreen").classList.remove("hidden");
     error.textContent = "";
@@ -399,22 +357,42 @@ document.getElementById("noBtn").onmouseover = () => {
   btn.style.zIndex = '20';
 };
 
+// 🔥 PERFECT SEQUENCED TYPING (TOP → BOTTOM → LAST)
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
   
-  // 🌹 START ROMANTIC PETAL RAIN
+  // 🌹 START PETALS
   createRosePetals();
   
+  // 1. Thank You FIRST (TOP)
   setTimeout(() => {
-    document.getElementById("loveYouMsg").style.display = "block";
-  }, 500);
-  
-  setTimeout(() => {
-    const typingText = document.getElementById("typingText");
-    const finalMessage = `My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat, every breath, every dream will be for you. Together we'll create a lifetime of magical memories, endless laughter, and unbreakable love. You're my soulmate, my partner in every adventure, my forever home. 💍✨`;
-    typeWriter(typingText, finalMessage, 75);
-  }, 2000);
+    typeWriter(
+      document.getElementById("thanksTyping"), 
+      "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 
+      90,
+      () => {
+        // 2. Love Letter SECOND (MIDDLE)
+        setTimeout(() => {
+          typeWriter(
+            document.getElementById("letterTyping"), 
+            "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat, every breath, every dream will be for you. Together we'll create a lifetime of magical memories, endless laughter, and unbreakable love. You're my soulmate, my partner in every adventure, my forever home. 💍✨", 
+            75,
+            () => {
+              // 3. I Love You LAST (BOTTOM)
+              setTimeout(() => {
+                typeWriter(
+                  document.getElementById("loveTyping"), 
+                  "I love you Babe 💋💋💋💋💋", 
+                  100
+                );
+              }, 800);
+            }
+          );
+        }, 600);
+      }
+    );
+  }, 300);
 };
 
 // FIREWORKS (unchanged)
