@@ -99,7 +99,7 @@ body {
   transform: translate(-50%, -50%); 
   z-index: 10; 
   width: 95%; 
-  padding: 15px; 
+  padding: 10px; 
   box-sizing: border-box; 
 }
 
@@ -155,22 +155,24 @@ button {
   min-height: 55px;
 }
 
+/* MOVED DOWN & SMALLER NAV BUTTONS */
 .nav-buttons {
   position: fixed;
-  bottom: 30px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 20px;
+  gap: 12px;
   z-index: 20;
-  padding: 20px;
+  padding: 10px;
 }
 
 .nav-btn {
-  padding: 14px 30px;
-  font-size: 16px;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
   flex: 1;
-  min-width: 120px;
+  min-width: 90px;
+  min-height: 45px !important;
 }
 
 .nav-btn:disabled {
@@ -180,13 +182,16 @@ button {
   opacity: 0.6;
 }
 
-.back-home-btn {
-  position: absolute;
-  top: 20px;
+/* HOME BUTTON - BOTTOM LEFT, SMALLER */
+.home-btn {
+  position: fixed;
+  bottom: 15px;
   left: 20px;
-  padding: 12px 20px;
-  font-size: 14px;
+  padding: 10px 18px !important;
+  font-size: 13px !important;
+  min-height: 42px !important;
   z-index: 25;
+  width: auto;
 }
 
 .loveMsg {
@@ -253,18 +258,36 @@ button {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(25px);
   border-radius: 25px;
-  padding: 30px 20px;
+  padding: 25px 20px;
   max-width: 95%;
-  margin: 20px auto;
+  margin: 10px auto;
   box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
 }
 
-/* 🎉 PHOTO PAGE ANIMATIONS 🎉 */
+/* 🎉 CONTINUOUS HEARTBEAT FOR FOREVER PHOTO 🎉 */
+#photoScreen #ourPhoto {
+  width: clamp(280px, 75vw, 420px);
+  height: clamp(340px, 90vw, 520px);
+  object-fit: cover;
+  border-radius: 20px;
+  border: 4px solid rgba(255, 105, 180, 0.6);
+  box-shadow: 0 18px 60px rgba(255, 105, 180, 0.5);
+  margin: 20px auto;
+  display: block;
+  opacity: 1 !important;
+  animation: photoForeverHeartbeat 2s ease-in-out infinite;
+}
+
+@keyframes photoForeverHeartbeat {
+  0%, 100% { transform: scale(1) rotate(-2deg); }
+  50% { transform: scale(1.05) rotate(2deg); }
+}
+
 .day-title {
   font-size: clamp(26px, 6.5vw, 38px);
   color: #ff1744;
   font-weight: 800;
-  margin: 20px 0;
+  margin: 15px 0;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
   opacity: 0;
   transform: translateY(-30px);
@@ -275,25 +298,18 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.day-photo, #ourPhoto {
+.day-photo {
   width: clamp(280px, 75vw, 420px);
   height: clamp(340px, 90vw, 520px);
   object-fit: cover;
   border-radius: 20px;
   border: 4px solid rgba(255, 105, 180, 0.6);
   box-shadow: 0 18px 60px rgba(255, 105, 180, 0.5);
-  margin: 25px auto;
+  margin: 20px auto;
   display: block;
   opacity: 0;
   transform: scale(0.7) rotateY(90deg);
-}
-
-.day-photo {
   animation: photoZoomIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
-}
-
-#ourPhoto {
-  animation: photoHeartBeat 1.5s ease-out 0.8s forwards;
 }
 
 @keyframes photoZoomIn {
@@ -302,19 +318,13 @@ button {
   100% { opacity: 1; transform: scale(1) rotateY(0deg); }
 }
 
-@keyframes photoHeartBeat {
-  0% { opacity: 0; transform: scale(0.8); }
-  30% { opacity: 1; transform: scale(1.2); }
-  60% { transform: scale(0.95); }
-  100% { transform: scale(1); }
-}
-
 .day-caption, .photo-caption {
   font-size: clamp(20px, 4.5vw, 26px) !important;
   color: #d63384; 
-  margin-top: 18px;
+  margin: 15px auto;
   font-weight: 600;
   line-height: 1.5;
+  max-width: 90%;
   opacity: 0;
   transform: translateY(30px);
   animation: captionSlideUp 0.8s ease-out 1s forwards;
@@ -328,10 +338,10 @@ button {
   background: rgba(255, 182, 193, 0.3);
   border: 2px solid rgba(255, 105, 180, 0.6);
   border-radius: 20px;
-  padding: 25px;
-  margin: 25px auto;
+  padding: 20px;
+  margin: 15px auto;
   max-width: 90%;
-  font-size: clamp(18px, 4vw, 24px);
+  font-size: clamp(16px, 3.8vw, 22px);
   line-height: 1.6;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   opacity: 0;
@@ -456,67 +466,59 @@ button {
   </div>
 </div>
 
-<!-- FINAL PHOTO SCREEN -->
+<!-- FINAL PHOTO SCREEN - ALWAYS VISIBLE & BLINKING 💓 -->
 <div id="photoScreen" class="center hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div id="photoText">Our Forever Love 💍✨</div>
   <img id="ourPhoto" src="IMG_1058.jpeg" alt="Bhumika & Ankush 💕">
   <p class="photo-caption">Together Forever ❤️</p>
   <button id="enterValentineWeekBtn" style="margin-top: 25px; padding: 16px 40px; font-size: 20px;">Enter Our Valentine Week 💕</button>
 </div>
 
-<!-- VALENTINE WEEK DAYS - SEPARATE ANIMATED PAGES -->
+<!-- VALENTINE WEEK DAYS -->
 <div id="roseDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Rose Day 🌹</div>
   <img class="day-photo" src="483d3742-01d4-4d3b-94d6-aab567958d1b.jpeg" alt="Rose Day">
   <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
 </div>
 
 <div id="proposeDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Propose Day 💍</div>
   <img class="day-photo" src="IMG_3405.jpeg" alt="Propose Day">
   <p class="day-caption">On Propose Day, I whisper again: my answer will always be you, in every lifetime. ✨</p>
 </div>
 
 <div id="chocolateDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Chocolate Day 🍫</div>
   <img class="day-photo" src="851b3bde-3c52-49cb-b7cd-95f6e64624b0.jpeg" alt="Chocolate Day">
   <p class="day-caption">Sweeter than chocolate is the smile you give me every single day, my love. 😘</p>
 </div>
 
 <div id="teddyDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Teddy Day 🧸</div>
   <img class="day-photo" src="IMG_2768.jpeg" alt="Teddy Day">
   <p class="day-caption">Your hugs are my favorite place in the world—soft, safe, and full of love. 🤍</p>
 </div>
 
 <div id="promiseDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Promise Day 🤝</div>
   <img class="day-photo" src="63A39EE4-6C35-4938-A1C7-AE69093F7646.jpeg" alt="Promise Day">
   <p class="day-caption">I promise to stand by you, laugh with you, and love you more every single day. ✨</p>
 </div>
 
 <div id="hugDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Hug Day 🤗</div>
   <img class="day-photo" src="759ef0cd-b86a-490c-8968-09bd00ff0d28.jpeg" alt="Hug Day">
   <p class="day-caption">Every hug from you feels like coming home after a long day. 💞</p>
 </div>
 
 <div id="kissDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Kiss Day 💋</div>
   <img class="day-photo" src="IMG_2001.jpeg" alt="Kiss Day">
   <p class="day-caption">With every kiss, I fall in love with you all over again, Bhumika. 💋</p>
 </div>
 
 <div id="valentineDayScreen" class="center day-screen hidden">
-  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Valentine Day 💖</div>
   <img class="day-photo" src="ac89f1ab-397d-453d-8b4e-5d0ffe1bb8ef.jpeg" alt="Valentine Day">
   <p class="day-caption">Our Valentine's Day - the day our hearts beat as one forever! 💍✨</p>
@@ -534,7 +536,7 @@ button {
   </div>
 </div>
 
-<!-- NAVIGATION BUTTONS -->
+<!-- NAVIGATION BUTTONS - MOVED DOWN -->
 <div class="nav-buttons" id="navButtons" style="display: none;">
   <button id="prevBtn" class="nav-btn">← Back</button>
   <button id="nextBtn" class="nav-btn">Next →</button>
@@ -554,7 +556,7 @@ const dayScreens = [
   'valentineDayScreen'
 ];
 
-// 🏠 Home button function
+// 🏠 Home button function - goes to forever photo
 function goHome() {
   showScreen("photoScreen");
 }
@@ -624,7 +626,6 @@ function hideAllScreens() {
   document.getElementById("startScreen").classList.add("hidden");
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.add("hidden");
-  // Don't hide photoScreen here to keep it persistent
   dayScreens.forEach(screen => document.getElementById(screen).classList.add("hidden"));
   document.getElementById("navButtons").style.display = 'none';
 }
@@ -633,19 +634,6 @@ function showScreen(screenId) {
   hideAllScreens();
   document.getElementById(screenId).classList.remove("hidden");
   currentScreen = screenId;
-  
-  // Reset photo animation states when showing photoScreen
-  if (screenId === "photoScreen") {
-    const ourPhoto = document.getElementById("ourPhoto");
-    ourPhoto.style.opacity = "0";
-    ourPhoto.style.transform = "scale(0.8)";
-    // Trigger animation again
-    setTimeout(() => {
-      ourPhoto.style.animation = "none";
-      ourPhoto.offsetHeight; // Trigger reflow
-      ourPhoto.style.animation = "photoHeartBeat 1.5s ease-out 0.8s forwards";
-    }, 100);
-  }
 }
 
 function showDayScreen(index) {
@@ -731,7 +719,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enter Valentine Week button
   document.getElementById("enterValentineWeekBtn").onclick = () => {
-    showDayScreen(0); // Start with Rose Day
+    showDayScreen(0);
   };
 
   // Navigation buttons
