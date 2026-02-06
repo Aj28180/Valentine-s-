@@ -30,6 +30,69 @@ body {
 .rose-petals-password { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
 .rose-petals { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
 
+/* 🌹 HIGH QUALITY ROSE PETAL FIREWORKS 🌹 */
+.rose-firework {
+  position: absolute;
+  width: 24px;
+  height: 20px;
+  background: radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
+  border-radius: 70% 0 65% 45%;
+  opacity: 0;
+  box-shadow: 
+    0 4px 18px rgba(255, 105, 180, 0.8),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  transform: rotate(0deg) scale(0);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.rose-firework::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 16px;
+  height: 12px;
+  background: inherit;
+  border-radius: 50% 20% 50% 40%;
+  opacity: 0.7;
+}
+
+.rose-firework::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 2px;
+  width: 8px;
+  height: 6px;
+  background: rgba(255,182,193,0.9);
+  border-radius: 50% 30% 50% 20%;
+  opacity: 0.6;
+}
+
+@keyframes roseFireworkExplode {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg) scale(0) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.2);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(720deg) scale(0.3);
+  }
+}
+
+.rose-firework.launch {
+  animation: roseFireworkExplode 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 .bg-heart {
   position: absolute;
   color: rgba(255, 105, 180, 0.15);
@@ -441,6 +504,9 @@ button {
 <div id="rosePetalsPassword" class="rose-petals-password"></div>
 <div id="rosePetals" class="rose-petals"></div>
 
+<!-- 🌹 ROSE PETAL FIREWORKS CONTAINER 🌹 -->
+<div id="roseFireworks" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 35;"></div>
+
 <!-- PASSWORD SCREEN -->
 <div id="lock" class="center">
   <h2>Enter Our Secret Password 🔐</h2>
@@ -581,6 +647,52 @@ const dayScreens = [
   'valentineDayScreen'
 ];
 
+// 🌹 HIGH QUALITY ROSE PETAL FIREWORKS FUNCTION 🌹
+function createRoseFireworks() {
+  const fireworksContainer = document.getElementById('roseFireworks');
+  
+  // Create 12 spectacular bursts from center
+  for(let burst = 0; burst < 12; burst++) {
+    setTimeout(() => {
+      for(let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const petal = document.createElement('div');
+          petal.className = 'rose-firework';
+          
+          // Random position around center screen
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          const angle = (burst * 30 + i * 45) * Math.PI / 180;
+          const distance = 80 + Math.random() * 60;
+          
+          petal.style.left = (centerX + Math.cos(angle) * distance - 12) + 'px';
+          petal.style.top = (centerY + Math.sin(angle) * distance - 10) + 'px';
+          
+          // Random size and rotation
+          const size = 0.8 + Math.random() * 0.8;
+          petal.style.width = (24 * size) + 'px';
+          petal.style.height = (20 * size) + 'px';
+          
+          fireworksContainer.appendChild(petal);
+          
+          // Launch animation
+          setTimeout(() => {
+            petal.classList.add('launch');
+            setTimeout(() => {
+              if(petal.parentNode) petal.remove();
+            }, 2000);
+          }, 50);
+        }, i * 80);
+      }
+    }, burst * 200);
+  }
+  
+  // Clear fireworks after celebration
+  setTimeout(() => {
+    fireworksContainer.innerHTML = '';
+  }, 5000);
+}
+
 // 🏠 Home button function - goes to forever photo
 function goHome() {
   showScreen("photoScreen");
@@ -680,8 +792,15 @@ function unlock() {
   const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
   
   if (secrets.includes(p)) {
+    // 🎉 TRIGGER ROSE PETAL FIREWORKS! 🌹
+    createRoseFireworks();
+    
     document.getElementById("loveSong").play().catch(e => console.log('Music ready'));
-    showScreen("startScreen");
+    
+    // Wait for fireworks then show start screen
+    setTimeout(() => {
+      showScreen("startScreen");
+    }, 1500);
   } else {
     error.textContent = "❤️ Whisper our special words... 💕";
     error.style.color = "#ff6b9d";
