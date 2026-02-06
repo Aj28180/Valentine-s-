@@ -328,12 +328,12 @@ button {
   box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
 }
 
-/* 🎉 LARGER MAGENTA PINK "Our Forever Love" 🎉 */
+/* 🎉 LARGER DARK BABY PINK "Our Forever Love" 🎉 */
 #photoText {
   font-size: clamp(32px, 8vw, 44px) !important;
   font-weight: 900 !important;
-  color: #ff1493 !important;
-  text-shadow: 2px 2px 12px rgba(255, 20, 147, 0.8);
+  color: #e91e63 !important;
+  text-shadow: 2px 2px 12px rgba(233, 30, 99, 0.8);
   margin: 20px 0 !important;
   letter-spacing: 1px;
 }
@@ -392,15 +392,15 @@ button {
   100% { opacity: 1; transform: scale(1) rotateY(0deg); }
 }
 
-/* 🎉 SPECIAL MAGENTA PINK VALENTINE CAPTION 🎉 */
+/* 🎉 DARK BABY PINK VALENTINE CAPTION - ONLY LAST PAGE 🎉 */
 #valentineDayScreen .day-caption {
   font-size: clamp(24px, 5.5vw, 32px) !important;
-  color: #ff1493 !important;
+  color: #e91e63 !important;
   font-weight: 900 !important;
   margin: 15px auto;
   line-height: 1.4;
   max-width: 90%;
-  text-shadow: 2px 2px 12px rgba(255, 20, 147, 0.8);
+  text-shadow: 2px 2px 12px rgba(233, 30, 99, 0.8);
   opacity: 0;
   transform: translateY(30px);
   animation: captionSlideUp 0.8s ease-out 1s forwards;
@@ -609,6 +609,14 @@ button {
   <p class="day-caption">With every kiss, I fall in love with you all over again, Bhumika. 💋</p>
 </div>
 
+<!-- 🎉 LAST PAGE (Rose Day screenshot) - HOME BUTTON ONLY 🎉 -->
+<div id="IMG_6265Screen" class="center day-screen hidden">
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <div class="day-title">Rose Day 🌹</div>
+  <img class="day-photo" src="IMG_6265.jpeg" alt="Rose Day">
+  <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
+</div>
+
 <div id="valentineDayScreen" class="center day-screen hidden">
   <div class="day-title">Valentine Day 💖</div>
   <img class="day-photo" src="ac89f1ab-397d-453d-8b4e-5d0ffe1bb8ef.jpeg" alt="Valentine Day">
@@ -637,7 +645,7 @@ button {
 let currentScreen = 'lock';
 let currentDayIndex = 0;
 const dayScreens = [
-  'roseDayScreen',
+  'IMG_6265Screen',  // Rose Day screenshot page - HOME ONLY
   'proposeDayScreen', 
   'chocolateDayScreen',
   'teddyDayScreen',
@@ -777,13 +785,21 @@ function showDayScreen(index) {
   hideAllScreens();
   document.getElementById(dayScreens[index]).classList.remove("hidden");
   currentDayIndex = index;
-  document.getElementById("navButtons").style.display = 'flex';
   
-  // Update navigation buttons
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  prevBtn.disabled = index === 0;
-  nextBtn.disabled = index === dayScreens.length - 1;
+  // SPECIAL: Hide nav buttons on Rose Day screenshot page (index 0)
+  if(index === 0) {
+    document.getElementById("navButtons").style.display = 'none';
+  } else {
+    document.getElementById("navButtons").style.display = 'flex';
+  }
+  
+  // Update navigation buttons (except first page)
+  if(index > 0) {
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    prevBtn.disabled = index === 1;
+    nextBtn.disabled = index === dayScreens.length - 1;
+  }
 }
 
 function unlock() {
@@ -863,12 +879,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enter Valentine Week button
   document.getElementById("enterValentineWeekBtn").onclick = () => {
-    showDayScreen(0);
+    showDayScreen(0);  // Goes to Rose Day screenshot page first
   };
 
   // Navigation buttons
   document.getElementById("prevBtn").onclick = () => {
-    if (currentDayIndex > 0) {
+    if (currentDayIndex > 1) {  // Skip Rose Day screenshot page
       showDayScreen(currentDayIndex - 1);
     }
   };
