@@ -295,6 +295,13 @@ button {
   text-shadow: 0 0 12px rgba(255, 105, 180, 0.8);
   margin-bottom: 10px;
 }
+
+/* No button running away effect - only on hover */
+#noBtn.running {
+  position: fixed !important;
+  z-index: 20 !important;
+  transition: all 0.3s ease;
+}
 </style>
 </head>
 
@@ -510,57 +517,72 @@ function unlock() {
   }
 }
 
-document.getElementById("startBtn").onclick = () => {
-  showScreen("content");
-};
-
-// NO button – runs away on hover and click, never proceeds
-const noBtn = document.getElementById("noBtn");
-function moveNoButton(e) {
-  if (e) e.preventDefault();
-  const btn = noBtn;
-  btn.style.position = 'fixed';
-  btn.style.top = (Math.random() * 60 + 10) + "vh";
-  btn.style.left = (Math.random() * 60 + 10) + "vw";
-  btn.style.transform = `rotate(${Math.random() * 360}deg)`;
-  btn.style.zIndex = '20';
-}
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("click", moveNoButton);
-
-// YES button – goes to typing, then photo, then Valentine week
-document.getElementById("yesBtn").onclick = () => {
-  showScreen("final");
-  
-  setTimeout(() => {
-    typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 90, () => {
-      setTimeout(() => {
-        typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 75, () => {
-          setTimeout(() => {
-            typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 100, () => {
-              setTimeout(() => {
-                document.getElementById("bigHeart").style.opacity = "1";
-                setTimeout(() => {
-                  showScreen("photoScreen");
-                  // After a short delay, show Valentine week gallery
-                  setTimeout(() => showScreen("valentineWeekScreen"), 3500);
-                }, 3000);
-              }, 500);
-            });
-          }, 800);
-        });
-      }, 800);
-    });
-  }, 300);
-};
-
-// Back button from Valentine week to the final photo
-document.getElementById("backToPhotoBtn").onclick = () => {
-  showScreen("photoScreen");
-};
-
-// Initialize
+// FIXED: Proper button event handlers
 document.addEventListener('DOMContentLoaded', function() {
+  // Start button
+  document.getElementById("startBtn").onclick = () => {
+    showScreen("content");
+  };
+
+  // YES button - goes to typing, then photo, then Valentine week
+  document.getElementById("yesBtn").onclick = () => {
+    showScreen("final");
+    
+    setTimeout(() => {
+      typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 90, () => {
+        setTimeout(() => {
+          typeWriter(document.getElementById("letterTyping"), "My beautiful Bhumika, today you made me the happiest man alive. From this moment forward, every heartbeat is for you 💕", 75, () => {
+            setTimeout(() => {
+              typeWriter(document.getElementById("loveTyping"), "I love you Babe 💋💋💋💋💋", 100, () => {
+                setTimeout(() => {
+                  document.getElementById("bigHeart").style.opacity = "1";
+                  setTimeout(() => {
+                    showScreen("photoScreen");
+                    // After a short delay, show Valentine week gallery
+                    setTimeout(() => showScreen("valentineWeekScreen"), 3500);
+                  }, 3000);
+                }, 500);
+              });
+            }, 800);
+          });
+        }, 800);
+      });
+    }, 300);
+  };
+
+  // NO button - playful hover effect but proper click handling
+  const noBtn = document.getElementById("noBtn");
+  noBtn.onmouseenter = function(e) {
+    // Only move on hover/mouseenter, not on click
+    this.classList.add('running');
+    const rect = this.getBoundingClientRect();
+    const x = (Math.random() - 0.5) * 100;
+    const y = (Math.random() - 0.5) * 60;
+    this.style.transform = `translate(${x}vw, ${y}vh) rotate(${Math.random() * 360}deg)`;
+  };
+
+  noBtn.onmouseleave = function() {
+    // Return to original position on mouse leave
+    this.classList.remove('running');
+    this.style.transform = '';
+  };
+
+  noBtn.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    // Playful response but stays functional
+    alert("😘 Oh Bhumika, you know you can't resist our love! Try again 💕");
+    // Reset position
+    this.classList.remove('running');
+    this.style.transform = '';
+  };
+
+  // Back button from Valentine week to the final photo
+  document.getElementById("backToPhotoBtn").onclick = () => {
+    showScreen("photoScreen");
+  };
+
+  // Initialize effects
   createPasswordEffects();
   createBgHearts();
 });
