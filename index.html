@@ -245,7 +245,7 @@ button {
   opacity: 0.6;
 }
 
-/* HOME BUTTON - BOTTOM LEFT, SAME SIZE AS NAV */
+/* HOME BUTTON - BOTTOM LEFT */
 .home-btn {
   position: fixed;
   bottom: 15px;
@@ -253,7 +253,18 @@ button {
   padding: 10px 20px !important;
   font-size: 14px !important;
   min-height: 45px !important;
-  flex: 1;
+  min-width: 90px;
+  z-index: 25;
+}
+
+/* NEXT BUTTON - BOTTOM RIGHT for Rose Day */
+.next-btn-right {
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  min-height: 45px !important;
   min-width: 90px;
   z-index: 25;
 }
@@ -566,10 +577,13 @@ button {
 </div>
 
 <!-- VALENTINE WEEK DAYS -->
-<div id="roseDayScreen" class="center day-screen hidden">
+<div id="IMG_6265Screen" class="center day-screen hidden">
+  <!-- HOME BUTTON LEFT + NEXT BUTTON RIGHT -->
   <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <button class="next-btn-right" onclick="showDayScreen(1)">Next ➤</button>
+  
   <div class="day-title">Rose Day 🌹</div>
-  <img class="day-photo" src="483d3742-01d4-4d3b-94d6-aab567958d1b.jpeg" alt="Rose Day">
+  <img class="day-photo" src="IMG_6265.jpeg" alt="Rose Day">
   <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
 </div>
 
@@ -609,14 +623,6 @@ button {
   <p class="day-caption">With every kiss, I fall in love with you all over again, Bhumika. 💋</p>
 </div>
 
-<!-- 🎉 LAST PAGE (Rose Day screenshot) - HOME BUTTON ONLY 🎉 -->
-<div id="IMG_6265Screen" class="center day-screen hidden">
-  <button class="home-btn" onclick="goHome()">🏠 Home</button>
-  <div class="day-title">Rose Day 🌹</div>
-  <img class="day-photo" src="IMG_6265.jpeg" alt="Rose Day">
-  <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
-</div>
-
 <div id="valentineDayScreen" class="center day-screen hidden">
   <div class="day-title">Valentine Day 💖</div>
   <img class="day-photo" src="ac89f1ab-397d-453d-8b4e-5d0ffe1bb8ef.jpeg" alt="Valentine Day">
@@ -635,7 +641,7 @@ button {
   </div>
 </div>
 
-<!-- NAVIGATION BUTTONS - MOVED DOWN -->
+<!-- NAVIGATION BUTTONS - FOR OTHER PAGES -->
 <div class="nav-buttons" id="navButtons" style="display: none;">
   <button id="prevBtn" class="nav-btn">← Back</button>
   <button id="nextBtn" class="nav-btn">Next →</button>
@@ -645,7 +651,7 @@ button {
 let currentScreen = 'lock';
 let currentDayIndex = 0;
 const dayScreens = [
-  'IMG_6265Screen',  // Rose Day screenshot page - HOME ONLY
+  'IMG_6265Screen',  // Rose Day screenshot page - HOME + NEXT
   'proposeDayScreen', 
   'chocolateDayScreen',
   'teddyDayScreen',
@@ -659,7 +665,6 @@ const dayScreens = [
 function createRoseFireworks() {
   const fireworksContainer = document.getElementById('roseFireworks');
   
-  // Create 12 spectacular bursts from center
   for(let burst = 0; burst < 12; burst++) {
     setTimeout(() => {
       for(let i = 0; i < 8; i++) {
@@ -667,7 +672,6 @@ function createRoseFireworks() {
           const petal = document.createElement('div');
           petal.className = 'rose-firework';
           
-          // Random position around center screen
           const centerX = window.innerWidth / 2;
           const centerY = window.innerHeight / 2;
           const angle = (burst * 30 + i * 45) * Math.PI / 180;
@@ -676,14 +680,12 @@ function createRoseFireworks() {
           petal.style.left = (centerX + Math.cos(angle) * distance - 12) + 'px';
           petal.style.top = (centerY + Math.sin(angle) * distance - 10) + 'px';
           
-          // Random size and rotation
           const size = 0.8 + Math.random() * 0.8;
           petal.style.width = (24 * size) + 'px';
           petal.style.height = (20 * size) + 'px';
           
           fireworksContainer.appendChild(petal);
           
-          // Launch animation
           setTimeout(() => {
             petal.classList.add('launch');
             setTimeout(() => {
@@ -695,7 +697,6 @@ function createRoseFireworks() {
     }, burst * 200);
   }
   
-  // Clear fireworks after celebration
   setTimeout(() => {
     fireworksContainer.innerHTML = '';
   }, 5000);
@@ -786,15 +787,14 @@ function showDayScreen(index) {
   document.getElementById(dayScreens[index]).classList.remove("hidden");
   currentDayIndex = index;
   
-  // SPECIAL: Hide nav buttons on Rose Day screenshot page (index 0)
+  // Rose Day (index 0): Hide center nav buttons (uses custom Home+Next)
+  // Other pages: Show center nav buttons
   if(index === 0) {
     document.getElementById("navButtons").style.display = 'none';
   } else {
     document.getElementById("navButtons").style.display = 'flex';
-  }
-  
-  // Update navigation buttons (except first page)
-  if(index > 0) {
+    
+    // Update navigation buttons
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     prevBtn.disabled = index === 1;
@@ -805,15 +805,11 @@ function showDayScreen(index) {
 function unlock() {
   const p = document.getElementById("pass").value.toLowerCase().trim();
   const error = document.getElementById("error");
-  const secrets = ["iloveyou", "ilovebhumika", "bhumikaankush", "forever", "mylove"];
+  const secrets = ["iloveyou", "ilovebhumika", "bhumika", "23022024", "06102000"];
   
   if (secrets.includes(p)) {
-    // 🎉 TRIGGER ROSE PETAL FIREWORKS! 🌹
     createRoseFireworks();
-    
     document.getElementById("loveSong").play().catch(e => console.log('Music ready'));
-    
-    // Wait for fireworks then show start screen
     setTimeout(() => {
       showScreen("startScreen");
     }, 1500);
@@ -879,12 +875,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enter Valentine Week button
   document.getElementById("enterValentineWeekBtn").onclick = () => {
-    showDayScreen(0);  // Goes to Rose Day screenshot page first
+    showDayScreen(0);  // Goes to Rose Day page first
   };
 
-  // Navigation buttons
+  // Navigation buttons (for pages 1-7)
   document.getElementById("prevBtn").onclick = () => {
-    if (currentDayIndex > 1) {  // Skip Rose Day screenshot page
+    if (currentDayIndex > 1) {
       showDayScreen(currentDayIndex - 1);
     }
   };
