@@ -164,10 +164,6 @@ body {
   width: 95%; 
   padding: 10px; 
   box-sizing: border-box; 
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
-  justify-content: space-between;
 }
 
 .hidden { display: none !important; }
@@ -222,7 +218,7 @@ button {
   min-height: 55px;
 }
 
-/* FIXED: Buttons container moved to bottom with reduced gap */
+/* FIXED: Buttons container for main content screen */
 .buttons-container {
   position: fixed;
   bottom: 20px;
@@ -239,26 +235,31 @@ button {
   box-sizing: border-box;
 }
 
-/* MOVED LOWER DOWN - FIXED POSITION */
-.home-btn, .back-btn-left, .next-btn-right, .home-btn-right {
-  position: fixed !important;
-  bottom: 25px !important; /* MOVED LOWER */
+/* NEW: Bottom navigation buttons for Valentine pages ONLY (days 1-6) */
+.day-nav-buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  z-index: 15;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.day-nav-btn {
   padding: 12px 24px !important;
-  font-size: 15px !important;
+  font-size: 16px !important;
+  flex: 1;
+  min-width: 100px;
   min-height: 48px !important;
-  min-width: 95px;
-  z-index: 25;
-  border-radius: 25px !important;
 }
 
-.home-btn, .back-btn-left {
-  left: 25px !important;
-}
-
-.next-btn-right, .home-btn-right {
-  right: 25px !important;
-}
-
+/* OLD: Corner positioned buttons (Rose Day & Valentine Day only) */
 .nav-buttons {
   position: fixed;
   bottom: 15px;
@@ -285,17 +286,31 @@ button {
   opacity: 0.6;
 }
 
-/* FIXED: Love message with more space */
+.home-btn, .back-btn-left, .next-btn-right, .home-btn-right {
+  position: fixed;
+  bottom: 15px;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  min-height: 45px !important;
+  min-width: 90px;
+  z-index: 25;
+}
+
+.home-btn { left: 20px; }
+.back-btn-left { left: 20px; }
+.next-btn-right { right: 20px; }
+.home-btn-right { right: 20px; }
+
 .loveMsg {
   max-width: 95vw;
-  max-height: 70vh !important;
+  max-height: 65vh !important;
   height: auto;
-  margin: 15px auto 150px auto !important; /* MORE bottom space */
+  margin: 15px auto 120px auto !important;
   font-size: clamp(20px, 5vw, 28px) !important;
   line-height: 1.5 !important;
   color: #d63384;
   background: rgba(255, 255, 255, 0.25);
-  padding: 25px;
+  padding: 20px;
   border-radius: 20px;
   backdrop-filter: blur(18px);
   animation: fadeInUp 1.8s ease-out;
@@ -318,21 +333,6 @@ button {
   padding-bottom: 0 !important;
 }
 
-/* DAY SCREENS - FULL HEIGHT FOR CONTENT */
-.day-screen {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(25px);
-  border-radius: 25px;
-  padding: 30px 20px 120px 20px !important; /* EXTRA BOTTOM PADDING */
-  max-width: 95%;
-  margin: 10px auto;
-  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
-  display: flex;
-  flex-direction: column;
-  height: 85vh;
-  justify-content: flex-start;
-}
-
 .typing-container {
   background: rgba(255, 255, 255, 0.25);
   border-radius: 20px;
@@ -348,7 +348,7 @@ button {
 #letterTyping { font-size: clamp(20px, 5vw, 28px) !important; color: #d63384; font-weight: 700; line-height: 1.6; }
 #loveTyping { font-size: clamp(36px, 9vw, 52px) !important; color: #ff1744; font-weight: 900; }
 
-#photoScreen {
+#photoScreen, .day-screen {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(25px);
   border-radius: 25px;
@@ -356,6 +356,11 @@ button {
   max-width: 95%;
   margin: 10px auto;
   box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+  position: relative; /* For bottom positioning */
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #photoText {
@@ -548,7 +553,7 @@ button {
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- MAIN CONTENT - FIXED LAYOUT -->
+<!-- MAIN CONTENT -->
 <div id="content" class="center hidden">
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   
@@ -592,8 +597,9 @@ button {
 </div>
 
 <!-- VALENTINE WEEK DAYS -->
-<!-- ROSE DAY - Index 0: Home + Next -->
-<div id="IMG_6265Screen" class="day-screen center hidden">
+
+<!-- ROSE DAY - Index 0: CORNER BUTTONS (UNCHANGED) -->
+<div id="IMG_6265Screen" class="center day-screen hidden">
   <button class="home-btn" onclick="goHome()">🏠 Home</button>
   <button class="next-btn-right" onclick="showDayScreen(1)">Next ➤</button>
   
@@ -602,68 +608,74 @@ button {
   <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
 </div>
 
-<!-- PROPOSE DAY - Index 1: Back + Next -->
-<div id="proposeDayScreen" class="day-screen center hidden">
-  <button class="back-btn-left" onclick="showDayScreen(0)">← Back</button>
-  <button class="next-btn-right" onclick="showDayScreen(2)">Next ➤</button>
-  
+<!-- PROPOSE DAY - Index 1: BOTTOM BUTTONS (NEW) -->
+<div id="proposeDayScreen" class="center day-screen hidden">
   <div class="day-title">Propose Day 💍</div>
   <img class="day-photo" src="IMG_3405.jpeg" alt="Propose Day">
   <p class="day-caption">On Propose Day, I whisper again: my answer will always be you, in every lifetime. ✨</p>
+  <div class="day-nav-buttons">
+    <button class="day-nav-btn" onclick="showDayScreen(0)">← Back</button>
+    <button class="day-nav-btn" onclick="showDayScreen(2)">Next ➤</button>
+  </div>
 </div>
 
-<!-- CHOCOLATE DAY - Index 2: Back + Next -->
-<div id="chocolateDayScreen" class="day-screen center hidden">
-  <button class="back-btn-left" onclick="showDayScreen(1)">← Back</button>
-  <button class="next-btn-right" onclick="showDayScreen(3)">Next ➤</button>
-  
+<!-- CHOCOLATE DAY - Index 2: BOTTOM BUTTONS (NEW) -->
+<div id="chocolateDayScreen" class="center day-screen hidden">
   <div class="day-title">Chocolate Day 🍫</div>
   <img class="day-photo" src="851b3bde-3c52-49cb-b7cd-95f6e64624b0.jpeg" alt="Chocolate Day">
   <p class="day-caption">Sweeter than chocolate is the smile you give me every single day, my love. 😘</p>
+  <div class="day-nav-buttons">
+    <button class="day-nav-btn" onclick="showDayScreen(1)">← Back</button>
+    <button class="day-nav-btn" onclick="showDayScreen(3)">Next ➤</button>
+  </div>
 </div>
 
-<!-- TEDDY DAY - Index 3: Back + Next -->
-<div id="teddyDayScreen" class="day-screen center hidden">
-  <button class="back-btn-left" onclick="showDayScreen(2)">← Back</button>
-  <button class="next-btn-right" onclick="showDayScreen(4)">Next ➤</button>
-  
+<!-- TEDDY DAY - Index 3: BOTTOM BUTTONS (NEW) -->
+<div id="teddyDayScreen" class="center day-screen hidden">
   <div class="day-title">Teddy Day 🧸</div>
   <img class="day-photo" src="IMG_2768.jpeg" alt="Teddy Day">
   <p class="day-caption">Your hugs are my favorite place in the world—soft, safe, and full of love. 🤍</p>
+  <div class="day-nav-buttons">
+    <button class="day-nav-btn" onclick="showDayScreen(2)">← Back</button>
+    <button class="day-nav-btn" onclick="showDayScreen(4)">Next ➤</button>
+  </div>
 </div>
 
-<!-- PROMISE DAY - Index 4: Back + Next -->
-<div id="promiseDayScreen" class="day-screen center hidden">
-  <button class="back-btn-left" onclick="showDayScreen(3)">← Back</button>
-  <button class="next-btn-right" onclick="showDayScreen(5)">Next ➤</button>
-  
+<!-- PROMISE DAY - Index 4: BOTTOM BUTTONS (NEW) -->
+<div id="promiseDayScreen" class="center day-screen hidden">
   <div class="day-title">Promise Day 🤝</div>
   <img class="day-photo" src="63A39EE4-6C35-4938-A1C7-AE69093F7646.jpeg" alt="Promise Day">
   <p class="day-caption">I promise to stand by you, laugh with you, and love you more every single day. ✨</p>
+  <div class="day-nav-buttons">
+    <button class="day-nav-btn" onclick="showDayScreen(3)">← Back</button>
+    <button class="day-nav-btn" onclick="showDayScreen(5)">Next ➤</button>
+  </div>
 </div>
 
-<!-- HUG DAY - Index 5: Back + Next -->
-<div id="hugDayScreen" class="day-screen center hidden">
-  <button class="back-btn-left" onclick="showDayScreen(4)">← Back</button>
-  <button class="next-btn-right" onclick="showDayScreen(6)">Next ➤</button>
-  
+<!-- HUG DAY - Index 5: BOTTOM BUTTONS (NEW) -->
+<div id="hugDayScreen" class="center day-screen hidden">
   <div class="day-title">Hug Day 🤗</div>
   <img class="day-photo" src="759ef0cd-b86a-490c-8968-09bd00ff0d28.jpeg" alt="Hug Day">
   <p class="day-caption">Every hug from you feels like coming home after a long day. 💞</p>
+  <div class="day-nav-buttons">
+    <button class="day-nav-btn" onclick="showDayScreen(4)">← Back</button>
+    <button class="day-nav-btn" onclick="showDayScreen(6)">Next ➤</button>
+  </div>
 </div>
 
-<!-- KISS DAY - Index 6: Back + Next -->
-<div id="kissDayScreen" class="day-screen center hidden">
-  <button class="back-btn-left" onclick="showDayScreen(5)">← Back</button>
-  <button class="next-btn-right" onclick="showDayScreen(7)">Next ➤</button>
-  
+<!-- KISS DAY - Index 6: BOTTOM BUTTONS (NEW) -->
+<div id="kissDayScreen" class="center day-screen hidden">
   <div class="day-title">Kiss Day 💋</div>
   <img class="day-photo" src="IMG_2001.jpeg" alt="Kiss Day">
   <p class="day-caption">With every kiss, I fall in love with you all over again, Bhumika. 💋</p>
+  <div class="day-nav-buttons">
+    <button class="day-nav-btn" onclick="showDayScreen(5)">← Back</button>
+    <button class="day-nav-btn" onclick="showDayScreen(7)">Next ➤</button>
+  </div>
 </div>
 
-<!-- VALENTINE DAY - Index 7: Back + Home -->
-<div id="valentineDayScreen" class="day-screen center hidden">
+<!-- VALENTINE DAY - Index 7: CORNER BUTTONS (UNCHANGED) -->
+<div id="valentineDayScreen" class="center day-screen hidden">
   <button class="back-btn-left" onclick="showDayScreen(6)">← Back</button>
   <button class="home-btn-right" onclick="goHome()">🏠 Home</button>
   
@@ -688,16 +700,17 @@ button {
 let currentScreen = 'lock';
 let currentDayIndex = 0;
 const dayScreens = [
-  'IMG_6265Screen',      // 0 - Rose Day
-  'proposeDayScreen',    // 1 - Propose Day
-  'chocolateDayScreen',  // 2
-  'teddyDayScreen',      // 3
-  'promiseDayScreen',    // 4
-  'hugDayScreen',        // 5
-  'kissDayScreen',       // 6 - Kiss Day
-  'valentineDayScreen'   // 7 - Valentine Day
+  'IMG_6265Screen',      // 0 - Rose Day (CORNER BUTTONS)
+  'proposeDayScreen',    // 1 - Propose Day (BOTTOM BUTTONS)
+  'chocolateDayScreen',  // 2 - Chocolate Day (BOTTOM BUTTONS)
+  'teddyDayScreen',      // 3 - Teddy Day (BOTTOM BUTTONS)
+  'promiseDayScreen',    // 4 - Promise Day (BOTTOM BUTTONS)
+  'hugDayScreen',        // 5 - Hug Day (BOTTOM BUTTONS)
+  'kissDayScreen',       // 6 - Kiss Day (BOTTOM BUTTONS)
+  'valentineDayScreen'   // 7 - Valentine Day (CORNER BUTTONS)
 ];
 
+// 🏠 Home button function
 function goHome() {
   showScreen("photoScreen");
 }
@@ -738,6 +751,7 @@ function createRoseFireworks() {
 function createPasswordEffects() {
   const petalsContainer = document.getElementById('rosePetalsPassword');
   const heartsContainer = document.getElementById('heartsBg');
+  
   setInterval(() => {
     const petal = document.createElement('div');
     petal.className = 'rose-petal-3d';
