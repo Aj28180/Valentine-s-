@@ -218,7 +218,7 @@ button {
   min-height: 55px;
 }
 
-/* FIXED: Buttons container for main content screen */
+/* FIXED: Yes/No buttons container - MOVED TO BOTTOM */
 .buttons-container {
   position: fixed;
   bottom: 20px;
@@ -259,33 +259,7 @@ button {
   min-height: 48px !important;
 }
 
-/* OLD: Corner positioned buttons (Rose Day & Valentine Day only) */
-.nav-buttons {
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 20;
-  padding: 10px;
-}
-
-.nav-btn {
-  padding: 10px 20px !important;
-  font-size: 14px !important;
-  flex: 1;
-  min-width: 90px;
-  min-height: 45px !important;
-}
-
-.nav-btn:disabled {
-  background: rgba(255,255,255,0.2);
-  cursor: not-allowed;
-  box-shadow: 0 8px 25px rgba(255,255,255,0.2);
-  opacity: 0.6;
-}
-
+/* Corner positioned buttons (Rose Day & Valentine Day only) */
 .home-btn, .back-btn-left, .next-btn-right, .home-btn-right {
   position: fixed;
   bottom: 15px;
@@ -301,11 +275,21 @@ button {
 .next-btn-right { right: 20px; }
 .home-btn-right { right: 20px; }
 
+/* FIXED: Content screen now has proper flex layout for full title visibility */
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px 10px 150px 10px; /* Extra bottom padding for buttons */
+}
+
 .loveMsg {
   max-width: 95vw;
-  max-height: 65vh !important;
+  max-height: 60vh !important;
   height: auto;
-  margin: 15px auto 120px auto !important;
+  margin: 20px auto !important;
   font-size: clamp(20px, 5vw, 28px) !important;
   line-height: 1.5 !important;
   color: #d63384;
@@ -327,10 +311,6 @@ button {
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-#content {
-  padding-bottom: 0 !important;
 }
 
 .typing-container {
@@ -356,7 +336,7 @@ button {
   max-width: 95%;
   margin: 10px auto;
   box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
-  position: relative; /* For bottom positioning */
+  position: relative;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -553,7 +533,7 @@ button {
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN CONTENT - FIXED: TITLE FULLY VISIBLE -->
 <div id="content" class="center hidden">
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   
@@ -597,8 +577,7 @@ button {
 </div>
 
 <!-- VALENTINE WEEK DAYS -->
-
-<!-- ROSE DAY - Index 0: CORNER BUTTONS (UNCHANGED) -->
+<!-- ROSE DAY - Index 0: CORNER BUTTONS -->
 <div id="IMG_6265Screen" class="center day-screen hidden">
   <button class="home-btn" onclick="goHome()">🏠 Home</button>
   <button class="next-btn-right" onclick="showDayScreen(1)">Next ➤</button>
@@ -608,7 +587,7 @@ button {
   <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
 </div>
 
-<!-- PROPOSE DAY - Index 1: BOTTOM BUTTONS (NEW) -->
+<!-- PROPOSE DAY - Index 1: BOTTOM BUTTONS -->
 <div id="proposeDayScreen" class="center day-screen hidden">
   <div class="day-title">Propose Day 💍</div>
   <img class="day-photo" src="IMG_3405.jpeg" alt="Propose Day">
@@ -619,7 +598,7 @@ button {
   </div>
 </div>
 
-<!-- CHOCOLATE DAY - Index 2: BOTTOM BUTTONS (NEW) -->
+<!-- CHOCOLATE DAY - Index 2: BOTTOM BUTTONS -->
 <div id="chocolateDayScreen" class="center day-screen hidden">
   <div class="day-title">Chocolate Day 🍫</div>
   <img class="day-photo" src="851b3bde-3c52-49cb-b7cd-95f6e64624b0.jpeg" alt="Chocolate Day">
@@ -630,7 +609,7 @@ button {
   </div>
 </div>
 
-<!-- TEDDY DAY - Index 3: BOTTOM BUTTONS (NEW) -->
+<!-- TEDDY DAY - Index 3: BOTTOM BUTTONS -->
 <div id="teddyDayScreen" class="center day-screen hidden">
   <div class="day-title">Teddy Day 🧸</div>
   <img class="day-photo" src="IMG_2768.jpeg" alt="Teddy Day">
@@ -641,7 +620,7 @@ button {
   </div>
 </div>
 
-<!-- PROMISE DAY - Index 4: BOTTOM BUTTONS (NEW) -->
+<!-- PROMISE DAY - Index 4: BOTTOM BUTTONS -->
 <div id="promiseDayScreen" class="center day-screen hidden">
   <div class="day-title">Promise Day 🤝</div>
   <img class="day-photo" src="63A39EE4-6C35-4938-A1C7-AE69093F7646.jpeg" alt="Promise Day">
@@ -652,7 +631,7 @@ button {
   </div>
 </div>
 
-<!-- HUG DAY - Index 5: BOTTOM BUTTONS (NEW) -->
+<!-- HUG DAY - Index 5: BOTTOM BUTTONS -->
 <div id="hugDayScreen" class="center day-screen hidden">
   <div class="day-title">Hug Day 🤗</div>
   <img class="day-photo" src="759ef0cd-b86a-490c-8968-09bd00ff0d28.jpeg" alt="Hug Day">
@@ -663,7 +642,7 @@ button {
   </div>
 </div>
 
-<!-- KISS DAY - Index 6: BOTTOM BUTTONS (NEW) -->
+<!-- KISS DAY - Index 6: BOTTOM BUTTONS -->
 <div id="kissDayScreen" class="center day-screen hidden">
   <div class="day-title">Kiss Day 💋</div>
   <img class="day-photo" src="IMG_2001.jpeg" alt="Kiss Day">
@@ -674,7 +653,7 @@ button {
   </div>
 </div>
 
-<!-- VALENTINE DAY - Index 7: CORNER BUTTONS (UNCHANGED) -->
+<!-- VALENTINE DAY - Index 7: CORNER BUTTONS -->
 <div id="valentineDayScreen" class="center day-screen hidden">
   <button class="back-btn-left" onclick="showDayScreen(6)">← Back</button>
   <button class="home-btn-right" onclick="goHome()">🏠 Home</button>
@@ -700,17 +679,16 @@ button {
 let currentScreen = 'lock';
 let currentDayIndex = 0;
 const dayScreens = [
-  'IMG_6265Screen',      // 0 - Rose Day (CORNER BUTTONS)
-  'proposeDayScreen',    // 1 - Propose Day (BOTTOM BUTTONS)
-  'chocolateDayScreen',  // 2 - Chocolate Day (BOTTOM BUTTONS)
-  'teddyDayScreen',      // 3 - Teddy Day (BOTTOM BUTTONS)
-  'promiseDayScreen',    // 4 - Promise Day (BOTTOM BUTTONS)
-  'hugDayScreen',        // 5 - Hug Day (BOTTOM BUTTONS)
-  'kissDayScreen',       // 6 - Kiss Day (BOTTOM BUTTONS)
-  'valentineDayScreen'   // 7 - Valentine Day (CORNER BUTTONS)
+  'IMG_6265Screen',      // 0 - Rose Day
+  'proposeDayScreen',    // 1 - Propose Day
+  'chocolateDayScreen',  // 2
+  'teddyDayScreen',      // 3
+  'promiseDayScreen',    // 4
+  'hugDayScreen',        // 5
+  'kissDayScreen',       // 6
+  'valentineDayScreen'   // 7
 ];
 
-// 🏠 Home button function
 function goHome() {
   showScreen("photoScreen");
 }
