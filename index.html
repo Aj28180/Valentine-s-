@@ -15,6 +15,7 @@ body {
   position: relative;
 }
 
+/* BACKGROUND */
 .baby-pink-bg {
   position: fixed;
   top: 0;
@@ -214,7 +215,7 @@ button {
 #letterTyping { font-size: clamp(20px, 5vw, 28px) !important; color: #d63384; font-weight: 700; line-height: 1.6; }
 #loveTyping { font-size: clamp(36px, 9vw, 52px) !important; color: #ff1744; font-weight: 900; }
 
-#photoScreen {
+#photoScreen, #valentineWeekScreen {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(25px);
   border-radius: 25px;
@@ -225,7 +226,7 @@ button {
   animation: photoSlideIn 1.5s ease-out;
 }
 
-#photoText {
+#photoText, #valentineTitle {
   font-size: clamp(26px, 6.5vw, 38px);
   color: #ff1744;
   font-weight: 800;
@@ -233,7 +234,7 @@ button {
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 
-#ourPhoto {
+#ourPhoto, .valentine-photo {
   width: clamp(280px, 75vw, 420px);
   height: clamp(340px, 90vw, 520px);
   object-fit: cover;
@@ -251,7 +252,7 @@ button {
   font-weight: 700;
 }
 
-.photo-caption {
+.photo-caption, .valentine-caption {
   font-size: clamp(20px, 4.5vw, 26px) !important;
   color: #d63384; 
   margin-top: 18px;
@@ -281,6 +282,18 @@ button {
 @keyframes photoSlideIn {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Valentine week layout */
+.valentine-day {
+  margin-bottom: 30px;
+}
+.valentine-name {
+  font-size: clamp(22px, 5.5vw, 30px);
+  color: #ff1744;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(255, 105, 180, 0.8);
+  margin-bottom: 10px;
 }
 </style>
 </head>
@@ -347,11 +360,60 @@ button {
   </div>
 </div>
 
-<!-- PHOTO SCREEN -->
+<!-- FINAL PHOTO SCREEN -->
 <div id="photoScreen" class="center hidden">
   <div id="photoText">Our Forever Love 💍✨</div>
   <img id="ourPhoto" src="IMG_1058.jpeg" alt="Bhumika & Ankush 💕">
   <p class="photo-caption">Together Forever ❤️</p>
+</div>
+
+<!-- VALENTINE WEEK SCREEN -->
+<div id="valentineWeekScreen" class="center hidden">
+  <div id="valentineTitle">Our Valentine Week Memories 💕</div>
+
+  <div class="valentine-day">
+    <div class="valentine-name">Rose Day 🌹</div>
+    <img class="valentine-photo" src="rose_day.jpeg" alt="Rose Day">
+    <p class="valentine-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
+  </div>
+
+  <div class="valentine-day">
+    <div class="valentine-name">Propose Day 💍</div>
+    <img class="valentine-photo" src="propose_day.jpeg" alt="Propose Day">
+    <p class="valentine-caption">On Propose Day, I whisper again: my answer will always be you, in every lifetime. ✨</p>
+  </div>
+
+  <div class="valentine-day">
+    <div class="valentine-name">Chocolate Day 🍫</div>
+    <img class="valentine-photo" src="chocolate_day.jpeg" alt="Chocolate Day">
+    <p class="valentine-caption">Sweeter than chocolate is the smile you give me every single day, my love. 😘</p>
+  </div>
+
+  <div class="valentine-day">
+    <div class="valentine-name">Teddy Day 🧸</div>
+    <img class="valentine-photo" src="teddy_day.jpeg" alt="Teddy Day">
+    <p class="valentine-caption">Your hugs are my favorite place in the world—soft, safe, and full of love. 🤍</p>
+  </div>
+
+  <div class="valentine-day">
+    <div class="valentine-name">Promise Day 🤝</div>
+    <img class="valentine-photo" src="promise_day.jpeg" alt="Promise Day">
+    <p class="valentine-caption">I promise to stand by you, laugh with you, and love you more every single day. ✨</p>
+  </div>
+
+  <div class="valentine-day">
+    <div class="valentine-name">Hug Day 🤗</div>
+    <img class="valentine-photo" src="hug_day.jpeg" alt="Hug Day">
+    <p class="valentine-caption">Every hug from you feels like coming home after a long day. 💞</p>
+  </div>
+
+  <div class="valentine-day">
+    <div class="valentine-name">Kiss Day 💋</div>
+    <img class="valentine-photo" src="kiss_day.jpeg" alt="Kiss Day">
+    <p class="valentine-caption">With every kiss, I fall in love with you all over again, Bhumika. 💋</p>
+  </div>
+
+  <button id="backToPhotoBtn">Back to Our Forever Photo ❤️</button>
 </div>
 
 <script>
@@ -423,6 +485,7 @@ function hideAllScreens() {
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.add("hidden");
   document.getElementById("photoScreen").classList.add("hidden");
+  document.getElementById("valentineWeekScreen").classList.add("hidden");
 }
 
 function showScreen(screenId) {
@@ -451,16 +514,21 @@ document.getElementById("startBtn").onclick = () => {
   showScreen("content");
 };
 
-document.getElementById("noBtn").onmouseover = () => {
-  const btn = document.getElementById("noBtn");
+// NO button – runs away on hover and click, never proceeds
+const noBtn = document.getElementById("noBtn");
+function moveNoButton(e) {
+  if (e) e.preventDefault();
+  const btn = noBtn;
   btn.style.position = 'fixed';
-  btn.style.top = (Math.random() * 50 + 10) + "vh";
-  btn.style.left = (Math.random() * 50 + 10) + "vw";
+  btn.style.top = (Math.random() * 60 + 10) + "vh";
+  btn.style.left = (Math.random() * 60 + 10) + "vw";
   btn.style.transform = `rotate(${Math.random() * 360}deg)`;
   btn.style.zIndex = '20';
-  btn.style.width = 'auto';
-};
+}
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("click", moveNoButton);
 
+// YES button – goes to typing, then photo, then Valentine week
 document.getElementById("yesBtn").onclick = () => {
   showScreen("final");
   
@@ -474,6 +542,8 @@ document.getElementById("yesBtn").onclick = () => {
                 document.getElementById("bigHeart").style.opacity = "1";
                 setTimeout(() => {
                   showScreen("photoScreen");
+                  // After a short delay, show Valentine week gallery
+                  setTimeout(() => showScreen("valentineWeekScreen"), 3500);
                 }, 3000);
               }, 500);
             });
@@ -482,6 +552,11 @@ document.getElementById("yesBtn").onclick = () => {
       }, 800);
     });
   }, 300);
+};
+
+// Back button from Valentine week to the final photo
+document.getElementById("backToPhotoBtn").onclick = () => {
+  showScreen("photoScreen");
 };
 
 // Initialize
