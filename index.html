@@ -218,6 +218,23 @@ button {
   min-height: 55px;
 }
 
+/* FIXED: Buttons container moved to bottom with reduced gap */
+.buttons-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* REDUCED from 15px */
+  flex-wrap: wrap;
+  z-index: 15;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
 /* MOVED DOWN & SMALLER NAV BUTTONS */
 .nav-buttons {
   position: fixed;
@@ -293,11 +310,12 @@ button {
   z-index: 25;
 }
 
+/* FIXED: Love message with more space */
 .loveMsg {
   max-width: 95vw;
-  max-height: 35vh !important;
-  height: 35vh;
-  margin: 15px auto !important; 
+  max-height: 65vh !important; /* INCREASED from 35vh */
+  height: auto; /* CHANGED from fixed 35vh */
+  margin: 15px auto 120px auto !important; /* ADDED bottom margin for buttons */
   font-size: clamp(20px, 5vw, 28px) !important;
   line-height: 1.5 !important;
   color: #d63384;
@@ -308,11 +326,12 @@ button {
   animation: fadeInUp 1.8s ease-out;
   font-weight: 700;
   text-shadow: 1px 1px 4px rgba(249, 168, 212, 0.8);
-  overflow: hidden;
+  overflow: auto; /* CHANGED to allow scrolling if needed */
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* CHANGED from center */
   justify-content: center;
+  text-align: center;
 }
 
 @keyframes fadeInUp {
@@ -321,21 +340,7 @@ button {
 }
 
 #content {
-  padding-bottom: 200px !important;
-}
-
-.buttons-container {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 95%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  z-index: 15;
+  padding-bottom: 0 !important; /* REMOVED bottom padding */
 }
 
 .typing-container {
@@ -557,7 +562,7 @@ button {
   <button id="startBtn">✨ Begin Our Love Story ✨</button>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN CONTENT - FIXED LAYOUT -->
 <div id="content" class="center hidden">
   <h1 class="title-glow">Bhumika, You Are My Universe 💖</h1>
   
@@ -611,7 +616,7 @@ button {
   <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
 </div>
 
-<!-- PROPOSE DAY - Index 1: Back + Next (FIXED) -->
+<!-- PROPOSE DAY - Index 1: Back + Next -->
 <div id="proposeDayScreen" class="center day-screen hidden">
   <button class="back-btn-left" onclick="showDayScreen(0)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(2)">Next ➤</button>
@@ -661,7 +666,7 @@ button {
   <p class="day-caption">Every hug from you feels like coming home after a long day. 💞</p>
 </div>
 
-<!-- KISS DAY - Index 6: Back + Next (FIXED) -->
+<!-- KISS DAY - Index 6: Back + Next -->
 <div id="kissDayScreen" class="center day-screen hidden">
   <button class="back-btn-left" onclick="showDayScreen(5)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(7)">Next ➤</button>
@@ -693,7 +698,7 @@ button {
   </div>
 </div>
 
-<!-- NAVIGATION BUTTONS - HIDDEN (ALL PAGES USE CORNER BUTTONS NOW) -->
+<!-- NAVIGATION BUTTONS - HIDDEN -->
 <div class="nav-buttons" id="navButtons" style="display: none;">
   <button id="prevBtn" class="nav-btn">← Back</button>
   <button id="nextBtn" class="nav-btn">Next →</button>
@@ -704,12 +709,12 @@ let currentScreen = 'lock';
 let currentDayIndex = 0;
 const dayScreens = [
   'IMG_6265Screen',      // 0 - Rose Day
-  'proposeDayScreen',    // 1 - Propose Day (FIXED)
+  'proposeDayScreen',    // 1 - Propose Day
   'chocolateDayScreen',  // 2
   'teddyDayScreen',      // 3
   'promiseDayScreen',    // 4
   'hugDayScreen',        // 5
-  'kissDayScreen',       // 6 - Kiss Day (FIXED)
+  'kissDayScreen',       // 6 - Kiss Day
   'valentineDayScreen'   // 7 - Valentine Day
 ];
 
