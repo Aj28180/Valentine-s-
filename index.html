@@ -67,7 +67,7 @@ body {
   text-shadow: 0 0 15px #ff1744;
   font-size: 18px;
   opacity: 0.8;
-  animation: heartFall 15s linear infinite;
+  animation: heartFall 15s infinite linear;
 }
 .password-heart.large { font-size: 32px; opacity: 1; animation-duration: 12s; }
 .password-heart.medium { font-size: 22px; opacity: 0.9; animation-duration: 14s; }
@@ -180,6 +180,15 @@ button {
   opacity: 0.6;
 }
 
+.back-home-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  font-size: 14px;
+  z-index: 25;
+}
+
 .loveMsg {
   max-width: 95vw;
   max-height: 35vh !important;
@@ -250,7 +259,7 @@ button {
   box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
 }
 
-/* 🎉 NEW PHOTO PAGE ANIMATIONS 🎉 */
+/* 🎉 PHOTO PAGE ANIMATIONS 🎉 */
 .day-title {
   font-size: clamp(26px, 6.5vw, 38px);
   color: #ff1744;
@@ -266,7 +275,7 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.day-photo {
+.day-photo, #ourPhoto {
   width: clamp(280px, 75vw, 420px);
   height: clamp(340px, 90vw, 520px);
   object-fit: cover;
@@ -277,7 +286,14 @@ button {
   display: block;
   opacity: 0;
   transform: scale(0.7) rotateY(90deg);
+}
+
+.day-photo {
   animation: photoZoomIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+}
+
+#ourPhoto {
+  animation: photoHeartBeat 1.5s ease-out 0.8s forwards;
 }
 
 @keyframes photoZoomIn {
@@ -286,7 +302,14 @@ button {
   100% { opacity: 1; transform: scale(1) rotateY(0deg); }
 }
 
-.day-caption {
+@keyframes photoHeartBeat {
+  0% { opacity: 0; transform: scale(0.8); }
+  30% { opacity: 1; transform: scale(1.2); }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.day-caption, .photo-caption {
   font-size: clamp(20px, 4.5vw, 26px) !important;
   color: #d63384; 
   margin-top: 18px;
@@ -334,39 +357,11 @@ button {
   to { opacity: 1; }
 }
 
-#ourPhoto {
-  width: clamp(280px, 75vw, 420px);
-  height: clamp(340px, 90vw, 520px);
-  object-fit: cover;
-  border-radius: 20px;
-  border: 4px solid rgba(255, 105, 180, 0.6);
-  box-shadow: 0 18px 60px rgba(255, 105, 180, 0.5);
-  margin: 25px auto;
-  display: block;
-  opacity: 0;
-  transform: scale(0.8);
-  animation: photoHeartBeat 1.5s ease-out 0.8s forwards;
-}
-
-@keyframes photoHeartBeat {
-  0% { opacity: 0; transform: scale(0.8); }
-  30% { opacity: 1; transform: scale(1.2); }
-  60% { transform: scale(0.95); }
-  100% { transform: scale(1); }
-}
-
 .start-subtitle {
   font-size: clamp(20px, 5vw, 28px) !important;
   margin: 20px 0; 
   color: #d63384; 
   font-weight: 700;
-}
-
-.photo-caption {
-  font-size: clamp(20px, 4.5vw, 26px) !important;
-  color: #d63384; 
-  margin-top: 18px;
-  font-weight: 600;
 }
 
 .final-big-heart {
@@ -463,6 +458,7 @@ button {
 
 <!-- FINAL PHOTO SCREEN -->
 <div id="photoScreen" class="center hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div id="photoText">Our Forever Love 💍✨</div>
   <img id="ourPhoto" src="IMG_1058.jpeg" alt="Bhumika & Ankush 💕">
   <p class="photo-caption">Together Forever ❤️</p>
@@ -471,48 +467,56 @@ button {
 
 <!-- VALENTINE WEEK DAYS - SEPARATE ANIMATED PAGES -->
 <div id="roseDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Rose Day 🌹</div>
   <img class="day-photo" src="483d3742-01d4-4d3b-94d6-aab567958d1b.jpeg" alt="Rose Day">
   <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
 </div>
 
 <div id="proposeDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Propose Day 💍</div>
   <img class="day-photo" src="IMG_3405.jpeg" alt="Propose Day">
   <p class="day-caption">On Propose Day, I whisper again: my answer will always be you, in every lifetime. ✨</p>
 </div>
 
 <div id="chocolateDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Chocolate Day 🍫</div>
   <img class="day-photo" src="851b3bde-3c52-49cb-b7cd-95f6e64624b0.jpeg" alt="Chocolate Day">
   <p class="day-caption">Sweeter than chocolate is the smile you give me every single day, my love. 😘</p>
 </div>
 
 <div id="teddyDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Teddy Day 🧸</div>
   <img class="day-photo" src="IMG_2768.jpeg" alt="Teddy Day">
   <p class="day-caption">Your hugs are my favorite place in the world—soft, safe, and full of love. 🤍</p>
 </div>
 
 <div id="promiseDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Promise Day 🤝</div>
   <img class="day-photo" src="63A39EE4-6C35-4938-A1C7-AE69093F7646.jpeg" alt="Promise Day">
   <p class="day-caption">I promise to stand by you, laugh with you, and love you more every single day. ✨</p>
 </div>
 
 <div id="hugDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Hug Day 🤗</div>
   <img class="day-photo" src="759ef0cd-b86a-490c-8968-09bd00ff0d28.jpeg" alt="Hug Day">
   <p class="day-caption">Every hug from you feels like coming home after a long day. 💞</p>
 </div>
 
 <div id="kissDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Kiss Day 💋</div>
   <img class="day-photo" src="IMG_2001.jpeg" alt="Kiss Day">
   <p class="day-caption">With every kiss, I fall in love with you all over again, Bhumika. 💋</p>
 </div>
 
 <div id="valentineDayScreen" class="center day-screen hidden">
+  <button class="back-home-btn" onclick="goHome()">🏠 Home</button>
   <div class="day-title">Valentine Day 💖</div>
   <img class="day-photo" src="ac89f1ab-397d-453d-8b4e-5d0ffe1bb8ef.jpeg" alt="Valentine Day">
   <p class="day-caption">Our Valentine's Day - the day our hearts beat as one forever! 💍✨</p>
@@ -549,6 +553,11 @@ const dayScreens = [
   'kissDayScreen',
   'valentineDayScreen'
 ];
+
+// 🏠 Home button function
+function goHome() {
+  showScreen("photoScreen");
+}
 
 function createPasswordEffects() {
   const petalsContainer = document.getElementById('rosePetalsPassword');
@@ -615,7 +624,7 @@ function hideAllScreens() {
   document.getElementById("startScreen").classList.add("hidden");
   document.getElementById("content").classList.add("hidden");
   document.getElementById("final").classList.add("hidden");
-  document.getElementById("photoScreen").classList.add("hidden");
+  // Don't hide photoScreen here to keep it persistent
   dayScreens.forEach(screen => document.getElementById(screen).classList.add("hidden"));
   document.getElementById("navButtons").style.display = 'none';
 }
@@ -624,6 +633,19 @@ function showScreen(screenId) {
   hideAllScreens();
   document.getElementById(screenId).classList.remove("hidden");
   currentScreen = screenId;
+  
+  // Reset photo animation states when showing photoScreen
+  if (screenId === "photoScreen") {
+    const ourPhoto = document.getElementById("ourPhoto");
+    ourPhoto.style.opacity = "0";
+    ourPhoto.style.transform = "scale(0.8)";
+    // Trigger animation again
+    setTimeout(() => {
+      ourPhoto.style.animation = "none";
+      ourPhoto.offsetHeight; // Trigger reflow
+      ourPhoto.style.animation = "photoHeartBeat 1.5s ease-out 0.8s forwards";
+    }, 100);
+  }
 }
 
 function showDayScreen(index) {
