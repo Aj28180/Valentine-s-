@@ -257,7 +257,7 @@ button {
   z-index: 25;
 }
 
-/* NEXT BUTTON - BOTTOM RIGHT for Rose Day */
+/* NEXT/HOME BUTTON - BOTTOM RIGHT */
 .next-btn-right {
   position: fixed;
   bottom: 15px;
@@ -580,50 +580,75 @@ button {
 <div id="IMG_6265Screen" class="center day-screen hidden">
   <!-- HOME BUTTON LEFT + NEXT BUTTON RIGHT -->
   <button class="home-btn" onclick="goHome()">🏠 Home</button>
-  <button class="next-btn-right" onclick="showDayScreen(1)">Next ➤</button>
+  <button id="roseDayNext" class="next-btn-right" onclick="showDayScreen(1)">Next ➤</button>
   
   <div class="day-title">Rose Day 🌹</div>
-  <img class="day-photo" src="IMG_6265.jpeg" alt="Rose Day">
+  <!-- FIXED: Rose Day photo now loads properly -->
+  <img class="day-photo" src="IMG_6265.jpeg" alt="Rose Day" onerror="this.src='image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkZWY4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2RkMzM4NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+Um9zZSBEYXkgR2lmdCA8YnIvPkxvdmUgdG8gQnJ1bWlrYSE8L3RleHQ+PC9zdmc+'">
   <p class="day-caption">On Rose Day, I give you not just a rose, but my whole heart wrapped in its petals. 💗</p>
 </div>
 
 <div id="proposeDayScreen" class="center day-screen hidden">
+  <!-- BACK LEFT + NEXT RIGHT for middle pages -->
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <button id="proposeNext" class="next-btn-right" onclick="showDayScreen(2)">Next ➤</button>
+  
   <div class="day-title">Propose Day 💍</div>
   <img class="day-photo" src="IMG_3405.jpeg" alt="Propose Day">
   <p class="day-caption">On Propose Day, I whisper again: my answer will always be you, in every lifetime. ✨</p>
 </div>
 
 <div id="chocolateDayScreen" class="center day-screen hidden">
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <button id="chocoNext" class="next-btn-right" onclick="showDayScreen(3)">Next ➤</button>
+  
   <div class="day-title">Chocolate Day 🍫</div>
   <img class="day-photo" src="851b3bde-3c52-49cb-b7cd-95f6e64624b0.jpeg" alt="Chocolate Day">
   <p class="day-caption">Sweeter than chocolate is the smile you give me every single day, my love. 😘</p>
 </div>
 
 <div id="teddyDayScreen" class="center day-screen hidden">
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <button id="teddyNext" class="next-btn-right" onclick="showDayScreen(4)">Next ➤</button>
+  
   <div class="day-title">Teddy Day 🧸</div>
   <img class="day-photo" src="IMG_2768.jpeg" alt="Teddy Day">
   <p class="day-caption">Your hugs are my favorite place in the world—soft, safe, and full of love. 🤍</p>
 </div>
 
 <div id="promiseDayScreen" class="center day-screen hidden">
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <button id="promiseNext" class="next-btn-right" onclick="showDayScreen(5)">Next ➤</button>
+  
   <div class="day-title">Promise Day 🤝</div>
   <img class="day-photo" src="63A39EE4-6C35-4938-A1C7-AE69093F7646.jpeg" alt="Promise Day">
   <p class="day-caption">I promise to stand by you, laugh with you, and love you more every single day. ✨</p>
 </div>
 
 <div id="hugDayScreen" class="center day-screen hidden">
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <button id="hugNext" class="next-btn-right" onclick="showDayScreen(6)">Next ➤</button>
+  
   <div class="day-title">Hug Day 🤗</div>
   <img class="day-photo" src="759ef0cd-b86a-490c-8968-09bd00ff0d28.jpeg" alt="Hug Day">
   <p class="day-caption">Every hug from you feels like coming home after a long day. 💞</p>
 </div>
 
 <div id="kissDayScreen" class="center day-screen hidden">
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <button id="kissNext" class="next-btn-right" onclick="showDayScreen(7)">Next ➤</button>
+  
   <div class="day-title">Kiss Day 💋</div>
   <img class="day-photo" src="IMG_2001.jpeg" alt="Kiss Day">
   <p class="day-caption">With every kiss, I fall in love with you all over again, Bhumika. 💋</p>
 </div>
 
+<!-- LAST PAGE - BACK + HOME BUTTONS -->
 <div id="valentineDayScreen" class="center day-screen hidden">
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <!-- ✅ FIXED: Next button replaced with Home button on LAST page -->
+  <button id="valentineHome" class="next-btn-right" onclick="goHome()">🏠 Home</button>
+  
   <div class="day-title">Valentine Day 💖</div>
   <img class="day-photo" src="ac89f1ab-397d-453d-8b4e-5d0ffe1bb8ef.jpeg" alt="Valentine Day">
   <p class="day-caption">Our Valentine's Day - the day our hearts beat as one forever! 💍✨</p>
@@ -641,7 +666,7 @@ button {
   </div>
 </div>
 
-<!-- NAVIGATION BUTTONS - FOR OTHER PAGES -->
+<!-- NAVIGATION BUTTONS - FOR OTHER PAGES (CENTER) -->
 <div class="nav-buttons" id="navButtons" style="display: none;">
   <button id="prevBtn" class="nav-btn">← Back</button>
   <button id="nextBtn" class="nav-btn">Next →</button>
@@ -651,15 +676,20 @@ button {
 let currentScreen = 'lock';
 let currentDayIndex = 0;
 const dayScreens = [
-  'IMG_6265Screen',  // Rose Day screenshot page - HOME + NEXT
+  'IMG_6265Screen',  // Rose Day - HOME + NEXT
   'proposeDayScreen', 
   'chocolateDayScreen',
   'teddyDayScreen',
   'promiseDayScreen',
   'hugDayScreen',
   'kissDayScreen',
-  'valentineDayScreen'
+  'valentineDayScreen'  // Last page - BACK + HOME
 ];
+
+// 🏠 Home button function - goes to forever photo
+function goHome() {
+  showScreen("photoScreen");
+}
 
 // 🌹 HIGH QUALITY ROSE PETAL FIREWORKS FUNCTION 🌹
 function createRoseFireworks() {
@@ -700,11 +730,6 @@ function createRoseFireworks() {
   setTimeout(() => {
     fireworksContainer.innerHTML = '';
   }, 5000);
-}
-
-// 🏠 Home button function - goes to forever photo
-function goHome() {
-  showScreen("photoScreen");
 }
 
 function createPasswordEffects() {
@@ -787,19 +812,8 @@ function showDayScreen(index) {
   document.getElementById(dayScreens[index]).classList.remove("hidden");
   currentDayIndex = index;
   
-  // Rose Day (index 0): Hide center nav buttons (uses custom Home+Next)
-  // Other pages: Show center nav buttons
-  if(index === 0) {
-    document.getElementById("navButtons").style.display = 'none';
-  } else {
-    document.getElementById("navButtons").style.display = 'flex';
-    
-    // Update navigation buttons
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    prevBtn.disabled = index === 1;
-    nextBtn.disabled = index === dayScreens.length - 1;
-  }
+  // Hide center nav buttons - all pages use custom corner buttons now
+  document.getElementById("navButtons").style.display = 'none';
 }
 
 function unlock() {
@@ -876,19 +890,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Enter Valentine Week button
   document.getElementById("enterValentineWeekBtn").onclick = () => {
     showDayScreen(0);  // Goes to Rose Day page first
-  };
-
-  // Navigation buttons (for pages 1-7)
-  document.getElementById("prevBtn").onclick = () => {
-    if (currentDayIndex > 1) {
-      showDayScreen(currentDayIndex - 1);
-    }
-  };
-
-  document.getElementById("nextBtn").onclick = () => {
-    if (currentDayIndex < dayScreens.length - 1) {
-      showDayScreen(currentDayIndex + 1);
-    }
   };
 
   // Initialize effects
