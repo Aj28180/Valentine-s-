@@ -164,6 +164,10 @@ body {
   width: 95%; 
   padding: 10px; 
   box-sizing: border-box; 
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: space-between;
 }
 
 .hidden { display: none !important; }
@@ -228,14 +232,33 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px; /* REDUCED from 15px */
+  gap: 8px;
   flex-wrap: wrap;
   z-index: 15;
   padding: 0 10px;
   box-sizing: border-box;
 }
 
-/* MOVED DOWN & SMALLER NAV BUTTONS */
+/* MOVED LOWER DOWN - FIXED POSITION */
+.home-btn, .back-btn-left, .next-btn-right, .home-btn-right {
+  position: fixed !important;
+  bottom: 25px !important; /* MOVED LOWER */
+  padding: 12px 24px !important;
+  font-size: 15px !important;
+  min-height: 48px !important;
+  min-width: 95px;
+  z-index: 25;
+  border-radius: 25px !important;
+}
+
+.home-btn, .back-btn-left {
+  left: 25px !important;
+}
+
+.next-btn-right, .home-btn-right {
+  right: 25px !important;
+}
+
 .nav-buttons {
   position: fixed;
   bottom: 15px;
@@ -262,74 +285,26 @@ button {
   opacity: 0.6;
 }
 
-/* HOME BUTTON - BOTTOM LEFT */
-.home-btn {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  padding: 10px 20px !important;
-  font-size: 14px !important;
-  min-height: 45px !important;
-  min-width: 90px;
-  z-index: 25;
-}
-
-/* BACK BUTTON - BOTTOM LEFT */
-.back-btn-left {
-  position: fixed;
-  bottom: 15px;
-  left: 20px;
-  padding: 10px 20px !important;
-  font-size: 14px !important;
-  min-height: 45px !important;
-  min-width: 90px;
-  z-index: 25;
-}
-
-/* NEXT BUTTON - BOTTOM RIGHT */
-.next-btn-right {
-  position: fixed;
-  bottom: 15px;
-  right: 20px;
-  padding: 10px 20px !important;
-  font-size: 14px !important;
-  min-height: 45px !important;
-  min-width: 90px;
-  z-index: 25;
-}
-
-/* HOME BUTTON - BOTTOM RIGHT */
-.home-btn-right {
-  position: fixed;
-  bottom: 15px;
-  right: 20px;
-  padding: 10px 20px !important;
-  font-size: 14px !important;
-  min-height: 45px !important;
-  min-width: 90px;
-  z-index: 25;
-}
-
 /* FIXED: Love message with more space */
 .loveMsg {
   max-width: 95vw;
-  max-height: 65vh !important; /* INCREASED from 35vh */
-  height: auto; /* CHANGED from fixed 35vh */
-  margin: 15px auto 120px auto !important; /* ADDED bottom margin for buttons */
+  max-height: 70vh !important;
+  height: auto;
+  margin: 15px auto 150px auto !important; /* MORE bottom space */
   font-size: clamp(20px, 5vw, 28px) !important;
   line-height: 1.5 !important;
   color: #d63384;
   background: rgba(255, 255, 255, 0.25);
-  padding: 20px;
+  padding: 25px;
   border-radius: 20px;
   backdrop-filter: blur(18px);
   animation: fadeInUp 1.8s ease-out;
   font-weight: 700;
   text-shadow: 1px 1px 4px rgba(249, 168, 212, 0.8);
-  overflow: auto; /* CHANGED to allow scrolling if needed */
+  overflow: auto;
   box-sizing: border-box;
   display: flex;
-  align-items: flex-start; /* CHANGED from center */
+  align-items: flex-start;
   justify-content: center;
   text-align: center;
 }
@@ -340,7 +315,22 @@ button {
 }
 
 #content {
-  padding-bottom: 0 !important; /* REMOVED bottom padding */
+  padding-bottom: 0 !important;
+}
+
+/* DAY SCREENS - FULL HEIGHT FOR CONTENT */
+.day-screen {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  border-radius: 25px;
+  padding: 30px 20px 120px 20px !important; /* EXTRA BOTTOM PADDING */
+  max-width: 95%;
+  margin: 10px auto;
+  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  justify-content: flex-start;
 }
 
 .typing-container {
@@ -358,7 +348,7 @@ button {
 #letterTyping { font-size: clamp(20px, 5vw, 28px) !important; color: #d63384; font-weight: 700; line-height: 1.6; }
 #loveTyping { font-size: clamp(36px, 9vw, 52px) !important; color: #ff1744; font-weight: 900; }
 
-#photoScreen, .day-screen {
+#photoScreen {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(25px);
   border-radius: 25px;
@@ -368,7 +358,6 @@ button {
   box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
 }
 
-/* 🎉 LARGER DARK BABY PINK "Our Forever Love" 🎉 */
 #photoText {
   font-size: clamp(32px, 8vw, 44px) !important;
   font-weight: 900 !important;
@@ -378,7 +367,6 @@ button {
   letter-spacing: 1px;
 }
 
-/* 🎉 CONTINUOUS HEARTBEAT FOR FOREVER PHOTO 🎉 */
 #photoScreen #ourPhoto {
   width: clamp(280px, 75vw, 420px);
   height: clamp(340px, 90vw, 520px);
@@ -432,7 +420,6 @@ button {
   100% { opacity: 1; transform: scale(1) rotateY(0deg); }
 }
 
-/* 🎉 DARK BABY PINK VALENTINE CAPTION - ONLY LAST PAGE 🎉 */
 #valentineDayScreen .day-caption {
   font-size: clamp(24px, 5.5vw, 32px) !important;
   color: #e91e63 !important;
@@ -523,7 +510,6 @@ button {
   51%, 100% { opacity: 0; }
 }
 
-/* No button running away effect - only on hover */
 #noBtn.running {
   position: fixed !important;
   z-index: 20 !important;
@@ -607,7 +593,7 @@ button {
 
 <!-- VALENTINE WEEK DAYS -->
 <!-- ROSE DAY - Index 0: Home + Next -->
-<div id="IMG_6265Screen" class="center day-screen hidden">
+<div id="IMG_6265Screen" class="day-screen center hidden">
   <button class="home-btn" onclick="goHome()">🏠 Home</button>
   <button class="next-btn-right" onclick="showDayScreen(1)">Next ➤</button>
   
@@ -617,7 +603,7 @@ button {
 </div>
 
 <!-- PROPOSE DAY - Index 1: Back + Next -->
-<div id="proposeDayScreen" class="center day-screen hidden">
+<div id="proposeDayScreen" class="day-screen center hidden">
   <button class="back-btn-left" onclick="showDayScreen(0)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(2)">Next ➤</button>
   
@@ -627,7 +613,7 @@ button {
 </div>
 
 <!-- CHOCOLATE DAY - Index 2: Back + Next -->
-<div id="chocolateDayScreen" class="center day-screen hidden">
+<div id="chocolateDayScreen" class="day-screen center hidden">
   <button class="back-btn-left" onclick="showDayScreen(1)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(3)">Next ➤</button>
   
@@ -637,7 +623,7 @@ button {
 </div>
 
 <!-- TEDDY DAY - Index 3: Back + Next -->
-<div id="teddyDayScreen" class="center day-screen hidden">
+<div id="teddyDayScreen" class="day-screen center hidden">
   <button class="back-btn-left" onclick="showDayScreen(2)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(4)">Next ➤</button>
   
@@ -647,7 +633,7 @@ button {
 </div>
 
 <!-- PROMISE DAY - Index 4: Back + Next -->
-<div id="promiseDayScreen" class="center day-screen hidden">
+<div id="promiseDayScreen" class="day-screen center hidden">
   <button class="back-btn-left" onclick="showDayScreen(3)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(5)">Next ➤</button>
   
@@ -657,7 +643,7 @@ button {
 </div>
 
 <!-- HUG DAY - Index 5: Back + Next -->
-<div id="hugDayScreen" class="center day-screen hidden">
+<div id="hugDayScreen" class="day-screen center hidden">
   <button class="back-btn-left" onclick="showDayScreen(4)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(6)">Next ➤</button>
   
@@ -667,7 +653,7 @@ button {
 </div>
 
 <!-- KISS DAY - Index 6: Back + Next -->
-<div id="kissDayScreen" class="center day-screen hidden">
+<div id="kissDayScreen" class="day-screen center hidden">
   <button class="back-btn-left" onclick="showDayScreen(5)">← Back</button>
   <button class="next-btn-right" onclick="showDayScreen(7)">Next ➤</button>
   
@@ -677,7 +663,7 @@ button {
 </div>
 
 <!-- VALENTINE DAY - Index 7: Back + Home -->
-<div id="valentineDayScreen" class="center day-screen hidden">
+<div id="valentineDayScreen" class="day-screen center hidden">
   <button class="back-btn-left" onclick="showDayScreen(6)">← Back</button>
   <button class="home-btn-right" onclick="goHome()">🏠 Home</button>
   
@@ -698,12 +684,6 @@ button {
   </div>
 </div>
 
-<!-- NAVIGATION BUTTONS - HIDDEN -->
-<div class="nav-buttons" id="navButtons" style="display: none;">
-  <button id="prevBtn" class="nav-btn">← Back</button>
-  <button id="nextBtn" class="nav-btn">Next →</button>
-</div>
-
 <script>
 let currentScreen = 'lock';
 let currentDayIndex = 0;
@@ -718,36 +698,28 @@ const dayScreens = [
   'valentineDayScreen'   // 7 - Valentine Day
 ];
 
-// 🏠 Home button function - goes to forever photo
 function goHome() {
   showScreen("photoScreen");
 }
 
-// 🌹 HIGH QUALITY ROSE PETAL FIREWORKS FUNCTION 🌹
 function createRoseFireworks() {
   const fireworksContainer = document.getElementById('roseFireworks');
-  
   for(let burst = 0; burst < 12; burst++) {
     setTimeout(() => {
       for(let i = 0; i < 8; i++) {
         setTimeout(() => {
           const petal = document.createElement('div');
           petal.className = 'rose-firework';
-          
           const centerX = window.innerWidth / 2;
           const centerY = window.innerHeight / 2;
           const angle = (burst * 30 + i * 45) * Math.PI / 180;
           const distance = 80 + Math.random() * 60;
-          
           petal.style.left = (centerX + Math.cos(angle) * distance - 12) + 'px';
           petal.style.top = (centerY + Math.sin(angle) * distance - 10) + 'px';
-          
           const size = 0.8 + Math.random() * 0.8;
           petal.style.width = (24 * size) + 'px';
           petal.style.height = (20 * size) + 'px';
-          
           fireworksContainer.appendChild(petal);
-          
           setTimeout(() => {
             petal.classList.add('launch');
             setTimeout(() => {
@@ -758,7 +730,6 @@ function createRoseFireworks() {
       }
     }, burst * 200);
   }
-  
   setTimeout(() => {
     fireworksContainer.innerHTML = '';
   }, 5000);
@@ -767,7 +738,6 @@ function createRoseFireworks() {
 function createPasswordEffects() {
   const petalsContainer = document.getElementById('rosePetalsPassword');
   const heartsContainer = document.getElementById('heartsBg');
-  
   setInterval(() => {
     const petal = document.createElement('div');
     petal.className = 'rose-petal-3d';
@@ -831,7 +801,6 @@ function hideAllScreens() {
   document.getElementById("final").classList.add("hidden");
   document.getElementById("photoScreen").classList.add("hidden");
   dayScreens.forEach(screen => document.getElementById(screen).classList.add("hidden"));
-  document.getElementById("navButtons").style.display = 'none';
 }
 
 function showScreen(screenId) {
@@ -868,15 +837,12 @@ function unlock() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Start button
   document.getElementById("startBtn").onclick = () => {
     showScreen("content");
   };
 
-  // YES button
   document.getElementById("yesBtn").onclick = () => {
     showScreen("final");
-    
     setTimeout(() => {
       typeWriter(document.getElementById("thanksTyping"), "Thank you, my forever love, for saying YES to our beautiful eternity together 💍✨", 90, () => {
         setTimeout(() => {
@@ -897,7 +863,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 300);
   };
 
-  // NO button - playful hover effect
   const noBtn = document.getElementById("noBtn");
   noBtn.onmouseenter = function(e) {
     this.classList.add('running');
@@ -919,12 +884,10 @@ document.addEventListener('DOMContentLoaded', function() {
     this.style.transform = '';
   };
 
-  // Enter Valentine Week button
   document.getElementById("enterValentineWeekBtn").onclick = () => {
-    showDayScreen(0);  // Start with Rose Day
+    showDayScreen(0);
   };
 
-  // Initialize effects
   createPasswordEffects();
   createBgHearts();
 });
