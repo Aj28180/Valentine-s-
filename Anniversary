@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhumika ❤️ Ankush - 2nd Anniversary Love Story</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
+/* BACKGROUND */
+.baby-pink-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 25%, #f9a8d4 50%, #fce7f3 75%, #fdf2f8 100%);
+  z-index: 0;
+}
+
+.hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.rose-petals-password { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
+.rose-petals { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+
+/* 🌹 HIGH QUALITY ROSE PETAL FIREWORKS 🌹 */
+.rose-firework {
+  position: absolute;
+  width: 24px;
+  height: 20px;
+  background: radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
+  border-radius: 70% 0 65% 45%;
+  opacity: 0;
+  box-shadow: 
+    0 4px 18px rgba(255, 105, 180, 0.8),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  transform: rotate(0deg) scale(0);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.rose-firework::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 16px;
+  height: 12px;
+  background: inherit;
+  border-radius: 50% 20% 50% 40%;
+  opacity: 0.7;
+}
+
+.rose-firework::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 2px;
+  width: 8px;
+  height: 6px;
+  background: rgba(255,182,193,0.9);
+  border-radius: 50% 30% 50% 20%;
+  opacity: 0.6;
+}
+
+@keyframes roseFireworkExplode {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg) scale(0) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.2);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(720deg) scale(0.3);
+  }
+}
+
+.rose-firework.launch {
+  animation: roseFireworkExplode 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.bg-heart {
+  position: absolute;
+  color: rgba(255, 105, 180, 0.15);
+  font-size: 25px;
+  opacity: 0.1;
+  animation: gentleFloat 20s infinite linear;
+}
+@keyframes gentleFloat {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
+  50% { opacity: 0.2; }
+  100% { transform: translateY(-20px) rotate(360deg); opacity: 0.1; }
+}
+
+.rose-petal-3d {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  background: radial-gradient(ellipse 60% 70% at 30% 20%, #ff69b4 0%, #ff1493 50%, #c71585 100%);
+  border-radius: 70% 0 65% 45%;
+  opacity: 0.9;
+  box-shadow: 0 4px 18px rgba(255, 105, 180, 0.6);
+  transform-style: preserve-3d;
+  animation: fall3DFixed 18s linear infinite;
+}
+@keyframes fall3DFixed {
+  0% { transform: translateY(-100px) translateZ(-30px) rotateZ(0deg) rotateX(0deg) rotateY(0deg) scale(0.6); opacity: 0; }
+  8% { opacity: 0.95; }
+  92% { opacity: 0.95; }
+  100% { transform: translateY(calc(100vh + 100px)) translateZ(50px) rotateZ(1440deg) rotateX(720deg) rotateY(1080deg) scale(1.3); opacity: 0; }
+}
+
+.password-heart {
+  position: absolute;
+  color: #ff1744;
+  text-shadow: 0 0 15px #ff1744;
+  font-size: 18px;
+  opacity: 0.8;
+  animation: heartFall 15s infinite linear;
+}
+.password-heart.large { font-size: 32px; opacity: 1; animation-duration: 12s; }
+.password-heart.medium { font-size: 22px; opacity: 0.9; animation-duration: 14s; }
+.password-heart.small { font-size: 16px; opacity: 0.7; animation-duration: 16s; }
+@keyframes heartFall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(calc(100vh + 50px)) rotate(720deg); opacity: 0; }
+}
+
+.title-glow {
+  font-size: clamp(28px, 8vw, 48px) !important;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ff69b4, #ff1744, #ff8fab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.9);
+  font-weight: 800;
+  margin: 8px 0 12px 0 !important;
+  padding: 8px;
+}
+
+.center { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  z-index: 10; 
+  width: 95%; 
+  padding: 10px; 
+  box-sizing: border-box; 
+}
+
+.hidden { display: none !important; }
+
+#lock {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  border-radius: 30px;
+  padding: 35px 20px;
+  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+  border: 2px solid rgba(255, 107, 157, 0.5);
+  max-height: 75vh;
+  overflow: hidden;
+}
+
+#lock h2 {
+  background: linear-gradient(135deg, #ff1744, #ff69b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 700;
+}
+
+#pass {
+  padding: 16px 20px;
+  font-size: 20px;
+  border-radius: 28px;
+  border: 3px solid rgba(255, 107, 157, 0.7);
+  margin: 15px;
+  width: clamp(280px, 50vw, 380px);
+  background: rgba(255, 248, 248, 0.9);
+  color: #d63384;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 12px 45px rgba(255, 107, 157, 0.3);
+}
+
+button {
+  padding: 16px 35px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none; 
+  border-radius: 28px; 
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 12px 40px rgba(255, 23, 68, 0.5);
+  background: linear-gradient(135deg, #ff1744, #ff69b4);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  margin: 10px;
+  min-height: 55px;
+}
+
+.buttons-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  z-index: 15;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.page-nav-buttons {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  z-index: 25;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.nav-btn {
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  flex: 1;
+  min-width: 100px;
+  min-height: 48px !important;
+  max-width: 140px;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px 10px 150px 10px;
+}
+
+.loveMsg {
+  max-width: 95vw;
+  max-height: 60vh !important;
+  height: auto;
+  margin: 20px auto !important;
+  font-size: clamp(20px, 5vw, 28px) !important;
+  line-height: 1.5 !important;
+  color: #d63384;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(18px);
+  animation: fadeInUp 1.8s ease-out;
+  font-weight: 700;
+  text-shadow: 1px 1px 4px rgba(249, 168, 212, 0.8);
+  overflow: auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.typing-container {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 25px;
+  backdrop-filter: blur(18px);
+  margin: 20px auto;
+  max-width: 95vw;
+  box-shadow: 0 12px 45px rgba(255, 107, 157, 0.4);
+  border: 1px solid rgba(255, 105, 180, 0.4);
+}
+
+#thanksTyping { font-size: clamp(22px, 5.5vw, 32px) !important; color: #d63384; font-weight: 800; }
+#letterTyping { font-size: clamp(20px, 5vw, 28px) !important; color: #d63384; font-weight: 700; line-height: 1.6; }
+#loveTyping { font-size: clamp(36px, 9vw, 52px) !important; color: #ff1744; font-weight: 900; }
+
+#photoScreen, .day-screen {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  border-radius: 25px;
+  padding: 25px 20px;
+  max-width: 95%;
+  margin: 10px auto;
+  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 120px;
+}
+
+#photoText {
+  font-size: clamp(32px, 8vw, 44px) !important;
+  font-weight: 900 !important;
+  color: #e91e63 !important;
+  text-shadow: 2px 2px 12px rgba(233, 30, 99, 0.8);
+  margin: 20px 0 !important;
+  letter-spacing: 1px;
+}
+
+#photoScreen #ourPhoto {
+  width: clamp(280px, 75vw, 420px);
+  height: clamp(340px, 90vw, 520px);
+  object-fit: cover;
+  border-radius: 20px;
+  border: 4px solid rgba(255, 105, 180, 0.6);
+  box-shadow: 0 18px 60px rgba(255, 105, 180, 0.5);
+  margin: 20px auto;
+  display: block;
+  opacity: 1 !important;
+  animation: photoForeverHeartbeat 2s ease-in-out infinite;
+}
+
+@keyframes photoForeverHeartbeat {
+  0%, 100% { transform: scale(1) rotate(-2deg); }
+  50% { transform: scale(1.05) rotate(2deg); }
+}
+
+.day-title {
+  font-size: clamp(26px, 6.5vw, 38px);
+  color: #ff1744;
+  font-weight: 800;
+  margin: 15px 0;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: titleSlideDown 1s ease-out 0.2s forwards;
+}
+
+@keyframes titleSlideDown {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.day-photo {
+  width: clamp(280px, 75vw, 420px);
+  height: clamp(340px, 90vw, 520px);
+  object-fit: cover;
+  border-radius: 20px;
+  border: 4px solid rgba(255, 105, 180, 0.6);
+  box-shadow: 0 18px 60px rgba(255, 105, 180, 0.5);
+  margin: 10px auto;
+  display: block;
+  opacity: 0;
+  transform: scale(0.7) rotateY(90deg);
+  animation: photoZoomIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+}
+
+@keyframes photoZoomIn {
+  0% { opacity: 0; transform: scale(0.7) rotateY(90deg); }
+  50% { opacity: 0.7; transform: scale(1.1) rotateY(10deg); }
+  100% { opacity: 1; transform: scale(1) rotateY(0deg); }
+}
+
+.day-caption, .photo-caption {
+  font-size: clamp(20px, 4.5vw, 26px) !important;
+  color: #d63384; 
+  margin: 15px auto;
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 90%;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: captionSlideUp 0.8s ease-out 1s forwards;
+}
+
+@keyframes captionSlideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.valentine-wishes {
+  background: rgba(255, 182, 193, 0.3);
+  border: 2px solid rgba(255, 105, 180, 0.6);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 90%;
+  font-size: clamp(16px, 3.8vw, 22px);
+  line-height: 1.6;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: scale(0.9);
+  animation: wishesGlow 1.5s ease-out 1.3s forwards;
+}
+
+@keyframes wishesGlow {
+  0% { opacity: 0; transform: scale(0.9); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.valentine-wishes > div {
+  opacity: 0;
+  animation: fadeInText 0.6s ease-out forwards;
+}
+
+.valentine-wishes > div:nth-child(1) { animation-delay: 1.5s; }
+.valentine-wishes > div:nth-child(2) { animation-delay: 1.8s; }
+
+@keyframes fadeInText {
+  to { opacity: 1; }
+}
+
+.start-subtitle {
+  font-size: clamp(20px, 5vw, 28px) !important;
+  margin: 20px 0; 
+  color: #d63384; 
+  font-weight: 700;
+}
+
+.final-big-heart {
+  font-size: clamp(100px, 25vw, 160px);
+  color: #ff1744;
+  text-shadow: 0 0 50px #ff1744;
+  animation: bigHeartBeat 1.5s ease-in-out infinite;
+  margin-top: 25px;
+  opacity: 0;
+}
+@keyframes bigHeartBeat {
+  0%, 100% { transform: scale(1) rotate(-5deg); }
+  50% { transform: scale(1.3) rotate(5deg); }
+}
+
+.feather-cursor {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+#noBtn.running {
+  position: fixed !important;
+  z-index: 20 !important;
+  transition: all 0.3s ease;
+}
+</style>
+</head>
+
+<body>
+<div id="babyPinkBg" class="baby-pink-bg"></div>
+
+<audio id="loveSong" loop preload="auto" style="display:none;">
+  <source src="zara_si.mp3" type="audio/mpeg">
+</audio>
+
+<div id="bgHearts" class="hearts-bg"></div>
+<div id="heartsBg" class="hearts-bg"></div>
+<div id="rosePetalsPassword" class="rose-petals-password"></div>
+<div id="rosePetals" class="rose-petals"></div>
+
+<div id="roseFireworks" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 35;"></div>
+
+<!-- PASSWORD SCREEN -->
+<div id="lock" class="center">
+  <h2>Enter Our Secret Password 🔐</h2>
+  <input type="password" id="pass" placeholder="Our special words...">
+  <br><button onclick="unlock()">Unlock Our Anniversary 💖</button>
+  <p id="error"></p>
+</div>
+
+<!-- START SCREEN -->
+<div id="startScreen" class="center hidden">
+  <div class="title-glow">Bhumika ❤️ Ankush</div>
+  <p class="start-subtitle">2 years of love, memories, and forever ✨</p>
+  <button id="startBtn">✨ Begin Our Anniversary Story ✨</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content" class="center hidden">
+  <h1 class="title-glow">Bhumika, Happy 2nd Anniversary 💖</h1>
+  <p class="loveMsg">
+    My love, today marks 2 years of our journey together, and I still feel the same magic I felt at the beginning.<br>
+    You’ve filled my life with love, comfort, laughter, and the kind of happiness I never knew I needed.<br>
+    Thank you for being my person, my home, and my forever.<br>
+    Happy 2nd Anniversary, Bhumika ❤️
+  </p>
+  
+  <div class="buttons-container">
+    <button id="yesBtn">Yes, Forever & Always! 💋</button>
+    <button id="noBtn">Maybe Later 😘</button>
+  </div>
+</div>
+
+<!-- FINAL TYPING SCREEN -->
+<div id="final" class="center hidden">
+  <div class="typing-container">
+    <span class="typing-text" id="thanksTyping"></span>
+    <span class="feather-cursor" id="cursor1">|</span>
+  </div>
+  <div class="typing-container">
+    <span class="typing-text" id="letterTyping"></span>
+    <span class="feather-cursor" id="cursor2">|</span>
+  </div>
+  <div class="typing-container">
+    <span class="typing-text" id="loveTyping"></span>
+    <span class="feather-cursor" id="cursor3">|</span>
+    <div class="final-big-heart" id="bigHeart">💖</div>
+  </div>
+</div>
+
+<!-- FINAL PHOTO SCREEN -->
+<div id="photoScreen" class="center hidden">
+  <div id="photoText">Our Forever Love 💍✨</div>
+  <img id="ourPhoto" src="IMG_1058.jpeg" alt="Bhumika & Ankush 💕">
+  <p class="photo-caption">Two years down, forever to go ❤️</p>
+  <button id="enterValentineWeekBtn" style="margin-top: 25px; padding: 16px 40px; font-size: 20px;">Enter Our Love Journey 💕</button>
+</div>
+
+<!-- ANNIVERSARY DAYS -->
+<div id="IMG_6265Screen" class="center day-screen hidden">
+  <div class="day-title">Our First Memory 🌹</div>
+  <img class="day-photo" src="483d3742-01d4-4d3b-94d6-aab567958d1b.jpeg" alt="First Memory">
+  <p class="day-caption">The beginning of our story, where my heart quietly chose you. 💗</p>
+</div>
+
+<div id="proposeDayScreen" class="center day-screen hidden">
+  <div class="day-title">The Day I Knew 💍</div>
+  <img class="day-photo" src="IMG_3405.jpeg" alt="The Day I Knew">
+  <p class="day-caption">I knew you were special the moment you became my whole world. ✨</p>
+</div>
+
+<div id="chocolateDayScreen" class="center day-screen hidden">
+  <div class="day-title">Sweet Moments 🍫</div>
+  <img class="day-photo" src="851b3bde-3c52-49cb-b7cd-95f6e64624b0.jpeg" alt="Sweet Moments">
+  <p class="day-caption">Sweeter than chocolate are all the memories we have made together. 😘</p>
+</div>
+
+<div id="teddyDayScreen" class="center day-screen hidden">
+  <div class="day-title">Safe in Your Love 🧸</div>
+  <img class="day-photo" src="IMG_2768.jpeg" alt="Safe in Your Love">
+  <p class="day-caption">Your love feels like the warmest hug I could ever ask for. 🤍</p>
+</div>
+
+<div id="promiseDayScreen" class="center day-screen hidden">
+  <div class="day-title">My Promise to You 🤝</div>
+  <img class="day-photo" src="63A39EE4-6C35-4938-A1C7-AE69093F7646.jpeg" alt="Promise">
+  <p class="day-caption">I promise to love you with the same heart, today and always. ✨</p>
+</div>
+
+<div id="hugDayScreen" class="center day-screen hidden">
+  <div class="day-title">Your Warmth 🤗</div>
+  <img class="day-photo" src="759ef0cd-b86a-490c-8968-09bd00ff0d28.jpeg" alt="Your Warmth">
+  <p class="day-caption">Every hug from you feels like home, peace, and forever. 💞</p>
+</div>
+
+<div id="kissDayScreen" class="center day-screen hidden">
+  <div class="day-title">My Favorite Feeling 💋</div>
+  <img class="day-photo" src="IMG_2001.jpeg" alt="My Favorite Feeling">
+  <p class="day-caption">Every moment with you is my favorite memory in the making. 💋</p>
+</div>
+
+<div id="valentineDayScreen" class="center day-screen hidden">
+  <div class="day-title">2nd Anniversary 💖</div>
+  <img class="day-photo" src="ac89f1ab-397d-453d-8b4e-5d0ffe1bb8ef.jpeg" alt="2nd Anniversary">
+  <p class="day-caption">Two years of us, and my heart still beats for you like day one. 💍✨</p>
+  
+  <div class="valentine-wishes">
+    <div style="font-size: clamp(22px, 5vw, 28px); font-weight: 800; color: #ff1744; margin-bottom: 15px;">
+      My Dearest Bhumika 💕
+    </div>
+    <div style="font-size: clamp(18px, 4vw, 22px); line-height: 1.6;">
+      My love, today marks 2 years of our journey together, and I still feel the same magic I felt at the beginning.<br>
+      You’ve filled my life with love, comfort, laughter, and the kind of happiness I never knew I needed.<br>
+      Thank you for being my person, my home, and my forever.<br>
+      Happy 2nd Anniversary, Bhumika ❤️
+    </div>
+  </div>
+</div>
+
+<div id="pageNavContainer" class="page-nav-buttons" style="display: none;">
+  <button id="navBackBtn" class="nav-btn"></button>
+  <button id="navNextBtn" class="nav-btn"></button>
+</div>
+
+<script>
+let currentScreen = 'lock';
+let currentDayIndex = 0;
+const dayScreens = [
+  'IMG_6265Screen',
+  'proposeDayScreen',
+  'chocolateDayScreen',
+  'teddyDayScreen',
+  'promiseDayScreen',
+  'hugDayScreen',
+  'kissDayScreen',
+  'valentineDayScreen'
+];
+
+function goHome() {
+  showScreen("photoScreen");
+  hidePageNav();
+}
+
+function showPageNav(backIndex, nextIndex, backText, nextText) {
+  const navContainer = document.getElementById('pageNavContainer');
+  const backBtn = document.getElementById('navBackBtn');
+  const nextBtn = document.getElementById('navNextBtn');
+  
+  backBtn.textContent = backText;
+  nextBtn.textContent = nextText;
+  backBtn.onclick = () => showDayScreen(backIndex);
+  nextBtn.onclick = () => showDayScreen(nextIndex);
+  
+  navContainer.style.display = 'flex';
+}
+
+function hidePageNav() {
+  document.getElementById('pageNavContainer').style.display = 'none';
+}
+
+function createRoseFireworks() {
+  const fireworksContainer = document.getElementById('roseFireworks');
+  for(let burst = 0; burst < 12; burst++) {
+    setTimeout(() => {
+      for(let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const petal = document.createElement('div');
+          petal.className = 'rose-firework';
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          const angle = (burst * 30 + i * 45) * Math.PI / 180;
+          const distance = 80 + Math.random() * 60;
+          petal.style.left = (centerX + Math.cos(angle) * distance - 12) + 'px';
+          petal.style.top = (centerY + Math.sin(angle) * distance - 10) + 'px';
+          const size = 0.8 + Math.random() * 0.8;
+          petal.style.width = (24 * size) + 'px';
+          petal.style.height = (20 * size) + 'px';
+          fireworksContainer.appendChild(petal);
+          setTimeout(() => {
+            petal.classList.add('launch');
+            setTimeout(() => {
+              if(petal.parentNode) petal.remove();
+            }, 2000);
+          }, 50);
+        }, i * 80);
+      }
+    }, burst * 200);
+  }
+  setTimeout(() => {
+    fireworksContainer.innerHTML = '';
+  }, 5000);
+}
+
+function createPasswordEffects() {
+  const petalsContainer = document.getElementById('rosePetalsPassword');
+  const heartsContainer = document.getElementById('heartsBg');
+  
+  setInterval(() => {
+    const petal = document.createElement('div');
+    petal.className = 'rose-petal-3d';
+    petal.style.left = Math.random() * 100 + '%';
+    const size = 0.8 + Math.random() * 0.6;
+    petal.style.width = (30 * size) + 'px';
+    petal.style.height = (25 * size) + 'px';
+    const duration = 14 + Math.random() * 8;
+    petal.style.animationDuration = duration + 's';
+    petalsContainer.appendChild(petal);
+    setTimeout(() => { if (petal.parentNode) petal.remove(); }, (duration + 3) * 1000);
+  }, 200);
+  
+  const heartSizes = ['small', 'medium', 'large'];
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = `password-heart ${heartSizes[Math.floor(Math.random() * 3)]}`;
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + '%';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => { if (heart.parentNode) heart.remove(); }, 20000);
+  }, 300);
+}
+
+function createBgHearts() {
+  const bgHearts = document.getElementById('bgHearts');
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'bg-heart';
+    heart.innerHTML = '💕';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+    bgHearts.appendChild(heart);
+    setTimeout(() => heart.remove(), 30000);
+  }, 800);
+}
+
+function typeWriter(element, text, speed = 80, callback) {
+  let i = 0;
+  element.innerHTML = '';
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      const cursor = element.nextElementSibling;
+      if (cursor && cursor.classList.contains('feather-cursor')) {
+        cursor.style.display = 'none';
+      }
+      if (callback) callback();
+    }
+  }
+  type();
+}
+
+function hideAllScreens() {
+  document.getElementById("lock").classList.add("hidden");
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("content").classList.add("hidden");
+  document.getElementById("final").classList.add("hidden");
+  document.getElementById("photoScreen").classList.add("hidden");
+  dayScreens.forEach(screen => document.getElementById(screen).classList.add("hidden"));
+}
+
+function showScreen(screenId) {
+  hideAllScreens();
+  document.getElementById(screenId).classList.remove("hidden");
+  hidePageNav();
+  currentScreen = screenId;
+}
+
+function showDayScreen(index) {
+  if (index >= 0 && index < dayScreens.length) {
+    hideAllScreens();
+    document.getElementById(dayScreens[index]).classList.remove("hidden");
+    currentDayIndex = index;
+    
+    if (index === 0) {
+      showPageNav(-1, 1, '🏠 Home', 'Next ➤');
+    } else if (index === dayScreens.length - 1) {
+      showPageNav(6, -1, '← Back', '🏠 Home');
+    } else {
+      showPageNav(index - 1, index + 1, '← Back', 'Next ➤');
+    }
+  }
+}
+
+function unlock() {
+  const p = document.getElementById("pass").value.toLowerCase().trim();
+  const error = document.getElementById("error");
+  const secrets = ["iloveyou", "ilovebhumika", "09052024", "06052024"];
+  
+  if (secrets.includes(p)) {
+    createRoseFireworks();
+    document.getElementById("loveSong").play().catch(e => console.log('Music ready'));
+    setTimeout(() => {
+      showScreen("startScreen");
+    }, 1500);
+  } else {
+    error.textContent = "❤️ Whisper our special words... 💕";
+    error.style.color = "#ff6b9d";
+    error.style.fontSize = "18px";
+    setTimeout(() => error.textContent = "", 3000);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById("startBtn").onclick = () => {
+    showScreen("content");
+  };
+
+  document.getElementById("yesBtn").onclick = () => {
+    showScreen("final");
+    setTimeout(() => {
+      typeWriter(document.getElementById("thanksTyping"), "Happy 2nd Anniversary, my love 💍✨", 90, () => {
+        setTimeout(() => {
+          typeWriter(document.getElementById("letterTyping"), "My love, today marks 2 years of our journey together, and I still feel the same magic I felt at the beginning. You’ve filled my life with love, comfort, laughter, and the kind of happiness I never knew I needed.", 75, () => {
+            setTimeout(() => {
+              typeWriter(document.getElementById("loveTyping"), "Thank you for being my person, my home, and my forever ❤️", 100, () => {
+                setTimeout(() => {
+                  document.getElementById("bigHeart").style.opacity = "1";
+                  setTimeout(() => {
+                    showScreen("photoScreen");
+                  }, 3000);
+                }, 500);
+              });
+            }, 800);
+          });
+        }, 800);
+      });
+    }, 300);
+  };
+
+  const noBtn = document.getElementById("noBtn");
+  noBtn.onmouseenter = function(e) {
+    this.classList.add('running');
+    const x = (Math.random() - 0.5) * 100;
+    const y = (Math.random() - 0.5) * 60;
+    this.style.transform = `translate(${x}vw, ${y}vh) rotate(${Math.random() * 360}deg)`;
+  };
+
+  noBtn.onmouseleave = function() {
+    this.classList.remove('running');
+    this.style.transform = '';
+  };
+
+  noBtn.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    alert("😘 Oh Bhumika, you know you can't resist our love! Try again 💕");
+    this.classList.remove('running');
+    this.style.transform = '';
+  };
+
+  document.getElementById("enterValentineWeekBtn").onclick = () => {
+    showDayScreen(0);
+  };
+
+  createPasswordEffects();
+  createBgHearts();
+});
+</script>
+</body>
+</html>
